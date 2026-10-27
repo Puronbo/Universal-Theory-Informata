@@ -1,7 +1,24 @@
 """Meta-audit: grep for overclaim phrases + axiom cross-reference check."""
-import re, pathlib
+import re, pathlib, ast
 
 ROOT = pathlib.Path(__file__).parent
+
+def check_engine_refs():
+    src = (ROOT / "engine.py").read_text(encoding="utf-8")
+    tree = ast.parse(src)
+    funcs = {n.name for n in tree.body if isinstance(n, (ast.FunctionDef, ast.ClassDef))}
+    # also module-level constants
+    consts = {t.targets[0].id for t in tree.body if isinstance(t, ast.Assign) and isinstance(t.targets[0], ast.Name)}
+    known = funcs | consts
+    missing = []
+    for md in ROOT.glob("*.md"):
+        for m in re.finditer(r"engine\.([A-Za-z_][A-Za-z0-9_]*)", md.read_text(encoding="utf-8")):
+            name = m.group(1)
+            if name == "py":
+                continue
+            if name not in known:
+                missing.append((md.name, name))
+    return missing
 FORBIDDEN = [
     "is entirely governed",
     "physics is entirely",
@@ -43,12 +60,15 @@ def main():
         for h in hits:
             print(f"  {h[0]}:{h[1]} [{h[2]}] {h[3]}")
         return 1
-    missing = check_cross_refs()
-    if missing:
-        print("AXIOMS not referenced in CONNECTIONS.md:")
-        for m in missing:
-            print(f"  {m}")
-        # warn only, not fail
+    missing_refs = check_engine_refs()
+    if missing_refs:
+        print("ENGINE REFERENCES NOT FOUND:")
+        for m in missing_refs:
+            print(f"  {m[0]}: engine.{m[1]}")
+        return 1
+    print("Meta-audit: no overclaim phrases found.")
+    print("Engine references: all valid.")
+    return 0
     print("Meta-audit: no overclaim phrases found.")
     if missing:
         print(f"  ({len(missing)} axioms not yet in CONNECTIONS.md)")

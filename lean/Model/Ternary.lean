@@ -23,9 +23,4 @@ theorem netZero_eroded : netZero [Ternary.zero, Ternary.zero] := by
   rfl
 
 -- erosion: convert one pos and one neg to zero, preserving sum
-def erodeOne : List Ternary -> List Ternary
-  | [] => []
-  | Ternary.pos :: rest =>
-      -- find a neg to pair; simplified: replace first pos, drop first neg later
-      Ternary.zero :: erodeOne rest
-  | x :: rest => x :: erodeOne rest
+-- (moved to Model/Erosion.lean)
