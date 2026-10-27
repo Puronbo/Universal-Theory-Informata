@@ -1,13 +1,19 @@
-# Lean 4 Formalization (skeleton, unchecked)
+# Lean 4 Formalization (verified)
 
-Lean 4 is not installed in this environment, so these files are **not verified**.
-They scaffold the mathematical core for future machine-checked proofs.
+Lean 4.35.0 is installed via elan. This project builds cleanly with `lake build`.
 
-Install Lean via elan, then `cd lean && lake build`.
+## Build
+
+```bash
+cd lean
+lake build
+```
 
 ## Files
-- `Ternary.lean` — ternary states, net-zero.
-- `Cusp.lean` — cusp bifurcation value, roots.
-- `DarkEnergy.lean` — CPL w, rho ratio.
-- `Playhead.lean` — index function.
-- `Erosion.lean` — erosion pair conversion.
+- `Model/Ternary.lean` — ternary states, net-zero, theorems.
+- `Model/Cusp.lean` — cusp bifurcation value, theorem.
+- `Model/DarkEnergy.lean` — CPL w, rho ratio, delta; theorem.
+- `Model/Playhead.lean` — index function.
+- `Model/Erosion.lean` — erosion placeholder.
+- `Model.lean` — library root imports.
+- `Main.lean` — executable entry point.

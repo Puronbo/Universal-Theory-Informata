@@ -10,8 +10,14 @@ def ternaryToInt : Ternary -> Int
   | Ternary.zero => 0
   | Ternary.pos  => 1
 
+theorem ternaryToInt_neg_add_pos : ternaryToInt Ternary.neg + ternaryToInt Ternary.pos = 0 := by
+  rfl
+
 def netZero (xs : List Ternary) : Prop :=
   (xs.map ternaryToInt).sum = 0
+
+theorem netZero_nil : netZero [] := by
+  rfl
 
 -- erosion: convert one pos and one neg to zero, preserving sum
 def erodeOne : List Ternary -> List Ternary
