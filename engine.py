@@ -385,6 +385,29 @@ def strobe(signal: List, rate: int) -> List:
     return list(signal[::rate])
 
 
+# ---------------------------------------------------------------------------
+# 11. Search utility (meta-audit / exploration)
+# ---------------------------------------------------------------------------
+
+import re as _re
+from pathlib import Path as _Path
+
+def search_text(root, pattern, include="*.md", regex=False):
+    """Search files under root for pattern. Returns list of (path, lineno, line)."""
+    root = _Path(root)
+    results = []
+    for p in root.rglob(include):
+        if not p.is_file():
+            continue
+        try:
+            for i, line in enumerate(p.read_text(encoding="utf-8").splitlines(), 1):
+                if (pattern in line) if not regex else _re.search(pattern, line):
+                    results.append((str(p), i, line.strip()))
+        except (UnicodeDecodeError, OSError):
+            continue
+    return results
+
+
 if __name__ == "__main__":
     # small demo
     import math

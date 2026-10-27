@@ -12,6 +12,7 @@ from engine import (
     roll_orientation, roll_convert,
     stretched_distance, apparent_separation,
     strobe,
+    search_text,
 )
 
 def test_ternary_net_zero():
@@ -199,6 +200,11 @@ def test_strobe():
         assert False
     except ValueError:
         pass
+
+def test_search_text():
+    res = search_text(".", "Rolling-Fold", include="*.md")
+    assert len(res) > 0
+    assert any("CONNECTIONS" in r[0] or "AXIOMS" in r[0] for r in res)
 
 if __name__ == "__main__":
     tests = [v for k, v in globals().items() if k.startswith("test_")]

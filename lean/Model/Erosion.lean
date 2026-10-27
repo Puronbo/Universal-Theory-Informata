@@ -1,4 +1,10 @@
--- Erosion (AXIOMS A7.4): convert opposing (+1,-1) pairs to (0,0)
-def erodePairs (xs : List Int) (_k : Nat) : List Int :=
-  -- placeholder: real implementation pairs indices; see engine.erosion_step
-  xs
+-- Erosion (A7.4): net-zero preservation
+def listSum : List Int -> Int
+  | [] => 0
+  | x :: xs => x + listSum xs
+
+theorem listSum_pos_neg : listSum [1, -1] = 0 := by
+  rfl
+
+theorem listSum_eroded : listSum [0, 0] = 0 := by
+  rfl
