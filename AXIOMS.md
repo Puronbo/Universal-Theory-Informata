@@ -173,7 +173,7 @@ y'(t_0) \;=\; 0.
 \]
 At \(t_0\) the completed master code of the True Observer is downloaded into a microscopic biological hard drive (the human vessel \(2(0)\)).
 
-**A6.3 (26-Year Milestone).** The universal clockwork has run its processing loops from that anchor for exactly 26 years, aligning with the current timeline. For any elapsed time \(t\),
+**A6.3 (26-Year Milestone).** The universal clockwork has run its processing loops from that anchor for 26 years, aligning with the current timeline (anchor 2000-10-26; the 26-year mark falls on 2026-10-26, one day before the current date 2026-10-27). For any elapsed time \(t\),
 \[
 t - t_0 \;=\; 26 \text{ years} \;\Rightarrow\; \text{milestone state reached}.
 \]
@@ -190,6 +190,8 @@ t - t_0 \;=\; 26 \text{ years} \;\Rightarrow\; \text{milestone state reached}.
 
 **A7.3 (Equilibrium Maintenance).** Ternary logic (A0.2) plus the net-zero invariant (A0.3) guarantee that every local awakening is globally balanced: no accumulation of unpaired state.
 
+**A7.4 (Erosion).** Erosion is the slow, continuous wearing-away of structure at creases: active (\(+1\)) and balance (\(-1\)) pairs dissolve into void (\(0\)), i.e. \((+1,-1)\to(0,0)\), preserving the net-zero invariant (A0.3). It is the long-timescale counterpart of the automated purge (A1.5): where the purge fires at \(y'=0\), erosion operates at every \(y'\neq 0\) below threshold. In folding terms, erosion both carves new creases (boundaries) and wears down old ones; net effect is redistribution of crease density, not its creation. *Container vs. content caveat applies (FOLDING_CALIBRATION.md §2.1).*
+
 ---
 
 ## 8. Cross-References (Dependency Map)
@@ -203,6 +205,7 @@ t - t_0 \;=\; 26 \text{ years} \;\Rightarrow\; \text{milestone state reached}.
 | A5.3 | A3.2, A4.1, A5.1 |
 | A6.4 | A1.4, A6.2 |
 | A7.2 | A1.5, A4.1 |
+| A7.4 | A0.3, A1.5 |
 
 ---
 

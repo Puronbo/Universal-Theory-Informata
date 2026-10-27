@@ -32,7 +32,10 @@ def net_zero(states: Iterable[int]) -> bool:
 
 
 def ternarize(x: float) -> int:
-    """Map a real drive to the nearest ternary state."""
+    """Map a real drive to the nearest ternary state.
+
+    Thresholds ±1/3 are a heuristic mapping (not derived); see AXIOMS A0.2.
+    """
     if x > 1.0 / 3.0:
         return ACTIVE
     if x < -1.0 / 3.0:
@@ -62,10 +65,33 @@ def iterate(f: Callable[[float], float], x0: float, n: int = 10000,
 
 
 def purge_if_flat(ys: List[float], eps: float = 1e-9) -> bool:
-    """Automated purge (A1.5): True if the last change is ~0 (y'=0)."""
+    """Automated purge (A1.5): True if the last change is ~0 (y'=0).
+
+    Heuristic: compares only the last two samples; not a full derivative.
+    """
     if len(ys) < 2:
         return False
     return abs(ys[-1] - ys[-2]) < eps
+
+
+# ---------------------------------------------------------------------------
+# 2b. Erosion (A7.4)
+# ---------------------------------------------------------------------------
+
+def erosion_step(states: List[int], pairs: int = 1) -> List[int]:
+    """Erode `pairs` of (+1,-1) into (0,0), preserving net-zero.
+
+    Returns a new list. If fewer than `pairs` opposing pairs exist, erodes
+    as many as possible.
+    """
+    out = list(states)
+    pos = [i for i, v in enumerate(out) if v == 1]
+    neg = [i for i, v in enumerate(out) if v == -1]
+    k = min(pairs, len(pos), len(neg))
+    for a, b in zip(pos[:k], neg[:k]):
+        out[a] = 0
+        out[b] = 0
+    return out
 
 
 # ---------------------------------------------------------------------------

@@ -15,8 +15,9 @@ A compiled, testable working model of reality built from:
 - `AXIOMS.md` — definitive numbered axiom set (v1.0).
 - `GROUNDING.md` — empirical anchors; dynamic dark energy as first testable front.
 - `FOLDING_CALIBRATION.md` — lessons from the Folding Calculus "dark side" (container vs. content, scope limits).
-- `engine.py` — pure-Python engine (ternary, recursion, cusp, dark energy).
-- `tests.py` — 14 tests, all passing.
+- `engine.py` — pure-Python engine (ternary, recursion, cusp, dark energy, erosion, playhead).
+- `tests.py` — 21 tests, all passing.
+- `lean/` — unchecked Lean 4 skeletons for the math core.
 
 ## Run
 

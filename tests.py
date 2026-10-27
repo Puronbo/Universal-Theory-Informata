@@ -5,6 +5,7 @@ from engine import (
     cusp_roots, bifurcation_value, on_cusp, crease_density_proxy,
     w_cpl, rho_lambda_ratio, check_predictions, DESI_REFERENCE,
     delta_norm, delta_derivative_present, Playhead,
+    erosion_step,
 )
 
 def test_ternary_net_zero():
@@ -105,6 +106,20 @@ def test_playhead_read_all():
     ph = Playhead([1, 2, 3])
     assert ph.read_all() == [1, 2, 3]
     assert ph.index == 3
+
+def test_erosion_preserves_net_zero():
+    s = [1, -1, 1, -1, 0]
+    before = sum(s)
+    out = erosion_step(s, pairs=2)
+    assert sum(out) == before
+    assert out.count(1) == 0 and out.count(-1) == 0
+
+def test_erosion_partial():
+    s = [1, 1, -1, 0]
+    out = erosion_step(s, pairs=5)  # only one opposing pair
+    assert out.count(1) == 1
+    assert out.count(-1) == 0
+    assert sum(out) == sum(s)
 
 if __name__ == "__main__":
     tests = [v for k, v in globals().items() if k.startswith("test_")]
