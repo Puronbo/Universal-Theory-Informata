@@ -374,6 +374,17 @@ def apparent_separation(points: List, scale_factor: float) -> list:
     return out
 
 
+# ---------------------------------------------------------------------------
+# 10. Stroboscopic sampling (A4.6)
+# ---------------------------------------------------------------------------
+
+def strobe(signal: List, rate: int) -> List:
+    """Downsample a fine signal by `rate`, producing the frozen alias (blade)."""
+    if rate < 1:
+        raise ValueError("rate must be >= 1")
+    return list(signal[::rate])
+
+
 if __name__ == "__main__":
     # small demo
     import math

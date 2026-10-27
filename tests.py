@@ -11,6 +11,7 @@ from engine import (
     resonance_w0, impedance_series, schwinger_mass_gap, thirring_gn_mass_gap, grokking_delay,
     roll_orientation, roll_convert,
     stretched_distance, apparent_separation,
+    strobe,
 )
 
 def test_ternary_net_zero():
@@ -188,6 +189,16 @@ def test_apparent_separation():
     assert len(out) == 3
     assert out[0] == (0, 1, 2.0)
     assert out[2] == (1, 2, 4.0)
+
+def test_strobe():
+    sig = list(range(10))
+    assert strobe(sig, 2) == [0, 2, 4, 6, 8]
+    assert strobe(sig, 3) == [0, 3, 6, 9]
+    try:
+        strobe(sig, 0)
+        assert False
+    except ValueError:
+        pass
 
 if __name__ == "__main__":
     tests = [v for k, v in globals().items() if k.startswith("test_")]

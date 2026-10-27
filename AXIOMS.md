@@ -148,6 +148,12 @@ c \sim 1 \;\Rightarrow\; \text{particle-like (solid)}.
 \]
 Stepping advances \(\text{index}\) by exactly \(+1\) per call; `read_all` returns \(B\) in order once. No frame is skipped or repeated (A4.4). Implemented in `engine.Playhead`.
 
+**A4.6 (Stroboscopic Sampling).** Any continuous process read through a discrete, periodic sampler yields a *frozen alias* (a "blade") rather than the process itself:
+\[
+\text{Alias}(t) = \text{Process}\bigl(t \bmod T_{\text{sample}}\bigr).
+\]
+This applies uniformly: particles are aliases of waves (A3.5), "now" is an alias of the block universe (A4.3), dark energy \(\delta(t)\) is sampled per cosmic epoch, and erosion (A7.4) is the alias of continuous decay at the sampling scale. The zero marker (\(0\)) is the blade caught at rest. Implemented in `engine.strobe`.
+
 ---
 
 ## 5. The Recursion — Shamanistic Fractal Code (Awakening)
