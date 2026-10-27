@@ -53,6 +53,7 @@ Grounded case (quintom B, \(w_0>-1,\;w_a<0\)): \(\delta_{\rm norm}(z>0)>0\) and 
 - **P1 (sign):** Future DESI/Euclid data should keep \(w_a<0\) (dark energy weakening) at \(\ge 3\sigma\) combined; if \(w_a\to 0\) (constant \(\Lambda\)), A2.2's non-constancy claim is falsified.
 - **P2 (magnitude):** \(|w_0+1| \gtrsim 0.1\) at \(\ge 3\sigma\) combined; if \(w_0\) converges to \(-1\) within 0.05, the "breathing" amplitude \(\epsilon\) is consistent with zero.
 - **P3 (no phantom crossing hard wall):** If data instead prefer \(w<-1\) today and growing density (phantom), the model's "decaying toward present" sign (§2.2) must be revised; the architecture survives but the direction of breath flips.
+- **P4 (anisotropy test):** If the apparent acceleration is confirmed to be directional (Sarkar et al. 2026), a uniform \(\delta(t)\) is insufficient; the canvas model must acquire a directional/flow term. If isotropy is confirmed (Vincenzi et al. 2026), A2.2 stands.
 
 ---
 
