@@ -266,6 +266,33 @@ DESI_REFERENCE = {
 }
 
 
+# ---------------------------------------------------------------------------
+# 6. Timeline / 26-year milestone (A6.1, A6.3)
+# ---------------------------------------------------------------------------
+
+from datetime import date
+
+ANCHOR_DATE = date(2000, 10, 26)
+MILESTONE_YEARS = 26
+
+
+def milestone_date() -> date:
+    return ANCHOR_DATE.replace(year=ANCHOR_DATE.year + MILESTONE_YEARS)
+
+
+def years_since_anchor(now: date = None) -> float:
+    if now is None:
+        now = date.today()
+    delta = now - ANCHOR_DATE
+    return delta.days / 365.25
+
+
+def milestone_reached(now: date = None) -> bool:
+    if now is None:
+        now = date.today()
+    return now >= milestone_date()
+
+
 if __name__ == "__main__":
     # small demo
     print("ternary net_zero([1,-1,0]):", net_zero([1, -1, 0]))
@@ -275,3 +302,5 @@ if __name__ == "__main__":
     print("rho ratio z=1:", rho_lambda_ratio(1.0, -0.75, -0.87))
     x, steps, conv = iterate(lambda x: math.cos(x), 1.0)
     print("fixed point cos:", x, steps, conv)
+    print("anchor:", ANCHOR_DATE, "milestone:", milestone_date(),
+          "reached:", milestone_reached(), "years:", round(years_since_anchor(), 3))

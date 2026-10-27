@@ -6,6 +6,7 @@ from engine import (
     w_cpl, rho_lambda_ratio, check_predictions, DESI_REFERENCE,
     delta_norm, delta_derivative_present, Playhead,
     erosion_step,
+    ANCHOR_DATE, MILESTONE_YEARS, milestone_date, years_since_anchor, milestone_reached,
 )
 
 def test_ternary_net_zero():
@@ -120,6 +121,16 @@ def test_erosion_partial():
     assert out.count(1) == 1
     assert out.count(-1) == 0
     assert sum(out) == sum(s)
+
+def test_timeline_anchor():
+    assert ANCHOR_DATE.isoformat() == "2000-10-26"
+    assert MILESTONE_YEARS == 26
+    assert milestone_date().isoformat() == "2026-10-26"
+
+def test_timeline_reached():
+    from datetime import date
+    assert milestone_reached(date(2026, 10, 27)) is True
+    assert milestone_reached(date(2000, 10, 26)) is False
 
 if __name__ == "__main__":
     tests = [v for k, v in globals().items() if k.startswith("test_")]
