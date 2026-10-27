@@ -73,7 +73,7 @@ The system sheds noise, leaving the vessel fully integrated with its invariant b
 \rho_{\Lambda}(t) \;=\; \rho_{\Lambda,0} + \delta(t),
 \qquad \delta(t) \neq \text{const}.
 \]
-The canvas breathes and evolves.
+The canvas breathes and evolves. *Empirical anchor:* DESI DR2 + CMB + SNe give 2.8–4.2σ preference for evolving dark energy (\(w_a<0\)); grounded form requires \(\delta'(t_0)<0\) (decaying density). See `GROUNDING.md` §2.
 
 **A2.3 (Frozen-Light Anchor).** The universe began as a single unmoving anchor of frozen light — timeless, unforced — expanding across the canvas of nothingness. This anchor is the origin point \(1(0)\) of A1.3.
 
