@@ -528,6 +528,39 @@ def closure_check(exterior, interior, tol=1e-9):
     return all(abs(e - i) < tol for e, i in zip(exterior, interior))
 
 
+# ---------------------------------------------------------------------------
+# 16. Multi-agent consciousness simulation (phenomenological)
+# ---------------------------------------------------------------------------
+
+def multi_agent_step(agents, stimuli, threshold=0.5, erosion_pairs=1):
+    """Advance each agent's attention trace and erode noise.
+
+    agents: list of lists (ternary states per agent).
+    Returns updated agents.
+    """
+    out = []
+    for a in agents:
+        # shift: drop oldest, append new attention state from stimulus
+        trace = list(a)
+        if trace:
+            trace = trace[1:]
+        # use the last stimulus value for the new slot
+        new_val = stimuli[-1] if stimuli else 0.0
+        new_state = 1 if new_val > threshold else (-1 if new_val < -threshold else 0)
+        trace.append(new_state)
+        trace = erosion_step(trace, pairs=erosion_pairs)
+        out.append(trace)
+    return out
+
+
+def network_closure(agents):
+    """Fraction of agents whose state is net-zero (balanced awareness)."""
+    if not agents:
+        return 0.0
+    balanced = sum(1 for a in agents if net_zero(a))
+    return balanced / len(agents)
+
+
 if __name__ == "__main__":
     # small demo
     import math

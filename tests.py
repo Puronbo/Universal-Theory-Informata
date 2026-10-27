@@ -16,6 +16,7 @@ from engine import (
     collatz_spine_check, goldbach_check, zeta_partial,
     delta_norm_uncertainty, kene_step, mandelbrot_escape,
     attention_trace, conscious_moment, closure_check,
+    multi_agent_step, network_closure,
 )
 
 def test_ternary_net_zero():
@@ -248,6 +249,18 @@ def test_conscious_moment():
 def test_closure_check():
     assert closure_check([1.0, 2.0], [1.0, 2.0])
     assert not closure_check([1.0], [1.0, 2.0])
+
+def test_multi_agent_step():
+    agents = [[0, 0], [1, -1]]
+    out = multi_agent_step(agents, [0.9], threshold=0.5, erosion_pairs=0)
+    assert len(out) == 2
+    assert out[0][-1] == 1
+    assert out[1][-1] == 1
+
+def test_network_closure():
+    agents = [[1, -1], [1, 1]]
+    frac = network_closure(agents)
+    assert frac == 0.5
 
 if __name__ == "__main__":
     tests = [v for k, v in globals().items() if k.startswith("test_")]
