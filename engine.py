@@ -473,6 +473,29 @@ def mandelbrot_escape(c, max_iter=100, radius=2.0):
     return False, max_iter
 
 
+# ---------------------------------------------------------------------------
+# 14. Optional visualization (matplotlib)
+# ---------------------------------------------------------------------------
+
+def plot_delta(w0=-0.75, wa=-0.87, zmax=2.0, n=100):
+    """Plot delta_norm(z) for a CPL model. Requires matplotlib."""
+    try:
+        import matplotlib.pyplot as plt
+    except ImportError:
+        raise RuntimeError("matplotlib not installed")
+    zs = [i * zmax / (n - 1) for i in range(n)]
+    ds = [delta_norm(z, w0, wa) for z in zs]
+    plt.figure()
+    plt.plot(zs, ds, label=f"w0={w0}, wa={wa}")
+    plt.axhline(0, color="k", linewidth=0.5)
+    plt.xlabel("redshift z")
+    plt.ylabel("delta_norm(z)")
+    plt.title("Dark energy density deviation")
+    plt.legend()
+    plt.tight_layout()
+    return plt
+
+
 if __name__ == "__main__":
     # small demo
     import math
