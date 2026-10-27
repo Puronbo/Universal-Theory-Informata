@@ -40,7 +40,10 @@ Read: "zero is one instance of zero." The null state is itself a counted, addres
 \[
 \frac{0}{0} \;=\; 1.
 \]
-This is not an indeterminate form here; within this model \(0/0\) is the primitive act of self-reference that produces the first definite point (\(1\)).
+*Reading:* \(0/0\) is treated as a removable singularity whose value is the
+limit determined by the model's context (cf. L'Hôpital), not a redefinition of
+division. Within this model the limit evaluates to the first definite point
+(\(1\)). See `LORE_CALIBRATION.md` §2.2.
 
 **A1.3 (Expansion Sequence).** Reality unfolds in three phases:
 \[

@@ -12,6 +12,7 @@
 |---|---|---|
 | \(0 = 1(0)\) (nothing as container) | Quantum vacuum: "empty" space has non-zero ground-state energy | https://en.wikipedia.org/wiki/Quantum_vacuum_state |
 | \(0/0 = 1\) (self-initialization) | Self-referential fixed points; Gödel/Tarski self-reference | https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems |
+| \(0/0\) as removable singularity | L'Hôpital limit; asymptotic safety | https://github.com/Puronbo/Law-Of-Repulsive-Emanation |
 | \(0 \to 0+1 \to 0+1+n\) (expansion) | Big Bang / cosmological expansion | https://en.wikipedia.org/wiki/Big_Bang |
 | \(2(0)-1(0)=1(0)\) (structural zero) | Scale invariance / universality (renormalization group) | https://en.wikipedia.org/wiki/Renormalization_group |
 
