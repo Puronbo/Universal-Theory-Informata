@@ -293,6 +293,13 @@ def milestone_reached(now: date = None) -> bool:
     return now >= milestone_date()
 
 
+def logistic(r: float):
+    """Return f(x)=r*x*(1-x) for use with iterate()."""
+    def f(x: float) -> float:
+        return r * x * (1.0 - x)
+    return f
+
+
 if __name__ == "__main__":
     # small demo
     import math
@@ -303,21 +310,6 @@ if __name__ == "__main__":
     print("rho ratio z=1:", rho_lambda_ratio(1.0, -0.75, -0.87))
     x, steps, conv = iterate(lambda x: math.cos(x), 1.0)
     print("fixed point cos:", x, steps, conv)
-    print("anchor:", ANCHOR_DATE, "milestone:", milestone_date(),
-          "reached:", milestone_reached(), "years:", round(years_since_anchor(), 3))
-
-def logistic(r: float):
-    """Return f(x)=r*x*(1-x) for use with iterate()."""
-    def f(x: float) -> float:
-        return r * x * (1.0 - x)
-    return f
-    # small demo
-    print("ternary net_zero([1,-1,0]):", net_zero([1, -1, 0]))
-    print("cusp roots a=1,b=0:", cusp_roots(1.0, 0.0))
-    print("bifurcation a=1,b=0:", bifurcation_value(1.0, 0.0))
-    print("w(0.5) CPL:", w_cpl(0.5, -0.75, -0.87))
-    print("rho ratio z=1:", rho_lambda_ratio(1.0, -0.75, -0.87))
-    x, steps, conv = iterate(lambda x: math.cos(x), 1.0)
-    print("fixed point cos:", x, steps, conv)
+    print("logistic r=2.5 fixed point:", iterate(logistic(2.5), 0.5)[0])
     print("anchor:", ANCHOR_DATE, "milestone:", milestone_date(),
           "reached:", milestone_reached(), "years:", round(years_since_anchor(), 3))
