@@ -73,7 +73,9 @@ python engine.py           # small demo
 - `w_cpl(a,w0,wa)`, `rho_lambda_ratio(z,w0,wa)`, `delta_norm(z,w0,wa)` — dark energy.
 - `check_predictions(w0,wa,σw0,σwa)` — P1–P3 evaluation.
 - `Playhead(block, tau)` — frame sampling.
-- `milestone_reached()`, `years_since_anchor()` — timeline.
+- `resonance_w0(L,C)`, `impedance_series(R,L,C,w)` — universal impedance.
+- `schwinger_mass_gap(e)`, `thirring_gn_mass_gap(Lambda,g,N)` — mass gaps.
+- `grokking_delay(g,Vmem,Vpost)` — grokking predictor.
 
 ---
 

@@ -8,6 +8,7 @@ from engine import (
     erosion_step,
     ANCHOR_DATE, MILESTONE_YEARS, milestone_date, years_since_anchor, milestone_reached,
     logistic,
+    resonance_w0, impedance_series, schwinger_mass_gap, thirring_gn_mass_gap, grokking_delay,
 )
 
 def test_ternary_net_zero():
@@ -145,6 +146,24 @@ def test_playhead_real_block():
     assert ph.read(0.0) == 0
     assert ph.read(3.9) == 1  # floor(3.9/2)=1
     assert ph.read(100.0) == 9  # clamped
+
+def test_impedance_resonance():
+    R, L, C = 2.0, 1.0, 1.0
+    w0 = resonance_w0(L, C)
+    Z = impedance_series(R, L, C, w0)
+    assert abs(Z.imag) < 1e-9
+    assert abs(Z.real - R) < 1e-9
+
+def test_schwinger_mass_gap():
+    assert abs(schwinger_mass_gap(math.e) - math.e / math.sqrt(math.pi)) < 1e-12
+
+def test_thirring_gn():
+    M = thirring_gn_mass_gap(1.0, 1.0, 2.0)
+    assert M > 0
+    assert abs(M - 1.0 / math.sinh(2 * math.pi)) < 1e-9
+
+def test_grokking_delay():
+    assert abs(grokking_delay(2.0, 4.0, 2.0) - 0.5 * math.log(2.0)) < 1e-12
 
 if __name__ == "__main__":
     tests = [v for k, v in globals().items() if k.startswith("test_")]
