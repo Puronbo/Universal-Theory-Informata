@@ -66,6 +66,10 @@ Grounded case (quintom B, \(w_0>-1,\;w_a<0\)): \(\delta_{\rm norm}(z>0)>0\) and 
 
 **Caveat:** the near-present derivative \(\delta'_{\rm norm}(0)>0\) is consistent across all three samples (density increasing backward from today), but the integrated \(\delta\) at \(z\sim1\) is sample-dependent and can cross zero (Pantheon+). The "decaying toward present" claim (A2.2 \(\epsilon'(t_0)<0\)) therefore holds **locally near \(t_0\)** only; the global sign over cosmic time is not yet settled and must be tracked as DESI/Euclid improve.
 
+### 2.5 Euclid outlook (cross-check)
+
+Euclid's Q1 release (March 2025) covered 0.45% of the nominal survey (63 deg², ~26M galaxies). Its cosmology likelihood (CLOE) forecasts a dark-energy figure of merit \(F_{\rm oM}(w_0,w_a) > 400\) when combining all primary probes — roughly an order of magnitude tighter than DESI alone. The model's P1–P3 (§2.3) should be re-evaluated against Euclid's first cosmology data release (expected ~2026–2027); until then, the DESI-anchored claims stand.
+
 ## 3. Geometry — settled background (no new work needed)
 
 - Spin-\(\tfrac12\) requires \(720^\circ\) to return to initial state (topological belt trick; Dirac spinor sign change under \(2\pi\)). This is standard, experimentally confirmed quantum mechanics.

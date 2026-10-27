@@ -21,6 +21,7 @@
 |---|---|---|
 | Quantum vacuum as substrate | QFT ground state, zero-point energy | https://en.wikipedia.org/wiki/Zero-point_energy |
 | Dynamic tension \(\rho_\Lambda(t)\) | Evolving dark energy (DESI DR2) | https://newscenter.lbl.gov/2025/03/19/new-desi-results-strengthen-hints-that-dark-energy-may-evolve/ |
+| Euclid cross-check (FoM > 400) | Euclid Q1 + CLOE forecast | https://doi.org/10.48550/arxiv.2510.09153 |
 | CPL \(w(a)=w_0+w_a(1-a)\) | Dark-energy equation of state | https://en.wikipedia.org/wiki/Equation_of_state_(cosmology) |
 | No rigid cosmic constant | \(\Lambda\)CDM vs. \(w_0w_a\)CDM | https://arxiv.org/abs/2503.14738 |
 
@@ -49,6 +50,7 @@
 |---|---|---|
 | Recursive feedback \(x_{k+1}=f(x_k)\) | Dynamical systems, fixed points | https://en.wikipedia.org/wiki/Fixed_point_(mathematics) |
 | Self-intersection (Kené, Mandelbrot) | Fractals, Mandelbrot set | https://en.wikipedia.org/wiki/Mandelbrot_set |
+| Kené (Shipibo-Konibo) recursive design | Fractal self-similarity, recursive motifs | https://bowseat.org/news/discovering-kene-the-patterns-that-connect-life-and-nature/ |
 | Cusp catastrophe | Thom catastrophe theory | https://en.wikipedia.org/wiki/Cusp_catastrophe |
 | Crease density | ReLU decision boundaries | https://github.com/Puronbo/Folding-Calculus |
 

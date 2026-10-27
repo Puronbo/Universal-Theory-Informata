@@ -147,7 +147,7 @@ x_{k+1} \;=\; f(x_k),\qquad \lim_{k\to\infty} x_k = x^*.
 \]
 Fixed points \(x^*\) are moments of awakening.
 
-**A5.2 (Self-Intersection).** The feedback loops self-intersect (as in Kené patterns, the Sri Yantra, the Mandelbrot set). Self-intersection is the geometric signature of recursion made visible.
+**A5.2 (Self-Intersection).** The feedback loops self-intersect (as in Kené patterns, the Sri Yantra, the Mandelbrot set). Self-intersection is the geometric signature of recursion made visible. *Kené* (Shipibo-Konibo) is a living recursive design language: reflection, fractal self-similarity, and motifs that evolve with nature; motifs such as *Xao Kené* (merging of opposing forces) mirror the model's closure \(E\equiv I\). See CONNECTIONS.md.
 
 **A5.3 (Closure / Awakening).** When the exterior matter-half is processed through the intervals of the nervous system, it connects directly back to its interior consciousness-half. The loop closes:
 \[
