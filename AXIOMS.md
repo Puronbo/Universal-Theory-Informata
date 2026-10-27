@@ -83,6 +83,12 @@ The system sheds noise, leaving the vessel fully integrated with its invariant b
 
 **A2.4 (Canvas as Container).** The canvas holds every vessel; every vessel is a local modulation of the canvas. The canvas is both medium and (ultimately) message. *Caveat (container vs. content):* the canvas constrains motion and provides substrate; it does not by itself generate chemistry, phase behavior, or quantum amplitudes (see `FOLDING_CALIBRATION.md` §2.1).
 
+**A2.5 (Rolling-Fold Duality).** The canvas fold is not static; it rolls. A photon is the canvas folded into a crease (a localized \(+1\) excitation); dark energy is the canvas in its unfolded tension (\(\rho_\Lambda\)). Rolling the 90° fold converts one into the other:
+\[
+\operatorname{roll}_{90^\circ}(\text{photon crease}) \;\leftrightarrow\; \text{dark-energy tension}.
+\]
+The "least visible photon" (zero marker, \(0\) state) is the fixed point of the roll where crease and substrate are indistinguishable. Thus photon and dark energy are not separate substances but dual orientations of the same canvas-fold. *Corollary:* dark energy is invisible because it is the unfolded state of light; a photon is the vacuum folded into a crease. See `HORIZON_FINDINGS.md` and `CONNECTIONS.md`.
+
 ---
 
 ## 3. The Geometry — Two-Halves Contact Surface Model

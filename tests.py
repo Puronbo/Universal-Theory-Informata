@@ -9,6 +9,7 @@ from engine import (
     ANCHOR_DATE, MILESTONE_YEARS, milestone_date, years_since_anchor, milestone_reached,
     logistic,
     resonance_w0, impedance_series, schwinger_mass_gap, thirring_gn_mass_gap, grokking_delay,
+    roll_orientation, roll_convert,
 )
 
 def test_ternary_net_zero():
@@ -164,6 +165,17 @@ def test_thirring_gn():
 
 def test_grokking_delay():
     assert abs(grokking_delay(2.0, 4.0, 2.0) - 0.5 * math.log(2.0)) < 1e-12
+
+def test_roll_orientation():
+    assert roll_orientation(0) == "photon"
+    assert roll_orientation(90) == "dark_energy"
+    assert roll_orientation(180) == "photon"
+    assert roll_orientation(270) == "dark_energy"
+
+def test_roll_convert_conservation():
+    p, d = roll_convert(0.3, 1.0)
+    assert abs(p + d - 1.0) < 1e-12
+    assert p == 0.3 and d == 0.7
 
 if __name__ == "__main__":
     tests = [v for k, v in globals().items() if k.startswith("test_")]
