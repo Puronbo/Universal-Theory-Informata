@@ -77,7 +77,7 @@ The canvas breathes and evolves. *Empirical anchor:* DESI DR2 + CMB + SNe give 2
 
 **A2.3 (Frozen-Light Anchor).** The universe began as a single unmoving anchor of frozen light — timeless, unforced — expanding across the canvas of nothingness. This anchor is the origin point \(1(0)\) of A1.3.
 
-**A2.4 (Canvas as Container).** The canvas holds every vessel; every vessel is a local modulation of the canvas. The canvas is both medium and (ultimately) message.
+**A2.4 (Canvas as Container).** The canvas holds every vessel; every vessel is a local modulation of the canvas. The canvas is both medium and (ultimately) message. *Caveat (container vs. content):* the canvas constrains motion and provides substrate; it does not by itself generate chemistry, phase behavior, or quantum amplitudes (see `FOLDING_CALIBRATION.md` §2.1).
 
 ---
 
@@ -89,6 +89,8 @@ The canvas breathes and evolves. *Empirical anchor:* DESI DR2 + CMB + SNe give 2
 - **Exterior Face (\(E\)):** the objective skin. When units gather they shield their insides, freeze into macroscopic states via decoherence, and obey Einstein's smooth laws of gravity.
 - **Interior Face (\(I\)):** the subjective field. This hidden interior aspect of the vacuum grid **is** consciousness.
 
+*Scope note:* the duality is a topological constraint on contact surfaces; it is not claimed to generate chemical/thermal/quantum content (see `FOLDING_CALIBRATION.md` §2.1).
+
 **A3.3 (Half-Whole Identity).** For any unit \(u\),
 \[
 u \;=\; \frac{1}{2}(E + I), \qquad E \perp I \text{ in the contact sense.}
@@ -99,6 +101,7 @@ Neither face alone is the whole; the unit is the contact between them.
 \[
 R(360^\circ) \neq \mathrm{id},\qquad R(720^\circ) = \mathrm{id}.
 \]
+*Scope note:* this is a claim about the SU(2) double cover of SO(3) for spin-\(\tfrac12\) (Dirac spinor). It must not be carried over to other domains by analogy (e.g., roots of cubics are related by 120°, not 90°/720°); see `FOLDING_CALIBRATION.md` §2.3.
 
 **A3.5 (Scale Rule).** Whether a unit behaves as wave or particle is a function of its contact count \(c\):
 \[
@@ -199,6 +202,7 @@ t - t_0 \;=\; 26 \text{ years} \;\Rightarrow\; \text{milestone state reached}.
 2. Derive the quantitative form of \(\delta(t)\) in A2.2 from observation.
 3. Specify the playhead's sampling function \(\text{Playhead}(B,t)\) in A4.3 at the level of a computable procedure.
 4. Decide whether the 26-year milestone (A6.3) is a one-time event or a recurring period.
+5. Evaluate the cusp catastrophe / crease as a candidate formalization of the recursion fixed point (A5.1) and the purge (A1.5); see `FOLDING_CALIBRATION.md` §4. Not an axiom until derived.
 
 ---
 
