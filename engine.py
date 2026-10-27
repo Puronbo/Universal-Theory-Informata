@@ -445,6 +445,34 @@ def zeta_partial(s: float, N: int) -> float:
     return sum(1.0 / (n ** s) for n in range(1, N + 1))
 
 
+def delta_norm_uncertainty(w0, wa, sigma_w0, sigma_wa, h=1e-5):
+    """Approximate 1-sigma uncertainty on delta_norm at z=1 via finite differences."""
+    base = delta_norm(1.0, w0, wa)
+    dw0 = (delta_norm(1.0, w0 + h, wa) - delta_norm(1.0, w0 - h, wa)) / (2 * h)
+    dwa = (delta_norm(1.0, w0, wa + h) - delta_norm(1.0, w0, wa - h)) / (2 * h)
+    var = (dw0 * sigma_w0) ** 2 + (dwa * sigma_wa) ** 2
+    return abs(base), math.sqrt(var)
+
+
+# ---------------------------------------------------------------------------
+# 13. Recursion families (R4): Mandelbrot / Kené-style complex iteration
+# ---------------------------------------------------------------------------
+
+def kene_step(z, c):
+    """One step of the Kené/Mandelbrot-style recursion: z -> z^2 + c."""
+    return z * z + c
+
+
+def mandelbrot_escape(c, max_iter=100, radius=2.0):
+    """Iterate z_{n+1}=z_n^2+c from z0=0; return (escaped, n)."""
+    z = 0 + 0j
+    for n in range(1, max_iter + 1):
+        z = z * z + c
+        if abs(z) > radius:
+            return True, n
+    return False, max_iter
+
+
 if __name__ == "__main__":
     # small demo
     import math

@@ -14,6 +14,7 @@ from engine import (
     strobe,
     search_text,
     collatz_spine_check, goldbach_check, zeta_partial,
+    delta_norm_uncertainty, kene_step, mandelbrot_escape,
 )
 
 def test_ternary_net_zero():
@@ -219,6 +220,23 @@ def test_zeta_partial():
     # zeta(2) partial should approach pi^2/6 ~ 1.6449
     val = zeta_partial(2.0, 10000)
     assert abs(val - (math.pi**2 / 6.0)) < 1e-3
+
+def test_delta_norm_uncertainty():
+    base, unc = delta_norm_uncertainty(-0.75, -0.87, 0.058, 0.25)
+    assert unc >= 0
+    assert base == delta_norm(1.0, -0.75, -0.87)
+
+def test_mandelbrot_escape():
+    # c=0: z stays 0, never escapes
+    esc, n = mandelbrot_escape(0+0j)
+    assert not esc
+    # c=2: escapes immediately
+    esc2, n2 = mandelbrot_escape(2+0j)
+    assert esc2
+    assert n2 == 2
+
+def test_kene_step():
+    assert kene_step(1+1j, 0+0j) == (1+1j)**2
 
 if __name__ == "__main__":
     tests = [v for k, v in globals().items() if k.startswith("test_")]
