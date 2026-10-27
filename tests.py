@@ -15,6 +15,7 @@ from engine import (
     search_text,
     collatz_spine_check, goldbach_check, zeta_partial,
     delta_norm_uncertainty, kene_step, mandelbrot_escape,
+    attention_trace, conscious_moment, closure_check,
 )
 
 def test_ternary_net_zero():
@@ -237,6 +238,16 @@ def test_mandelbrot_escape():
 
 def test_kene_step():
     assert kene_step(1+1j, 0+0j) == (1+1j)**2
+
+def test_attention_trace():
+    assert attention_trace([0.1, 0.8, -0.9, 0.0]) == [0, 1, -1, 0]
+
+def test_conscious_moment():
+    assert conscious_moment([1,2,3,4,5], 2) == [1, 3, 5]
+
+def test_closure_check():
+    assert closure_check([1.0, 2.0], [1.0, 2.0])
+    assert not closure_check([1.0], [1.0, 2.0])
 
 if __name__ == "__main__":
     tests = [v for k, v in globals().items() if k.startswith("test_")]

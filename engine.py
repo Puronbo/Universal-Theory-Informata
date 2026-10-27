@@ -496,6 +496,38 @@ def plot_delta(w0=-0.75, wa=-0.87, zmax=2.0, n=100):
     return plt
 
 
+# ---------------------------------------------------------------------------
+# 15. Consciousness / attention (phenomenological, A3.2, A4.6, A5.3)
+# ---------------------------------------------------------------------------
+
+def attention_trace(stimuli, threshold=0.5):
+    """Map a stimulus stream to ternary attention states.
+
+    active (+1) if stimulus > threshold, balance (-1) if < -threshold, else void (0).
+    """
+    out = []
+    for s in stimuli:
+        if s > threshold:
+            out.append(1)
+        elif s < -threshold:
+            out.append(-1)
+        else:
+            out.append(0)
+    return out
+
+
+def conscious_moment(stream, sample_rate=1):
+    """A conscious 'now' is a stroboscopic alias of the stimulus stream (A4.6)."""
+    return strobe(list(stream), sample_rate)
+
+
+def closure_check(exterior, interior, tol=1e-9):
+    """Awakening criterion: exterior and interior states coincide (A5.3, E≡I)."""
+    if len(exterior) != len(interior):
+        return False
+    return all(abs(e - i) < tol for e, i in zip(exterior, interior))
+
+
 if __name__ == "__main__":
     # small demo
     import math
