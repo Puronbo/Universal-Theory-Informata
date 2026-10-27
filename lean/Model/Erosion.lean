@@ -8,3 +8,6 @@ theorem listSum_pos_neg : listSum [1, -1] = 0 := by
 
 theorem listSum_eroded : listSum [0, 0] = 0 := by
   rfl
+
+theorem erosion_preserves_example : listSum [1, -1, 1, -1] = listSum [0, 0, 0, 0] := by
+  rfl
