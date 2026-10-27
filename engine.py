@@ -146,6 +146,72 @@ def rho_lambda_ratio(z: float, w0: float, wa: float) -> float:
     )
 
 
+def delta_norm(z: float, w0: float, wa: float) -> float:
+    """Normalized delta(t) of A2.2: delta/rho0 = rho_DE(z)/rho_DE(0) - 1.
+
+    Present (z=0) is zero. Positive in the past for the DESI-anchored
+    (quintom B) case, i.e. density was higher in the past and is decaying.
+    """
+    return rho_lambda_ratio(z, w0, wa) - 1.0
+
+
+def delta_derivative_present(w0: float, wa: float, h: float = 1e-5) -> float:
+    """Numerical derivative d(delta_norm)/dz at z=0 (present).
+
+    For the grounded (decaying) case this should be > 0? Note delta_norm(z)
+    for z>0 (past) positive and decreasing toward 0 as z->0+, so as z
+    increases from 0, delta increases => derivative at 0+ > 0. We report
+    derivative w.r.t. z at 0.
+    """
+    return (delta_norm(h, w0, wa) - delta_norm(0.0, w0, wa)) / h
+
+
+# ---------------------------------------------------------------------------
+# 5. Playhead sampling (A4.1, A4.3, A4.4)
+# ---------------------------------------------------------------------------
+
+class Playhead:
+    """Reads a static 4D block frame-by-frame at Planck intervals.
+
+    No frame is skipped and no frame is repeated (A4.4).
+    """
+
+    def __init__(self, block: List, tau: float = 1.0):
+        self.block = list(block)
+        self.tau = tau
+        self._i = 0
+
+    def reset(self) -> None:
+        self._i = 0
+
+    @property
+    def index(self) -> int:
+        return self._i
+
+    def read(self, t: float):
+        """Frame at time t: index = floor(t/tau), clamped to block bounds."""
+        if t < 0:
+            return None
+        idx = int(t // self.tau)
+        if idx >= len(self.block):
+            idx = len(self.block) - 1
+        return self.block[idx]
+
+    def step(self):
+        """Advance exactly one Planck interval and return that frame."""
+        if self._i >= len(self.block):
+            return None
+        frame = self.block[self._i]
+        self._i += 1
+        return frame
+
+    def read_all(self) -> List:
+        """Read every frame once, in order, then stop."""
+        out = list(self.block)
+        self._i = len(self.block)
+        return out
+
+
 def check_predictions(w0: float, wa: float,
                       sigma_w0: float, sigma_wa: float) -> dict:
     """Evaluate P1-P3 from GROUNDING.md against a reported (w0, wa).

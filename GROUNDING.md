@@ -42,6 +42,13 @@ with sign convention \(\epsilon>0\) meaning *stronger* than today. Since \(w<-1\
 \]
 So the model's "breathing canvas" (A2.2) is, in its first grounded form, a **decaying dark-energy density** rather than a constant — consistent with the "Vanishing Constant" intuition, but now with a sign and a slope.
 
+**Formal \(\delta\) (engine `delta_norm`):** with \(z\) redshift (present \(z=0\), past \(z>0\)),
+\[
+\delta_{\rm norm}(z) \;=\; \frac{\rho_\Lambda(z)}{\rho_{\Lambda,0}}-1
+\;=\; (1+z)^{3(1+w_0+w_a)}\exp\!\left(-\frac{3 w_a z}{1+z}\right)-1.
+\]
+Grounded case (quintom B, \(w_0>-1,\;w_a<0\)): \(\delta_{\rm norm}(z>0)>0\) and \(\delta_{\rm norm}'(0)>0\) (density higher in past, decaying toward present). The purge/flat condition corresponds to \(\delta\to 0\) at late times.
+
 ### 2.3 Testable predictions (falsifiable)
 - **P1 (sign):** Future DESI/Euclid data should keep \(w_a<0\) (dark energy weakening) at \(\ge 3\sigma\) combined; if \(w_a\to 0\) (constant \(\Lambda\)), A2.2's non-constancy claim is falsified.
 - **P2 (magnitude):** \(|w_0+1| \gtrsim 0.1\) at \(\ge 3\sigma\) combined; if \(w_0\) converges to \(-1\) within 0.05, the "breathing" amplitude \(\epsilon\) is consistent with zero.

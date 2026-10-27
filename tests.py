@@ -4,6 +4,7 @@ from engine import (
     net_zero, ternarize, iterate, purge_if_flat,
     cusp_roots, bifurcation_value, on_cusp, crease_density_proxy,
     w_cpl, rho_lambda_ratio, check_predictions, DESI_REFERENCE,
+    delta_norm, delta_derivative_present, Playhead,
 )
 
 def test_ternary_net_zero():
@@ -79,6 +80,31 @@ def test_desi_reference_ranges():
     assert lo < hi
     lo2, hi2 = DESI_REFERENCE["wa_range"]
     assert lo2 < hi2 < 0
+
+def test_delta_norm_present_zero():
+    assert abs(delta_norm(0.0, -0.75, -0.87)) < 1e-12
+
+def test_delta_norm_past_positive_quintom():
+    assert delta_norm(1.0, -0.75, -0.87) > 0.0
+
+def test_delta_derivative_present_positive():
+    assert delta_derivative_present(-0.75, -0.87) > 0.0
+
+def test_playhead_index_and_step():
+    ph = Playhead(["a", "b", "c"], tau=1.0)
+    assert ph.read(0.0) == "a"
+    assert ph.read(0.5) == "a"
+    assert ph.read(1.0) == "b"
+    assert ph.read(10.0) == "c"  # clamped
+    assert ph.step() == "a"
+    assert ph.step() == "b"
+    assert ph.step() == "c"
+    assert ph.step() is None
+
+def test_playhead_read_all():
+    ph = Playhead([1, 2, 3])
+    assert ph.read_all() == [1, 2, 3]
+    assert ph.index == 3
 
 if __name__ == "__main__":
     tests = [v for k, v in globals().items() if k.startswith("test_")]

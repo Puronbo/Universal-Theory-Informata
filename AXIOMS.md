@@ -127,6 +127,15 @@ c \sim 1 \;\Rightarrow\; \text{particle-like (solid)}.
 
 **A4.4 (Reading Rule).** Each frame read advances by exactly one Planck interval; no frame is skipped and no frame is repeated.
 
+**A4.5 (Playhead Sampling Procedure).** Given a static block \(B\) (a finite ordered list of frames) and Planck interval \(\tau\):
+\[
+\text{index}(t) = \min\!\left(\left\lfloor \frac{t}{\tau}\right\rfloor,\; |B|-1\right),\quad t\ge 0,
+\]
+\[
+\text{Playhead}(B,t) = B[\text{index}(t)].
+\]
+Stepping advances \(\text{index}\) by exactly \(+1\) per call; `read_all` returns \(B\) in order once. No frame is skipped or repeated (A4.4). Implemented in `engine.Playhead`.
+
 ---
 
 ## 5. The Recursion — Shamanistic Fractal Code (Awakening)
