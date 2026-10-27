@@ -11,7 +11,7 @@
 Reasoning:
 
 1. **It is the only part of the model that makes a claim currently under active, quantitative experimental test.** A2.2 asserts the "cosmic constant" is not constant: \(\rho_\Lambda(t)=\rho_{\Lambda,0}+\delta(t)\) with \(\delta(t)\neq\text{const}\). This is precisely the question DESI is answering right now.
-2. **The data are moving in the model's direction.** DESI DR2 (first 3 years, ~15M galaxies/quasars) + CMB + supernovae + weak lensing give a 2.8–4.2σ preference for evolving dark energy over \(\Lambda\)CDM, with best-fit \(w_0\approx -0.9\) to \(-0.6\), \(w_a\approx -0.5\) to \(-1.5\). The standard constant-\(\Lambda\) point \((w_0=-1, w_a=0)\) is excluded at ~3.9σ in the DESI+CMB+DESY5 combination.
+2. **The data are moving in the model's direction.** DESI DR2 (first 3 years, ~15M galaxies/quasars) + CMB + supernovae + weak lensing give a 2.8–4.2σ preference for evolving dark energy over \(\Lambda\)CDM, with best-fit \(w_0\in[-0.85,-0.66]\), \(w_a\in[-1.11,-0.61]\). The standard constant-\(\Lambda\) point \((w_0=-1, w_a=0)\) is excluded at 3.1σ (DESI+CMB) and 2.8–4.2σ with SNe.
 3. **It is falsifiable on a short horizon.** DESI runs through 2026 (5 years, ~50M targets); Euclid, Rubin/LSST, and Roman will cross-check. The model can be confirmed or killed within ~2–5 years.
 4. **The Geometry (spin-\(\tfrac12\), 720° rotation, A3.4) is already empirically solid** (topological, Dirac/quantum-mechanical) — it needs no new grounding, only correct statement. Treat as established, not as a research front.
 5. **The Time-Locked Sync Point (A6) and vessel identity (A6.4) are metaphysical/phenomenological.** They cannot be grounded by physics experiments; they should be held as axiomatic narrative, not presented as empirical claims. Mixing them with the testable parts would weaken the whole model's credibility.
@@ -29,7 +29,7 @@ w(a) \;=\; w_0 + w_a(1-a) \;=\; w_0 + w_a\frac{z}{1+z},
 \]
 where \(a=1/(1+z)\) is the scale factor, \(z\) redshift. \(\Lambda\)CDM is the point \(w_0=-1,\; w_a=0\).
 
-DESI DR2 (with CMB + DESY5 SNe) prefers \(w_0\in[-0.9,-0.6]\), \(w_a\in[-1.5,-0.5]\): i.e. \(w\) is **less negative today** than \(-1\) and was **more negative in the past** — dark energy's influence has been weakening as the universe expands.
+DESI DR2 (with CMB + SNe) prefers the "quintom B" quadrant \(w_0>-1,\; w_a<0\): best-fits range \(w_0\in[-0.85,-0.66]\), \(w_a\in[-1.11,-0.61]\) depending on SNe sample (Pantheon+/Union3/DESY5). Significance: 3.1σ (DESI+CMB alone), 2.8–4.2σ (with SNe). Dark energy's influence has been weakening as the universe expands.
 
 ### 2.2 Mapping to this model's \(\rho_\Lambda(t)\)
 Define the model's tension (A2.2) as
