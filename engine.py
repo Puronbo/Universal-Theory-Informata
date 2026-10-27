@@ -355,6 +355,25 @@ def grokking_delay(g_eff: float, V_mem: float, V_post: float) -> float:
     return (1.0 / g_eff) * math.log(V_mem / V_post)
 
 
+# ---------------------------------------------------------------------------
+# 9. Geometry: particles as stretched points (A3.6)
+# ---------------------------------------------------------------------------
+
+def stretched_distance(d0: float, scale_factor: float) -> float:
+    """Apparent separation of two points under canvas stretching (A3.6)."""
+    return d0 * scale_factor
+
+
+def apparent_separation(points: List, scale_factor: float) -> list:
+    """Pairwise distances among points scaled by the canvas stretch factor."""
+    out = []
+    for i in range(len(points)):
+        for j in range(i + 1, len(points)):
+            d0 = abs(points[j] - points[i])
+            out.append((i, j, d0 * scale_factor))
+    return out
+
+
 if __name__ == "__main__":
     # small demo
     import math

@@ -119,6 +119,8 @@ c \gg 1 \;\Rightarrow\; \text{wave-like (fuzzy)},\qquad
 c \sim 1 \;\Rightarrow\; \text{particle-like (solid)}.
 \]
 
+**A3.6 (Particles as Stretched Points).** A particle is a point (contact surface, A3.1) in the canvas. Its apparent separation from other particles is not an intrinsic property of the points but of the canvas stretching between them: as space expands/deforms, the geodesic distance between contact surfaces grows, making the points appear separated. The points themselves are not "detached"; the metric (canvas) stretches. Thus particle separation is a *metric effect* of canvas dynamics (A2.2), not a substance property. *Corollary:* accelerated stretching (dark energy) increases particle separation without creating new points — consistent with the erosion/purge picture (A7.4) and with the rolling-fold duality (A2.5).
+
 ---
 
 ## 4. The Playhead — Intervals & Block Universe

@@ -10,6 +10,7 @@ from engine import (
     logistic,
     resonance_w0, impedance_series, schwinger_mass_gap, thirring_gn_mass_gap, grokking_delay,
     roll_orientation, roll_convert,
+    stretched_distance, apparent_separation,
 )
 
 def test_ternary_net_zero():
@@ -176,6 +177,17 @@ def test_roll_convert_conservation():
     p, d = roll_convert(0.3, 1.0)
     assert abs(p + d - 1.0) < 1e-12
     assert p == 0.3 and d == 0.7
+
+def test_stretched_distance():
+    assert stretched_distance(2.0, 3.0) == 6.0
+    assert stretched_distance(1.0, 1.0) == 1.0
+
+def test_apparent_separation():
+    pts = [0.0, 1.0, 3.0]
+    out = apparent_separation(pts, 2.0)
+    assert len(out) == 3
+    assert out[0] == (0, 1, 2.0)
+    assert out[2] == (1, 2, 4.0)
 
 if __name__ == "__main__":
     tests = [v for k, v in globals().items() if k.startswith("test_")]

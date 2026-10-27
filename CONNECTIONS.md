@@ -34,6 +34,7 @@
 | Interior face = consciousness | Hard problem (phenomenology; not yet a physics law) | https://en.wikipedia.org/wiki/Hard_problem_of_consciousness |
 | Spin-\(\tfrac12\), \(720^\circ\) | Dirac spinor, SU(2) double cover of SO(3) | https://en.wikipedia.org/wiki/Spin-%C2%BD |
 | Topological knot | Belt trick / Dirac string | https://en.wikipedia.org/wiki/Plate_trick |
+| Particles as stretched points | Metric expansion (Hubble flow) | https://en.wikipedia.org/wiki/Metric_expansion_of_space |
 | Photon vs. dark energy | Rolling-fold duality (A2.5) | https://en.wikipedia.org/wiki/Wave%E2%80%93particle_duality |
 
 ## 4. The Playhead — Time & Block Universe
