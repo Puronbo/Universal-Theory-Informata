@@ -13,6 +13,7 @@ from engine import (
     stretched_distance, apparent_separation,
     strobe,
     search_text,
+    collatz_spine_check, goldbach_check, zeta_partial,
 )
 
 def test_ternary_net_zero():
@@ -205,6 +206,19 @@ def test_search_text():
     res = search_text(".", "Rolling-Fold", include="*.md")
     assert len(res) > 0
     assert any("CONNECTIONS" in r[0] or "AXIOMS" in r[0] for r in res)
+
+def test_collatz_spine():
+    for k in range(10):
+        assert collatz_spine_check(k)
+
+def test_goldbach():
+    for n in [4, 6, 8, 10, 100, 1000]:
+        assert goldbach_check(n)
+
+def test_zeta_partial():
+    # zeta(2) partial should approach pi^2/6 ~ 1.6449
+    val = zeta_partial(2.0, 10000)
+    assert abs(val - (math.pi**2 / 6.0)) < 1e-3
 
 if __name__ == "__main__":
     tests = [v for k, v in globals().items() if k.startswith("test_")]
