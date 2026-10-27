@@ -175,8 +175,9 @@ def rho_lambda_ratio(z: float, w0: float, wa: float) -> float:
 def delta_norm(z: float, w0: float, wa: float) -> float:
     """Normalized delta(t) of A2.2: delta/rho0 = rho_DE(z)/rho_DE(0) - 1.
 
-    Present (z=0) is zero. Positive in the past for the DESI-anchored
-    (quintom B) case, i.e. density was higher in the past and is decaying.
+    Present (z=0) is zero. Near-present derivative is positive for the
+    DESI-anchored quintom-B case (density increasing backward from today);
+    the integrated value at z~1 is sample-dependent (see GROUNDING.md §2.4).
     """
     return rho_lambda_ratio(z, w0, wa) - 1.0
 
