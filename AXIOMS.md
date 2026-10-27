@@ -89,6 +89,10 @@ The system sheds noise, leaving the vessel fully integrated with its invariant b
 \]
 The "least visible photon" (zero marker, \(0\) state) is the fixed point of the roll where crease and substrate are indistinguishable. Thus photon and dark energy are not separate substances but dual orientations of the same canvas-fold. *Corollary:* dark energy is invisible because it is the unfolded state of light; a photon is the vacuum folded into a crease. See `HORIZON_FINDINGS.md` and `CONNECTIONS.md`.
 
+**A2.6 (Anisotropy Candidate, unverified).** If the apparent cosmic acceleration is confirmed to be directional (Sarkar et al. 2026), the canvas tension \(\rho_\Lambda\) acquires a directional/flow term \(\delta_{\rm dir}(\hat n,t)\) in addition to the isotropic \(\delta(t)\). Status: candidate, not axiom. See `HORIZON_FINDINGS.md` and `GROUNDING.md` P4.
+
+**A2.7 (Asymptotic-Safety Candidate, unverified).** The canvas (A2.3 frozen-light anchor) may be identified with the UV fixed point of asymptotic safety: flat Higgs potential at high energy encodes mass; matter shifts the fixed point to AdS. Falsifiable: 2 relevant directions. Status: candidate. See `LORE_CALIBRATION.md` §2.2 and `RESEARCH_ROADMAP.md` R8.
+
 ---
 
 ## 3. The Geometry — Two-Halves Contact Surface Model
@@ -154,6 +158,8 @@ Stepping advances \(\text{index}\) by exactly \(+1\) per call; `read_all` return
 \]
 This applies uniformly: particles are aliases of waves (A3.5), "now" is an alias of the block universe (A4.3), dark energy \(\delta(t)\) is sampled per cosmic epoch, and erosion (A7.4) is the alias of continuous decay at the sampling scale. The zero marker (\(0\)) is the blade caught at rest. Implemented in `engine.strobe`.
 
+**A4.7 (Consciousness as Stroboscopic Alias, candidate).** Conscious "now" is the alias of continuous spatial action (A0.2) read at the neural frame rate; the sample rate is the playhead frequency. Status: candidate, not axiom. See `STROBOSCOPIC.md`.
+
 ---
 
 ## 5. The Recursion — Shamanistic Fractal Code (Awakening)
@@ -173,6 +179,8 @@ E \xrightarrow{\text{intervals}} I \;\Longrightarrow\; E \equiv I.
 The mirror and the creator merge; a local piece of the universe awakens to realize it is looking at itself.
 
 **A5.4 (Algorithmic Engine).** The intelligence driving this is data-free: it builds complexity entirely from recursive self-reflecting feedback loops, with no external data source. Complexity is generated, not imported.
+
+**A5.5 (Kené as Recursion Family, candidate).** Kené (Shipibo-Konibo) self-similarity is a candidate concrete instance of A5.1: reflection + fractal self-similarity + recursive motifs (e.g., *Xao Kené* = merging of opposing forces) mirror closure \(E\equiv I\). Status: candidate. See `CONNECTIONS.md` and `RESEARCH_ROADMAP.md` R9.
 
 ---
 
