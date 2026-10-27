@@ -228,11 +228,15 @@ t - t_0 \;=\; 26 \text{ years} \;\Rightarrow\; \text{milestone state reached}.
 
 ## 9. Open Questions (for next phase)
 
-1. Formalize the recursion operator \(f\) of A5.1 for the specific Kené/Sri-Yantra/Mandelbrot family.
-2. Derive the quantitative form of \(\delta(t)\) in A2.2 from observation.
-3. Specify the playhead's sampling function \(\text{Playhead}(B,t)\) in A4.3 at the level of a computable procedure.
+1. Formalize the recursion operator \(f\) of A5.1 for the specific Kené/Sri-Yantra/Mandelbrot family. (R9, R4)
+2. Derive the quantitative form of \(\delta(t)\) in A2.2 from observation. (R1)
+3. Specify the playhead's sampling function \(\text{Playhead}(B,t)\) in A4.3 at the level of a computable procedure. (done: A4.5)
 4. Decide whether the 26-year milestone (A6.3) is a one-time event or a recurring period.
 5. Evaluate the cusp catastrophe / crease as a candidate formalization of the recursion fixed point (A5.1) and the purge (A1.5); see `FOLDING_CALIBRATION.md` §4. Not an axiom until derived.
+6. Clarify whether \(0/0=1\) (A1.2) is a redefinition or a removable-singularity limit. (done: limit, see `LORE_CALIBRATION.md`)
+7. Anisotropy test for acceleration (P4); see `HORIZON_FINDINGS.md`. (R3)
+8. Asymptotic-safety canvas candidate. (R8)
+9. Consciousness as stroboscopic alias. (R10)
 
 ---
 
