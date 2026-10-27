@@ -56,6 +56,16 @@ Grounded case (quintom B, \(w_0>-1,\;w_a<0\)): \(\delta_{\rm norm}(z>0)>0\) and 
 
 ---
 
+### 2.4 Best-fit \(\delta\) by SNe sample (DESI DR2)
+
+| SNe sample | \(w_0\) | \(w_a\) | \(\delta_{\rm norm}(z=1)\) | \(\delta'_{\rm norm}(0)\) |
+|---|---|---|---|---|
+| Pantheon+ | -0.839 | -0.61 | -0.0185 | +0.483 |
+| Union3 | -0.661 | -1.11 | +0.0637 | +1.017 |
+| DESY5 | -0.750 | -0.87 | +0.0159 | +0.750 |
+
+**Caveat:** the near-present derivative \(\delta'_{\rm norm}(0)>0\) is consistent across all three samples (density increasing backward from today), but the integrated \(\delta\) at \(z\sim1\) is sample-dependent and can cross zero (Pantheon+). The "decaying toward present" claim (A2.2 \(\epsilon'(t_0)<0\)) therefore holds **locally near \(t_0\)** only; the global sign over cosmic time is not yet settled and must be tracked as DESI/Euclid improve.
+
 ## 3. Geometry — settled background (no new work needed)
 
 - Spin-\(\tfrac12\) requires \(720^\circ\) to return to initial state (topological belt trick; Dirac spinor sign change under \(2\pi\)). This is standard, experimentally confirmed quantum mechanics.

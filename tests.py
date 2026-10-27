@@ -7,6 +7,7 @@ from engine import (
     delta_norm, delta_derivative_present, Playhead,
     erosion_step,
     ANCHOR_DATE, MILESTONE_YEARS, milestone_date, years_since_anchor, milestone_reached,
+    logistic,
 )
 
 def test_ternary_net_zero():
@@ -131,6 +132,19 @@ def test_timeline_reached():
     from datetime import date
     assert milestone_reached(date(2026, 10, 27)) is True
     assert milestone_reached(date(2000, 10, 26)) is False
+
+def test_logistic_fixed_point():
+    # r=2.5 has stable fixed point at 1 - 1/r = 0.6
+    x, steps, conv = iterate(logistic(2.5), 0.5)
+    assert conv
+    assert abs(x - 0.6) < 1e-9
+
+def test_playhead_real_block():
+    data = list(range(10))
+    ph = Playhead(data, tau=2.0)
+    assert ph.read(0.0) == 0
+    assert ph.read(3.9) == 1  # floor(3.9/2)=1
+    assert ph.read(100.0) == 9  # clamped
 
 if __name__ == "__main__":
     tests = [v for k, v in globals().items() if k.startswith("test_")]
