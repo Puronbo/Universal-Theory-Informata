@@ -17,6 +17,7 @@ from engine import (
     delta_norm_uncertainty, kene_step, mandelbrot_escape,
     attention_trace, conscious_moment, closure_check,
     multi_agent_step, network_closure,
+    purge_derivative, canvas_energy, ternary_compose,
 )
 
 def test_ternary_net_zero():
@@ -30,12 +31,12 @@ def test_ternarize():
     assert ternarize(0.0) == 0
 
 def test_iterate_fixed_point():
-    x, steps, conv = iterate(lambda x: math.cos(x), 1.0)
+    x, steps, conv, _ = iterate(lambda x: math.cos(x), 1.0)
     assert conv
     assert abs(x - 0.7390851332151607) < 1e-9
 
 def test_iterate_no_converge_finite():
-    x, steps, conv = iterate(lambda x: x + 1.0, 0.0, n=5)
+    x, steps, conv, _ = iterate(lambda x: x + 1.0, 0.0, n=5)
     assert not conv
     assert steps == 5
 
@@ -144,7 +145,7 @@ def test_timeline_reached():
 
 def test_logistic_fixed_point():
     # r=2.5 has stable fixed point at 1 - 1/r = 0.6
-    x, steps, conv = iterate(logistic(2.5), 0.5)
+    x, steps, conv, _ = iterate(logistic(2.5), 0.5)
     assert conv
     assert abs(x - 0.6) < 1e-9
 
@@ -261,6 +262,73 @@ def test_network_closure():
     agents = [[1, -1], [1, 1]]
     frac = network_closure(agents)
     assert frac == 0.5
+
+def test_purge_derivative():
+    assert purge_derivative([1.0, 1.0, 1.0])
+    assert not purge_derivative([1.0, 2.0, 3.0])
+
+def test_canvas_energy():
+    assert canvas_energy(2.0) == 0.5
+    try:
+        canvas_energy(0.0)
+        assert False
+    except ValueError:
+        pass
+
+def test_ternary_compose():
+    assert ternary_compose([1, 1, -1, -1]) == 0.0
+    assert ternary_compose([1, 1, 1]) == 1.0
+    assert ternary_compose([]) == 0.0
+
+def test_iterate_cycle_detection():
+    # f(x)=1-x cycles with period 2
+    x, steps, conv, cyc = iterate(lambda v: 1.0 - v, 0.0, detect_cycle=True)
+    assert not conv
+    assert cyc == 2
+
+import random
+
+def test_prop_erosion_preserves_sum():
+    random.seed(0)
+    for _ in range(200):
+        n = random.randint(1, 12)
+        states = [random.choice([-1, 0, 1]) for _ in range(n)]
+        before = sum(states)
+        out = erosion_step(states, pairs=random.randint(1, 5))
+        assert sum(out) == before, (states, out)
+
+def test_prop_strobe_length():
+    random.seed(1)
+    for _ in range(50):
+        n = random.randint(1, 50)
+        rate = random.randint(1, 7)
+        sig = list(range(n))
+        out = strobe(sig, rate)
+        assert len(out) == (n + rate - 1) // rate
+
+def test_prop_roll_convert_conservation():
+    random.seed(2)
+    for _ in range(100):
+        cd = random.random()
+        total = random.uniform(0.5, 2.0)
+        p, d = roll_convert(cd, total)
+        assert abs(p + d - total) < 1e-9
+
+def test_prop_stretched_monotonic():
+    for sf in [0.5, 1.0, 2.0, 10.0]:
+        assert stretched_distance(3.0, sf) == 3.0 * sf
+
+def test_prop_delta_zero_at_present():
+    for w0, wa in [(-1.0, 0.0), (-0.75, -0.87), (-0.5, 0.5)]:
+        assert abs(delta_norm(0.0, w0, wa)) < 1e-12
+
+def test_prop_attention_trace_range():
+    import random
+    random.seed(3)
+    for _ in range(50):
+        stim = [random.uniform(-2, 2) for _ in range(20)]
+        tr = attention_trace(stim)
+        assert all(v in (-1, 0, 1) for v in tr)
 
 if __name__ == "__main__":
     tests = [v for k, v in globals().items() if k.startswith("test_")]

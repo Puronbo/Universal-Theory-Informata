@@ -9,7 +9,7 @@ from engine import (
 
 def main():
     # 1. Recursion / awakening
-    x, steps, conv = iterate(lambda v: __import__("math").cos(v), 1.0)
+    x, steps, conv, _ = iterate(lambda v: __import__("math").cos(v), 1.0)
     print(f"[recursion] fixed point = {x:.6f} in {steps} steps (converged={conv})")
 
     # 2. Purge when flat

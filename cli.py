@@ -32,7 +32,7 @@ def main():
     elif args.cmd == "recurse":
         import math
         f = (lambda x: math.cos(x)) if args.map == "cos" else logistic(args.r)
-        x, steps, conv = iterate(f, args.x0)
+        x, steps, conv, _ = iterate(f, args.x0)
         print(json.dumps({"fixed_point": x, "steps": steps, "converged": conv}, indent=2))
     elif args.cmd == "timeline":
         print(json.dumps({"milestone_date": str(milestone_date()),

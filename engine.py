@@ -31,6 +31,14 @@ def net_zero(states: Iterable[int]) -> bool:
     return sum(states) == 0
 
 
+def ternary_compose(states: Iterable[int]) -> float:
+    """Compose ternary states into a single normalized value in [-1, 1]."""
+    s = list(states)
+    if not s:
+        return 0.0
+    return max(-1.0, min(1.0, sum(s) / len(s)))
+
+
 def ternarize(x: float) -> int:
     """Map a real drive to the nearest ternary state.
 
@@ -48,20 +56,25 @@ def ternarize(x: float) -> int:
 # ---------------------------------------------------------------------------
 
 def iterate(f: Callable[[float], float], x0: float, n: int = 10000,
-            tol: float = 1e-12) -> Tuple[float, int, bool]:
-    """Iterate x_{k+1}=f(x_k) until fixed point or max steps.
+            tol: float = 1e-12, detect_cycle: bool = False) -> Tuple[float, int, bool, int]:
+    """Iterate x_{k+1}=f(x_k) until fixed point, cycle, or max steps.
 
-    Returns (x, steps, converged).
+    Returns (x, steps, converged, cycle_length). cycle_length=0 if none detected.
+    Backward-compatible: callers using 3-tuple unpacking must update to 4-tuple.
     """
     x = x0
+    seen = {}
     for i in range(1, n + 1):
         xn = f(x)
         if not math.isfinite(xn):
-            return x, i, False
+            return x, i, False, 0
+        if detect_cycle and x in seen:
+            return x, i, False, i - seen[x]
+        seen[x] = i
         if abs(xn - x) < tol:
-            return xn, i, True
+            return xn, i, True, 0
         x = xn
-    return x, n, False
+    return x, n, False, 0
 
 
 def purge_if_flat(ys: List[float], eps: float = 1e-9) -> bool:
@@ -72,6 +85,25 @@ def purge_if_flat(ys: List[float], eps: float = 1e-9) -> bool:
     if len(ys) < 2:
         return False
     return abs(ys[-1] - ys[-2]) < eps
+
+
+# ---------------------------------------------------------------------------
+# 2c. Derivative-based purge + canvas energy (enhancements)
+# ---------------------------------------------------------------------------
+
+def purge_derivative(ys: List[float], eps: float = 1e-9) -> bool:
+    """Purge if the mean absolute successive difference is below eps."""
+    if len(ys) < 2:
+        return False
+    diffs = [abs(ys[i] - ys[i-1]) for i in range(1, len(ys))]
+    return (sum(diffs) / len(diffs)) < eps
+
+
+def canvas_energy(scale_factor: float) -> float:
+    """Energy density of the canvas at a given scale (E ~ 1/scale)."""
+    if scale_factor <= 0:
+        raise ValueError("scale_factor must be > 0")
+    return 1.0 / scale_factor
 
 
 # ---------------------------------------------------------------------------
@@ -569,7 +601,7 @@ if __name__ == "__main__":
     print("bifurcation a=1,b=0:", bifurcation_value(1.0, 0.0))
     print("w(0.5) CPL:", w_cpl(0.5, -0.75, -0.87))
     print("rho ratio z=1:", rho_lambda_ratio(1.0, -0.75, -0.87))
-    x, steps, conv = iterate(lambda x: math.cos(x), 1.0)
+    x, steps, conv, _ = iterate(lambda x: math.cos(x), 1.0)
     print("fixed point cos:", x, steps, conv)
     print("logistic r=2.5 fixed point:", iterate(logistic(2.5), 0.5)[0])
     print("anchor:", ANCHOR_DATE, "milestone:", milestone_date(),
