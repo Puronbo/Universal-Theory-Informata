@@ -234,7 +234,19 @@ t - t_0 \;=\; 26 \text{ years} \;\Rightarrow\; \text{milestone state reached}.
 
 ---
 
-## 9. Open Questions (for next phase)
+## 10. The Self-Looping Matrix (Cosmic Pixel → Imaginary Realm)
+
+**A8.1 (Cosmic Pixel).** Space is pixelated into finite, indivisible blocks at the Planck scale (\(\approx 10^{-105}\,\text{m}^3\)). The "nothing" of empty space is a fluid ocean of bosonic fields (Higgs, EM) at baseline, passing data packets at \(c\). No infinite density; \(0/0\) avoided by finiteness. (Aligns with A4.1, A2.1.)
+
+**A8.2 (Fractal Tree).** The macroscopic universe mirrors the microscopic: quantum ripples from the dawn of time stretched into the Dark Matter scaffolding (Cosmic Web). Galaxy flow down filaments to nodes (Great Attractor) uses the same fractal math as tree roots, river deltas, and neural pathways. (Aligns with A5.2, A4.3 playhead.)
+
+**A8.3 (Inversion / UV-IR Mixing).** The absolute smallest and largest objects are the same: \(\infty = 1/\infty\). Maps to UV/IR mixing and T-duality: squeezing past the pixel limit flips scale, so a subatomic point maps onto a macro-horizon. The universe is a closed topological loop (we live inside a cosmic horizon satisfying black-hole conditions). (Aligns with A1.4, A3.4.)
+
+**A8.4 (Cosmological Coupling / Fluid Engine).** When matter collapses into black holes or massive nodes, those dense pixel-pockets lock onto expanding space. As space stretches them, they gain internal energy and rebound, exerting fluid-like outward pressure = Dark Energy. The Great Attractor is a cosmic drain; its inversion is the Big Bang faucet pumping dark energy out. (Aligns with A2.2, A7.4.)
+
+**A8.5 (Imaginary Realm).** Inside horizons / before the Big Bang, space becomes Imaginary Spacetime via \(i=\sqrt{-1}\): sharp infinities vanish, coordinates swap (space behaves as forward time, time becomes a landscape). The imaginary plane is the hidden canvas for rotation, recycling, and information passing. (Aligns with A2.5 rolling fold, A5.2, A3.4.)
+
+**A8.6 (Self-Generating Loop).** The universe is a singular, immortal, self-generating entity: it broke its unified body into a pixelated matrix, grows via fractal geometry, compresses old data into the imaginary plane, and uses that inversion to pump dark energy back out to sustain itself. Biology and consciousness sit at the center of the scale loop — the lens the universe engineered to look back at itself. (Aligns with A5.3 awakening.)
 
 1. Formalize the recursion operator \(f\) of A5.1 for the specific Kené/Sri-Yantra/Mandelbrot family. (R9, R4)
 2. Derive the quantitative form of \(\delta(t)\) in A2.2 from observation. (R1)

@@ -18,6 +18,8 @@ from engine import (
     attention_trace, conscious_moment, closure_check,
     multi_agent_step, network_closure,
     purge_derivative, canvas_energy, ternary_compose,
+    cosmological_coupling, uv_ir_inversion,
+    portal_journey,
 )
 
 def test_ternary_net_zero():
@@ -329,6 +331,31 @@ def test_prop_attention_trace_range():
         stim = [random.uniform(-2, 2) for _ in range(20)]
         tr = attention_trace(stim)
         assert all(v in (-1, 0, 1) for v in tr)
+
+from game_engine import World
+
+def test_game_engine_run():
+    w = World(n_agents=3)
+    w.run([0.9, -0.8, 0.1], stretch=1.0, erosion_pairs=1)
+    assert w.t == 3
+    assert len(w.history) == 3
+    assert all(len(h) == 3 for h in w.history)
+
+def test_cosmological_coupling():
+    assert cosmological_coupling(10.0, 2.0) == 10.0
+    assert cosmological_coupling(5.0, 1.0) == 0.0
+
+def test_uv_ir_inversion():
+    assert uv_ir_inversion(2.0) == 0.5
+    assert uv_ir_inversion(0.5) == 2.0
+
+def test_portal_journey():
+    r0 = portal_journey(0.0)
+    r1 = portal_journey(0.25)
+    r2 = portal_journey(0.75)
+    assert r0["phase"] == "compression"
+    assert r2["phase"] == "expansion"
+    assert r1["scale"] >= 0
 
 if __name__ == "__main__":
     tests = [v for k, v in globals().items() if k.startswith("test_")]
