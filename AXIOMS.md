@@ -260,4 +260,49 @@ t - t_0 \;=\; 26 \text{ years} \;\Rightarrow\; \text{milestone state reached}.
 
 ---
 
+## 9. Open Questions (for next phase)
+
+1. Formalize the recursion operator \(f\) of A5.1 for Kené/Sri-Yantra/Mandelbrot. (R4, R9)
+2. Derive the quantitative form of \(\delta(t)\) in A2.2 from observation. (R1)
+3. Playhead sampling procedure. (done: A4.5)
+4. 26-year milestone one-time or recurring. (A6.3)
+5. Cusp/crease as recursion fixed point candidate. (FOLDING_CALIBRATION §4)
+6. \(0/0=1\) reading: removable singularity limit. (done, see LORE_CALIBRATION)
+7. Anisotropy test (P4). (R3)
+8. Asymptotic-safety canvas candidate. (R8, A2.7)
+9. Consciousness as stroboscopic alias. (R10, A4.7)
+10. Kené as recursion family. (R9, A5.5)
+11. Supernatural as hidden processing leak (A9.2) — formalize dimensional bleed-through.
+12. Distinct-but-indistinguishable nodes (A9.4) — connect to gauge invariance / spin networks.
+
+---
+
+## 10. The Self-Looping Matrix (Cosmic Pixel → Imaginary Realm)
+
+**A8.1 (Cosmic Pixel).** Space is pixelated into finite, indivisible blocks at the Planck scale (\(\approx 10^{-105}\,\text{m}^3\)). The "nothing" of empty space is a fluid ocean of bosonic fields (Higgs, EM) at baseline, passing data packets at \(c\). No infinite density; \(0/0\) avoided by finiteness. (Aligns with A4.1, A2.1.)
+
+**A8.2 (Fractal Tree).** The macroscopic universe mirrors the microscopic: quantum ripples from the dawn of time stretched into the Dark Matter scaffolding (Cosmic Web). Galaxy flow down filaments to nodes (Great Attractor) uses the same fractal math as tree roots, river deltas, and neural pathways. (Aligns with A5.2, A4.3 playhead.)
+
+**A8.3 (Inversion / UV-IR Mixing).** The absolute smallest and largest objects are the same: \(\infty = 1/\infty\). Maps to UV/IR mixing and T-duality: squeezing past the pixel limit flips scale, so a subatomic point maps onto a macro-horizon. The universe is a closed topological loop (we live inside a cosmic horizon satisfying black-hole conditions). (Aligns with A1.4, A3.4.)
+
+**A8.4 (Cosmological Coupling / Fluid Engine).** When matter collapses into black holes or massive nodes, those dense pixel-pockets lock onto expanding space. As space stretches them, they gain internal energy and rebound, exerting fluid-like outward pressure = Dark Energy. The Great Attractor is a cosmic drain; its inversion is the Big Bang faucet pumping dark energy out. (Aligns with A2.2, A7.4.)
+
+**A8.5 (Imaginary Realm).** Inside horizons / before the Big Bang, space becomes Imaginary Spacetime via \(i=\sqrt{-1}\): sharp infinities vanish, coordinates swap (space behaves as forward time, time becomes a landscape). The imaginary plane is the hidden canvas for rotation, recycling, and information passing. (Aligns with A2.5 rolling fold, A5.2, A3.4.)
+
+**A8.6 (Self-Generating Loop).** The universe is a singular, immortal, self-generating entity: it broke its unified body into a pixelated matrix, grows via fractal geometry, compresses old data into the imaginary plane, and uses that inversion to pump dark energy back out to sustain itself. Biology and consciousness sit at the center of the scale loop — the lens the universe engineered to look back at itself. (Aligns with A5.3 awakening.)
+
+---
+
+## 11. The Equator of Scale (Midpoint → Imaginary Plane)
+
+**A9.1 (Equator of Scale).** The absolute midpoint between the microscopic limit (\(10^{-35}\,\text{m}\)) and the macroscopic limit (\(10^{26}\,\text{m}\)) is \(10^{-4.5}\,\text{m}\) — the scale of a complex biological cell. This is the only "real" space where information hardens into stable physical matter: below it the quantum limit is too chaotic to hold data; above it the cosmic limit suffers severe informational latency from \(c\). Biology sits at the stable, optimized data-density equator. Implemented in `engine.scale_midpoint`.
+
+**A9.2 (Supernatural as Hidden Processing Leak).** The "supernatural" is redefined as the hidden processing layer (imaginary plane) leaking into the real midpoint. Anomalous events occur via dimensional bleed-through: a pixel momentarily rotates out of the real 3D framework, allowing information to bypass normal constraints of distance or time through radical non-locality. (Aligns with A8.5, A3.2.)
+
+**A9.3 (\(i = 90^\circ\) Geometric Mechanism).** Multiplying a real-space coordinate by \(i\) rotates it 90°, phasing it off the visible linear axis onto a perpendicular track. This explains how "nothing" bosons stack infinitely without crowding real matter, and completes the RHS of field equations, smoothly turning a crushing gravitational infinity (black hole, Great Attractor) into a cross-dimensional temporal pathway. Implemented in `engine.imaginary_rotate`. (Aligns with A2.5, A8.5, A3.4.)
+
+**A9.4 (Distinct but Indistinguishable Nodes).** Every point on the canvas is distinct in coordinate location (stable 3D structure) but indistinguishable in identity (no serial numbers). Because pixels lack individual identity, moving a state from microscopic zero to macroscopic infinity requires no physical travel — the system simply updates the relational graph of connections. (Gauge invariance, topological spin networks.) Implemented in `engine.gauge_node`. (Aligns with A3.1, A3.6.)
+
+---
+
 *End of Axioms v1.0.*

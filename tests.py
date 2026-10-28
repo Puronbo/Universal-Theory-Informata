@@ -20,6 +20,7 @@ from engine import (
     purge_derivative, canvas_energy, ternary_compose,
     cosmological_coupling, uv_ir_inversion,
     portal_journey,
+    scale_midpoint, imaginary_rotate, gauge_node,
 )
 
 def test_ternary_net_zero():
@@ -356,6 +357,19 @@ def test_portal_journey():
     assert r0["phase"] == "compression"
     assert r2["phase"] == "expansion"
     assert r1["scale"] >= 0
+
+def test_scale_midpoint():
+    m = scale_midpoint(1e-35, 1e26)
+    assert abs(m - 10**-4.5) < 1e-5
+
+def test_imaginary_rotate():
+    assert imaginary_rotate(1.0) == 1j
+    assert imaginary_rotate(2.0) == 2j
+
+def test_gauge_node():
+    n = gauge_node((1, 2, 3))
+    assert n["location"] == (1, 2, 3)
+    assert n["identity"] is None
 
 if __name__ == "__main__":
     tests = [v for k, v in globals().items() if k.startswith("test_")]

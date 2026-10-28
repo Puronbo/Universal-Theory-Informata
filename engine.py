@@ -634,6 +634,25 @@ def portal_journey(t, T=1.0):
     return {"phase": phase, "scale": scale, "t": t}
 
 
+# ---------------------------------------------------------------------------
+# 18. Equator of Scale (A9.1-A9.4)
+# ---------------------------------------------------------------------------
+
+def scale_midpoint(micro=1e-35, macro=1e26):
+    """Geometric midpoint scale between micro and macro limits."""
+    return (micro * macro) ** 0.5
+
+
+def imaginary_rotate(coord):
+    """Rotate a real coordinate by 90 degrees into the imaginary plane (i*coord)."""
+    return 1j * coord
+
+
+def gauge_node(location):
+    """A node: distinct by location, indistinguishable by identity."""
+    return {"location": location, "identity": None}
+
+
 if __name__ == "__main__":
     # small demo
     import math
