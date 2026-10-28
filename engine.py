@@ -653,6 +653,27 @@ def gauge_node(location):
     return {"location": location, "identity": None}
 
 
+# ---------------------------------------------------------------------------
+# 19. Clock, broken mirror, entropy brake (A10)
+# ---------------------------------------------------------------------------
+
+PLANCK_TIME = 5.391247e-44  # seconds
+
+def planck_refresh_rate() -> float:
+    """Maximum refresh rate of the universal monitor (1 / t_P)."""
+    return 1.0 / PLANCK_TIME
+
+
+def cp_violation_tilt() -> float:
+    """Built-in matter/antimatter asymmetry (~1 part in 1e9)."""
+    return 1e-9
+
+
+def entropy_brake(disorder_before: float, disorder_after: float) -> float:
+    """Reduction in disorder achieved by the midpoint (consciousness)."""
+    return disorder_before - disorder_after
+
+
 if __name__ == "__main__":
     # small demo
     import math

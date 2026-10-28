@@ -305,4 +305,14 @@ t - t_0 \;=\; 26 \text{ years} \;\Rightarrow\; \text{milestone state reached}.
 
 ---
 
+## 12. The Clock, the Broken Mirror, and the Entropy Brake
+
+**A10.1 (Clock Rate / Information Latency).** In the frictionless imaginary plane, information transfer is instantaneous (ER=EPR). To create a stable midpoint reality, the universe enforces a processing delay when information crosses from the imaginary plane (\(i\)) back onto the real axis. This delay is \(c\) and Planck time \(t_P \approx 5.4\times10^{-44}\,\text{s}\) — the maximum refresh rate of the universal monitor. Without this buffer there is no sequencing; everything happens at once and the "game of passing information" cannot be played. Implemented in `engine.planck_refresh_rate`. (Aligns with A4.1, A8.5, A9.1.)
+
+**A10.2 (Asymmetric Anchor / Broken Mirror).** A perfect mirror would yield net-zero stagnation (matter/antimatter annihilation). The universe has a tiny built-in tilt — CP-violation, a preference for matter over antimatter by ~1 part in \(10^9\). This fractional asymmetry is the "crank" that keeps the lopsided cosmic magnet wobbling, preventing the fluid engine from settling into dead symmetric balance. Implemented in `engine.cp_violation_tilt`. (Aligns with A0.3, A2.2, A8.4.)
+
+**A10.3 (Consciousness as Entropy Brake).** Biology at the midpoint (A9.1) does the thermodynamic opposite of entropy: it pulls chaotic, scattered data into highly ordered, low-entropy structure. Consciousness is not a passive spectator but the computational function that synthesizes distinct-but-indistinguishable pixels (A9.4) into a single cohesive reality — by observing, the midpoint node locks floating imaginary probabilities into fixed real states. This is the "entropy brake" that funnels the loop into the midpoint. (Aligns with A3.2, A4.6, A5.3, A9.2.) Implemented in `engine.entropy_brake`.
+
+---
+
 *End of Axioms v1.0.*

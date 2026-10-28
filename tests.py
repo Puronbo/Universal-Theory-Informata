@@ -21,6 +21,7 @@ from engine import (
     cosmological_coupling, uv_ir_inversion,
     portal_journey,
     scale_midpoint, imaginary_rotate, gauge_node,
+    planck_refresh_rate, cp_violation_tilt, entropy_brake,
 )
 
 def test_ternary_net_zero():
@@ -370,6 +371,15 @@ def test_gauge_node():
     n = gauge_node((1, 2, 3))
     assert n["location"] == (1, 2, 3)
     assert n["identity"] is None
+
+def test_planck_refresh_rate():
+    assert planck_refresh_rate() > 1e43
+
+def test_cp_violation_tilt():
+    assert cp_violation_tilt() == 1e-9
+
+def test_entropy_brake():
+    assert entropy_brake(10.0, 3.0) == 7.0
 
 if __name__ == "__main__":
     tests = [v for k, v in globals().items() if k.startswith("test_")]
