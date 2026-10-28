@@ -1,10 +1,11 @@
 """CLI entry point: python -m model ..."""
 import argparse
 import json
-from engine import (
+from model import (
     w_cpl, rho_lambda_ratio, delta_norm, check_predictions,
     iterate, logistic, milestone_reached, milestone_date, net_zero,
 )
+
 
 def main():
     p = argparse.ArgumentParser(prog="model", description="Model engine CLI")
@@ -22,6 +23,8 @@ def main():
 
     tl = sub.add_parser("timeline", help="Milestone status")
 
+    val = sub.add_parser("validate", help="Run meta-audit")
+
     args = p.parse_args()
     if args.cmd == "darkenergy":
         print(json.dumps({
@@ -37,6 +40,14 @@ def main():
     elif args.cmd == "timeline":
         print(json.dumps({"milestone_date": str(milestone_date()),
                           "reached": milestone_reached()}, indent=2))
+    elif args.cmd == "validate":
+        import subprocess, sys
+        r = subprocess.run([sys.executable, "validate_claims.py"], capture_output=True, text=True)
+        print(r.stdout.strip())
+        if r.returncode != 0:
+            print(r.stderr.strip())
+            raise SystemExit(r.returncode)
+
 
 if __name__ == "__main__":
     main()
