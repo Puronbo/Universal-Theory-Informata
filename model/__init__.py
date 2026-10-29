@@ -99,6 +99,12 @@ from model.neural_phase import (
     coherence,
     noise_filtering,
 )
+from model.rubber_ball import (
+    hertz_contact_radius,
+    hertz_indentation,
+    mie_efficiency,
+    thermal_speed,
+)
 from model.eeg_stream import (
     bandpass_filter,
     fft_magnitude,
@@ -273,6 +279,11 @@ __all__ = [
     # Multi-Agent
     "multi_agent_step",
     "network_closure",
+    # Rubber Ball
+    "hertz_contact_radius",
+    "hertz_indentation",
+    "mie_efficiency",
+    "thermal_speed",
     # Neural Phase
     "simulate_neural_phase_locking",
     "coherence",
