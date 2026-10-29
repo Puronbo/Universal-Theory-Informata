@@ -1,3 +1,5 @@
+module
+
 import Mathlib
 
 -- Erosion (A7.4): removing a +1 and a -1 preserves the sum.

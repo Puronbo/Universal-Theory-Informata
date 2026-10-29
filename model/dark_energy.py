@@ -66,7 +66,7 @@ def delta_norm_uncertainty(
     dw0 = (delta_norm(1.0, w0 + h, wa) - delta_norm(1.0, w0 - h, wa)) / (2 * h)
     dwa = (delta_norm(1.0, w0, wa + h) - delta_norm(1.0, w0, wa - h)) / (2 * h)
     var = (dw0 * sigma_w0) ** 2 + (dwa * sigma_wa) ** 2
-    return abs(base), math.sqrt(var)
+    return base, math.sqrt(var)
 
 
 def check_predictions(
