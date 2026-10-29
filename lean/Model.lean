@@ -1,5 +1,6 @@
 -- Root of the `Model` library.
 import Model.Basic
+import Model.Cosmos
 import Model.Ternary
 import Model.Cusp
 import Model.DarkEnergy
