@@ -118,8 +118,10 @@ from model.recursion import (
     purge_if_flat,
 )
 from model.recursion_families import (
+    julia_escape,
     kene_step,
     mandelbrot_escape,
+    rg_fixed_point,
 )
 from model.rolling_fold import (
     roll_convert,
@@ -221,8 +223,10 @@ __all__ = [
     "goldbach_check",
     "zeta_partial",
     # Recursion Families
+    "julia_escape",
     "kene_step",
     "mandelbrot_escape",
+    "rg_fixed_point",
     # Consciousness
     "attention_trace",
     "conscious_moment",
