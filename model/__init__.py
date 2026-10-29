@@ -78,6 +78,10 @@ from model.multi_agent import (
     multi_agent_step,
     network_closure,
 )
+from model.millennium import (
+    poincare_closed,
+    navier_stokes_phase_bleed,
+)
 from model.playhead import (
     Playhead,
 )
@@ -206,6 +210,9 @@ __all__ = [
     # Multi-Agent
     "multi_agent_step",
     "network_closure",
+    # Millennium
+    "poincare_closed",
+    "navier_stokes_phase_bleed",
     # Self-Looping
     "cosmological_coupling",
     "uv_ir_inversion",
