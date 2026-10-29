@@ -1,0 +1,117 @@
+
+##### **1.1 The Geometry of Folding** 
+
+Consider f(x) = x². At x = 3, the derivative is 6. What does it mean to say "the derivative is 6"? It means: if you zoom in infinitely close to the point (3, 9), the function looks like a straight line of slope 6. All the global information about the parabola — its curvature, its roots, its minimum — has been **folded down** to a single number: the local slope. 
+
+This is a compressive operation. Information is lost in the fold. Given only the derivative 6 at x = 3, you cannot reconstruct the parabola. You need the derivative at _every_ point, and then you need to integrate (unfold) to recover the original function (up to a constant). 
+
+The lossiness of the fold is not a bug — it's the point. Derivatives discard irrelevant global information to isolate the local behavior. They answer the question "what is this function doing right here, right now?" 
+
+##### **1.2 The Geometry of Unfolding** 
+
+Integration reverses the compression. Starting from a collection of local slopes, it reconstructs the global shape. This is an **expansive** operation. 
+
+Consider computing the area under f(x) = x² from 0 to 3. You take the instantaneous height at each point — a local measurement — and sum them up. The Riemann sum is literally a process of taking many local pieces and assembling them into a global whole. 
+
+The indefinite integral is even more clearly an unfold: starting from the derivative f'(x) = 2x, integration gives back the family of functions F(x) = x² + C. The family has one degree of freedom (C) that was lost in the fold. Integration cannot recover what was destroyed by differentiation, but it recovers everything else. 
+
+##### **1.3 Why This Matters** 
+
+The fold/unfold framing matters because it makes visible what the derivative/integral terminology 
+
+obscures: 
+
+1. **The relationship is geometric, not procedural.** "Derivative" and "antiderivative" sound like different kinds of things. "Fold" and "unfold" sound like inverses — which they are. 
+
+2. **The lossiness of the fold is explicit.** When you differentiate, you lose information. The fold analogy 
+
+makes this obvious: you can't perfectly reconstruct a paper shape after folding it flat without knowing the fold pattern. 3. **The boundary between fold and unfold is blurry.** Higher-order derivatives are repeated folds. Partial derivatives are folds along specific dimensions. Gradient vectors are simultaneous folds along all coordinates. The fold language unifies these operations. 
+
+4. **Creases become primary objects.** In standard calculus, non-differentiable points are exceptions. In the fold framing, creases are where the interesting structure lives — they are the fold lines. 
+
+#### **Chapter 2: Where the Standard Picture Breaks (And Why That's Interesting)** 
+
+Standard calculus requires a function to be _differentiable_ — smooth, no sharp corners, no jumps — for "slope at a point" to make sense. At a corner, like f(x) = |x| at x = 0: 
+
+- The limit from the left gives slope -1 
+
+- The limit from the right gives slope +1 
+
+- They disagree, so "the derivative does not exist" 
+
+- Theory quits at exactly the interesting point 
+
+But physically, a crease is not a failure. It is the most informative part of the shape. A piece of paper with a fold in it is not torn — the fold is what gives the paper its structure. Without the crease, the paper is flat and featureless. The crease is where the information is. 
+
+— 6 — 
+
+_Chapter 2: Where the Standard Picture Breaks (And Why That's Interesting)_ 
+
+##### **2.1 The Subdifferential** 
+
+Convex analysis asks a different question. Instead of "what is the slope at this point?" it asks: _What is the full set of slopes m such that a line of slope m, drawn through the point, stays entirely below the function everywhere?_ 
+
+For f(x) = |x| at x = 0: any line y = mx with -1 ≤ m ≤ 1 stays under the V. So the answer is not "undefined" — it is the whole interval [-1, 1]. 
+
+This is called the **subdifferential** . It turns a single number that breaks into a small shape (an interval) that 
+
+doesn't. 
+
+**Definition** : The subdifferential of f at x is: ∂f(x) = { m in R : f(y) >= f(x) + m(y - x) for all y in R } The subdifferential is: 
+
+- A **singleton** {f'(x)} when f is differentiable at x 
+
+- An **interval** [a, b] when f has a corner at x (a = left derivative, b = right derivative) 
+
+- **Empty** when f is not convex at x (no supporting line exists) 
+
+This is the first step in the Puno Calculus: when the derivative breaks at a crease, the subdifferential takes over by expanding from a point into an interval. The fold at the crease is not a failure — it's a transition from a point to a set. 
+
+##### **2.2 Physical Intuition** 
+
+Imagine folding a piece of paper. At the fold line, the paper is not torn — it's creased. The crease is a one-dimensional feature (a line) in a two-dimensional sheet. When you unfold the paper, the crease remains as a memory of the fold. 
+
+In the derivative-as-fold analogy: 
+
+- A differentiable point corresponds to a gentle curve in the paper — no crease, just smooth bending 
+
+- A non-differentiable point corresponds to a sharp crease — the paper has been folded flat 
+
+The subdifferential captures the full set of possible directions the fold could take. The interval [-1, 1] for |x| at 0 says: "the function could continue with any slope between -1 and 1, and still be consistent with the fold." 
+
+For convex functions — and ReLU networks are compositions of convex functions — the subdifferential is the natural way to describe what happens at the crease. It does not treat the crease as an exception. It describes it exactly. 
+
+##### **2.3 Why This Actually Matters** 
+
+Convex functions — those whose subdifferentials behave nicely — are unreasonably common in the real 
+
+world: 
+
+**Optimization** : Every gradient descent algorithm encounters kinks. The loss landscape is rarely perfectly smooth. The subdifferential is what makes subgradient descent work: at a non-differentiable point, any element of the subdifferential gives a direction of descent. 
+
+**Machine Learning** : The ReLU activation function (f(x) = max(0, x)) has a corner at x = 0. This is the single most widely used activation function in modern neural networks. Every ReLU neuron in every trained network sits at a point where the standard derivative fails — and the subdifferential is what makes backpropagation work through it. 
+
+**Economics** : Utility functions, budget constraints, and equilibrium conditions routinely produce piecewise linear behavior. The interesting points are the kinks — where indifference curves change direction, where budget constraints bind. 
+
+**Physics** : Contact forces, friction, phase changes — all produce nonsmooth behavior where the standard calculus falters and the subdifferential picks up. 
+
+— 7 — 
+
+_Chapter 2: Where the Standard Picture Breaks (And Why That's Interesting)_ 
+
+##### **2.4 The Fold Spectrum** 
+
+The Puno Calculus proposes a unified way to think about the derivative-to-subdifferential transition: 
+
+|**Situation**|**Fold Type**|**Mathematical Object**|
+|---|---|---|
+|Smooth point|Gentle curve|Ordinary derivative f'(x)|
+|Kink|Sharp crease|Subdifferential ∂f(x) = interval|
+|Cusp|Fold singularity|Higher-order subdifferential|
+|Discontinuity|Tear|No subdifferential exists|
+
+
+
+The fold language makes visible what the standard language hides: that these are all variations on the same geometric theme. A crease is not a breakdown of the theory. It is a phase transition in the type of fold. 
+
+#### **Chapter 3: The Origami Connection** 

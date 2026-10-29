@@ -97,3 +97,11 @@ def crease_density_proxy(
         if any(abs(x - r) < eps for r in real_roots):
             n += 1
     return n / total if total else 0.0
+
+
+def crease_density(values, eps=0.05):
+    """Fraction of values within eps of zero (crease density proxy)."""
+    if not values:
+        return 0.0
+    n = sum(1 for v in values if abs(v) < eps)
+    return n / len(values)

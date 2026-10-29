@@ -45,6 +45,7 @@ from model.consciousness import (
 )
 from model.cusp import (
     bifurcation_value,
+    crease_density,
     crease_density_proxy,
     cusp_roots,
     on_cusp,
@@ -179,6 +180,7 @@ __all__ = [
     "cusp_roots",
     "bifurcation_value",
     "on_cusp",
+    "crease_density",
     "crease_density_proxy",
     # Dark Energy
     "w_cpl",

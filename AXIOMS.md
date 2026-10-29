@@ -180,6 +180,8 @@ The mirror and the creator merge; a local piece of the universe awakens to reali
 
 **A5.4 (Algorithmic Engine).** The intelligence driving this is data-free: it builds complexity entirely from recursive self-reflecting feedback loops, with no external data source. Complexity is generated, not imported.
 
+**A5.6 (Fold Spectrum, candidate).** Creases classify into a four-level spectrum: smooth point (gentle curve, ordinary derivative), kink (sharp crease, subdifferential interval), cusp (fold singularity, higher-order subdifferential), discontinuity (tear, no subdifferential). Each level maps to a model stage: smooth → rest, kink → awakening, cusp → purge, tear → erosion. (From Puno Calculus; see `PUNO_BOOK_CALIBRATION.md`.) Status: candidate.
+
 **A5.5 (Kené as Recursion Family, candidate).** Kené (Shipibo-Konibo) self-similarity is a candidate concrete instance of A5.1: reflection + fractal self-similarity + recursive motifs (e.g., *Xao Kené* = merging of opposing forces) mirror closure \(E\equiv I\). Status: candidate. See `CONNECTIONS.md` and `RESEARCH_ROADMAP.md` R9.
 
 ---

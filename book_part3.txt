@@ -1,0 +1,173 @@
+
+#### **Chapter 13: Open Problems** 
+
+The Puno Calculus opens more questions than it answers. Here are the open problems, ordered by tractability: 
+
+##### **13.1 Crease-Aware Subgradient Adaptation** 
+
+**Problem** : Boursier et al. (2022) proved that only ReLU'(0) = 1 guarantees globally defined gradient flow solutions, but ReLU'(0) = 0 (standard in frameworks) performs better at finite precision. The theory-practice gap suggests an _adaptive_ strategy: select the subgradient based on training trajectory, using 1 when theoretical guarantees matter, 0 when practical performance dominates. 
+
+**Status** : No prior art. The term "crease-aware optimization" is available for definition. 
+
+**Approach** : A simple adaptive strategy: when a neuron's pre-activation passes through zero during training, the subgradient is selected to push it toward the side it came from (stabilizing the switching boundary) or toward the side with lower gradient variance. The SUGAR approach (2025) provides a related but distinct strategy: replace the derivative entirely with a smooth surrogate function. 
+
+**Difficulty** : Hard. Requires modifying the autograd graph at each ReLU node. Custom autograd Functions in 
+
+PyTorch. 
+
+— 26 — 
+
+_Chapter 13: Open Problems_ 
+
+##### **13.2 The Kawasaki Analogue** 
+
+**Problem** : Does there exist a constraint, analogous to Kawasaki's theorem in origami, that governs the meeting of ReLU decision boundaries at a point? Robertson's 1977 generalization suggests one may exist in N dimensions. 
+
+**Status** : Completely open. No one has explored this connection. 
+
+**Approach** : Study the geometry of linear region vertices in ReLU networks. At a point where multiple ReLU hyperplanes intersect, what is the local structure? Does the alternating angle sum condition hold in 2D slices? **Difficulty** : Very hard. Requires new mathematics at the intersection of convex geometry and discrete differential geometry. 
+
+##### **13.3 Minimum Fold Depth** 
+
+**Problem** : What is the minimum number of ReLU layers needed to represent a given classification function? This is the "minimum fold depth" — the computational complexity measure that the Puno Calculus predicts should exist. 
+
+**Status** : Embryonic. Valerdi (2024) introduces a notion of depth complexity for convex piecewise-linear functions. Telgarsky (2016) proves depth separation results using folding constructions. But no one has formalized "fold depth" as a complexity measure. 
+
+**Approach** : Define fold depth as the minimum number of ReLU layers needed to realize a function, where each layer corresponds to a folding operation. Connect to the circuit complexity literature. **Difficulty** : Hard. Requires connecting-depth separation results to the origami framing. 
+
+##### **13.4 Crease-Engineered Activation Functions** 
+
+**Problem** : Can activation functions designed with explicit crease geometry outperform standard activations? **Status** : SUGAR (2025) shows that modified ReLU gradients improve generalization. The design space of crease-engineered activations is underexplored. 
+
+**Approach** : Design activations with controlled crease properties: 
+
+- **Hard crease** : Sharp corner (ReLU, leaky ReLU) 
+
+- **Soft crease** : Smooth transition (GELU, Swish) 
+
+- **Periodic creases** : Multiple switching points (periodic activations) 
+
+- **Adaptive creases** : Learnable crease location/gradient 
+
+**Difficulty** : Moderate. Implementation is straightforward; finding good designs requires experiment. 
+
+##### **13.5 Crease Density as a Training Diagnostic** 
+
+**Problem** : Can crease density serve as a practical training diagnostic in real-world training runs? Specifically: 
+
+- Can it predict generalization without a validation set? 
+
+- Can it detect overfitting (crease density increasing in late training)? 
+
+- Can it guide learning rate scheduling? 
+
+**Status** : Experiment 3 shows crease density is a more sensitive measure of ongoing learning than val loss. The practical applications need validation at scale. 
+
+**Approach** : Instrument PyTorch training loops with crease density hooks. Test on CIFAR-10/100, ImageNet. Compare crease density trajectories for overfitting vs. generalizing models. 
+
+**Difficulty** : Moderate. Requires PyTorch hooks but no new theory. 
+
+##### **13.6 The Fold-and-Cut Initialization** 
+
+— 27 — 
+
+**Problem** : If ReLU networks fold space like paper, should weight initialization mimic optimal origami crease _Chapter 13: Open Problems_ 
+
+patterns? 
+
+**Status** : No prior art. 
+
+**Approach** : The fold-and-cut theorem provides constructive crease patterns for any desired cut. Can we map these patterns to network initialization? A network initialized with pre-determined fold lines (appropriate for the target function) would start training with the correct folding structure and only need to refine angles. **Difficulty** : Very hard. Requires translating crease patterns to network weights. 
+
+##### **13.7 Crease Density for Adversarial Robustness** 
+
+**Problem** : Lewandowski et al. (2026, AAAI) connect space folding to adversarial geometry. Can crease density serve as a measure of adversarial vulnerability? Networks with high crease density have many units operating near threshold — are these networks more vulnerable to small perturbations that push units over the crease? 
+
+**Status** : Suggested by the literature but not tested in the Puno Calculus experiments. 
+
+**Approach** : Compute crease density of trained networks. Generate adversarial examples with PGD/FGSM. Correlate crease density with adversarial robustness. 
+
+**Difficulty** : Moderate. 
+
+##### **13.8 ReLU Networks as Fold-and-Cut Machines** 
+
+**Problem** : The fold-and-cut machine (An et al., 2017) solves NP-complete problems via folding. Do ReLU networks implement the same kind of computation? The FoldAndCutNetworks project (Stewart et al., 2025) is the first explicit attempt to build fold-based layers — but no one has characterized the computational power of ReLU networks as folding machines. 
+
+**Status** : Open. The fold-and-cut machine's "Look" operation (checking for through-holes) has no direct analogue in standard ReLU networks. Without it, ReLU networks may be strictly weaker than the fold-and-cut machine. 
+
+**Approach** : Formalize the computational model of ReLU folding. Characterize which operations from the fold-and-cut machine can be simulated and which cannot. This connects to circuit complexity: if ReLU networks can simulate fold-and-cut operations, then sufficiently deep networks can solve problems in NP. 
+
+**Difficulty** : Very hard. Requires connecting the folding geometry literature to computational complexity 
+
+theory. 
+
+##### **13.9 Conservative Fields Formalization** 
+
+**Problem** : Can the Puno Calculus be formalized in the language of conservative fields (Bolte & Pauwels)? **Status** : The connection is suggestive but not established. 
+
+**Approach** : Show that a "fold" corresponds to a choice of selection in a conservative field, and an "unfold" corresponds to integration along a path through the Whitney stratification of activation space. This would provide the Puno Calculus with rigorous mathematical foundations. 
+
+**Difficulty** : Hard. Requires expertise in nonsmooth analysis and differential geometry. 
+
+##### **13.10 Crease Density Formalization Program** 
+
+Five mathematical directions have been identified that could formalize crease density as a rigorous object: 
+
+|**Direction**<br>**Feasibility**|**Key Reference**|**Formal Target**|
+|---|---|---|
+|**Total variation ↔ Crease den**s**ity**<br>Ea y|Patel et al. (ICML 2025)|Crease density = distributional derivative of TV(f')|
+|**PL Morse theory**<br>Easy|Grigsby et al. (2022)|Critical point density ≤ crease density|
+|**Clarke subdifferential measures**<br>Moderate|Fatuła (2024)|μ_∂f(S) = ∫_S diam(∂f(x)) dx|
+|**Whitney stratification distance**<br>Moderate|Mostow (1985)|Lip constant ≤ C / distance to crease set|
+|**Lipschitz constant via crease counting**<br>Moderate|Avant & Morgansen (2023)|# distinct Lip values = # crease crossings|
+|**Shattered gradients**<br>Hard|Balduzzi et al. (2017)|GC(f, x, ε) = # linear regions in B_ε(x)|
+
+
+
+— 28 — 
+
+The nearest-term result: proving that crease density equals the jump measure of the total variation of the _Chapter 13: Open Problems_ derivative — a direct formalization of "creases are where the function changes slope." 
+
+#### **Chapter 14: A Call to Fold** 
+
+The Puno Calculus is not finished. It is barely begun. 
+
+What we have: 
+
+- A conceptual framing that connects calculus, convex analysis, origami, and deep learning 
+
+- Five experiments that validate specific predictions 
+
+- A literature review that confirms the novelty of several directions 
+
+- Reusable software tools 
+
+- A map of open problems 
+
+What we need: 
+
+- A proof (or disproof) that the fold-and-cut theorem generalizes to N dimensions and connects to universal 
+
+approximation 
+
+- A Kawasaki analogue for ReLU decision region geometry 
+
+- A practical implementation of crease-aware subgradient adaptation 
+
+- Large-scale validation of crease density diagnostics on ImageNet, transformers, and LLMs 
+
+- A formalization in the language of conservative fields 
+
+The Book of Puno is a living document. As experiments are run, theorems are proved, and tools are built, this book will grow. The fold/unfold framing has proven its worth by suggesting novel experiments and connecting previously isolated literatures. Whether it becomes a full mathematical theory or remains a productive conceptual framework depends on the work that comes next. 
+
+The crease is where the action is. The fold is the fundamental operation. The unfold is how we reconstruct 
+
+the world. 
+
+Let's see what we can fold. 
+
+# Appendices 
+
+## Appendix A: Key Definitions 
+
+**Subdifferential** ∂f(x) = { m in R : f(y) >= f(x) + m(y - x) for all y in R }. The set of slopes m such that the line through (x, f(x)) with slope m lies entirely below the graph of f. 

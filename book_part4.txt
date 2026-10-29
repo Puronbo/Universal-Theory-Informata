@@ -1,0 +1,70 @@
+
+## Appendix A: Key Definitions 
+
+**Subdifferential** ∂f(x) = { m in R : f(y) >= f(x) + m(y - x) for all y in R }. The set of slopes m such that the line through (x, f(x)) with slope m lies entirely below the graph of f. 
+
+**Convex function** : f(λx + (1-λ)y) ≤ λf(x) + (1-λ)f(y) for all x, y and λ  in  [0, 1]. The graph lies below the chord connecting any two points. 
+
+**Fold depth** : The number of ReLU layers in a network. Correlates with decision boundary complexity at r = 
+
++0.968. 
+
+**Crease density** : The number (or fraction) of ReLU units whose pre-activation falls within threshold ε of zero during a forward pass. Used as training diagnostic, OOD signal, and pruning criterion. 
+
+**Crease proximity pruning** : A pruning criterion that removes neurons with highest crease density. Outperforms magnitude pruning up to 30% removal. 
+
+**Bifurcation zone** : The set of parameters in a ReLU network where at least one neuron receives exactly zero input (Bertoin et al., 2021). The set where subgradient choice is theoretically relevant. 
+
+**Flat-foldable vertex** : A vertex in a crease pattern where paper can be folded flat without introducing additional creases. Governed by Kawasaki's theorem. 
+
+**Fold-and-cut theorem** : Any polygonal cut pattern can be produced by folding paper flat and making one straight cut (Demaine, Demaine & Lubiw, 1998). 
+
+— 29 — 
+
+**Space folding measure** : χ(Γ) = 1 - max_i d_H(π₁, πᵢ) / max_j d_H(π₁, πⱼ) where d_H is Hamming distance in _Chapter 14: A Call to Fold_ binarized activation space (Lewandowski et al., 2025). 
+
+###### ## Appendix B: Software 
+
+All code is available at the Puno Calculus repository. Core files: 
+
+|**File**|**Lines**|**Purpose**|
+|---|---|---|
+|`puno_utils.py`|~200|Core utilities (numpy) — Net, CreaseMonitor, OODScorer, da|
+|`puno_torch.py`|~250|PyTorch implementation — CreaseDensityHook, OODScorer,|
+|`demo_ood.py`|~220|OOD detection demo (numpy)|
+|`exp_pruning.py`|~200|Pruning experiment (numpy)|
+|`exp3_early_stop.py`|~350|Early stopping experiment (numpy)|
+|`build_book_pdf.py`|~440|Book PDF generation from markdown|
+|`build_experiment_reports.py`|~280|Extracts experiment chapters as standalone PDFs|
+
+
+
+Dependencies: numpy, matplotlib, scipy (for correlations only), fpdf (for PDF generation). 
+
+## Appendix C: Citation Guide 
+
+When referencing the Puno Calculus in academic work: **Conceptual** : "Puno Calculus" — the fold/unfold framing of calculus operations. **Method** : "crease-aware optimization" — optimization methods that account for gradient behavior at nondifferentiable points. 
+
+**Metric** : "crease density" — the frequency with which ReLU pre-activations fall near zero. **Criterion** : "crease proximity pruning" — pruning neurons based on crease density. 
+
+**Referencing this book** : 
+
+_Puno, M. G. S. (2026). *The Book of Puno: A Treatise on Folding, Unfolding, and What Lives at the Crease* (2nd ed.)._ 
+
+_Everything folds. Everything unfolds. The crease is where the action is._ 
+
+_— The Book of Puno_ 
+
+— 30 — 
+
+_Chapter 14: A Call to Fold_ 
+
+###### _The Book of Puno_ 
+
+_"Everything folds. Everything unfolds. The crease is where the action is."_ 
+
+_This book was set in Calibri (body) and Cambria (titles). Printed from the Second Edition, July 2026._ 
+
+_End of the Book of Puno._ 
+
+— 31 — 
