@@ -1,5 +1,5 @@
 """Tests for model.recursion_families."""
-from model import julia_escape, kene_step, mandelbrot_escape, rg_fixed_point
+from model import fractal_dimension, julia_escape, kene_step, mandelbrot_escape, rg_fixed_point, rg_flow_trajectory
 
 
 def test_kene_step():
@@ -32,3 +32,19 @@ def test_julia_escape():
 def test_rg_fixed_point():
     x = rg_fixed_point(10.0, target=0.0, steps=1000, lr=0.1)
     assert abs(x) < 1e-6
+
+
+def test_fractal_dimension():
+    # A filled grid is not a fractal; just check the function returns a finite number
+    pts = [(x, y) for x in range(4) for y in range(4)]
+    d = fractal_dimension(pts)
+    assert isinstance(d, float)
+    # A line of points should have dimension ~1
+    line_pts = [(float(i), 0.0) for i in range(20)]
+    d2 = fractal_dimension(line_pts)
+    assert 0.0 <= d2 <= 2.0
+
+def test_rg_flow_trajectory():
+    traj = rg_flow_trajectory(10.0, target=0.0, steps=5, lr=0.5)
+    assert len(traj) == 6
+    assert traj[-1] < traj[0]
