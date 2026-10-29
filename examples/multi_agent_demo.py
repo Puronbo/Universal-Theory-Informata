@@ -1,7 +1,7 @@
 """Demo: multi-agent consciousness simulation."""
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from engine import multi_agent_step, network_closure, net_zero
+from model import multi_agent_step, network_closure, net_zero
 
 agents = [[0, 0, 0] for _ in range(5)]
 stimuli = [0.9, -0.8, 0.2, 0.9, -0.9, 0.1]

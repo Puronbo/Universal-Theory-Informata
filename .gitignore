@@ -1,6 +1,12 @@
 __pycache__/
-lean/.lake/
-lean/.github/
+*.pyc
 *.png
 docs/*.html
 model.egg-info/
+.claude/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+dist/
+.coverage
+*.egg-info/

@@ -1,5 +1,5 @@
 """Example: ternary erosion preserving net-zero."""
-from engine import net_zero, erosion_step
+from model import net_zero, erosion_step
 
 state = [1, 1, -1, -1, 0, 1, -1, 1, -1]
 print("before:", state, "sum=", sum(state), "net_zero=", net_zero(state))
