@@ -12,13 +12,3 @@ import Model.Timeline
 import Model.UniversalImpedance
 import Model.RollingFold
 import Model.MathlibTest
-import Model.Stroboscopic
-import Model.SelfLooping
-import Model.Equator
-import Model.Clock
-import Model.Consciousness
-import Model.MultiAgent
-import Model.PrizedProblems
-import Model.RecursionFamilies
-import Model.Plotting
-import Model.Search
