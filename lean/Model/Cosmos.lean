@@ -22,3 +22,10 @@ def dimensionCircle (n : Nat) : List Float :=
 
 theorem dimensionCircle_zero : dimensionCircle 0 = [] := by
   native_decide
+
+
+theorem scaleMidpoint_example : scaleMidpoint 1.0 4.0 = 2.0 := by
+  native_decide
+
+theorem cosmologicalCoupling_zero_M : cosmologicalCoupling 0.0 2.0 1.0 = 0.0 := by
+  native_decide

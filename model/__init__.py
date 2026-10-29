@@ -103,6 +103,7 @@ from model.playhead import (
     Playhead,
 )
 from model.plotting import (
+    plot_cosmic_web,
     plot_delta,
 )
 from model.prized_problems import (
@@ -279,6 +280,7 @@ __all__ = [
     "cp_violation_tilt",
     "entropy_brake",
     # Plotting
+    "plot_cosmic_web",
     "plot_delta",
 ]
 
