@@ -1,7 +1,7 @@
 """Tests for model.cusp."""
 import math
 
-from model import bifurcation_value, crease_density, crease_density_proxy, cusp_roots, on_cusp
+from model import bifurcation_value, crease_density, crease_density_proxy, cusp_roots, fold_spectrum, on_cusp
 
 
 def test_cusp_bifurcation():
@@ -55,3 +55,9 @@ def test_crease_density():
     assert rho == 3 / 5
     assert crease_density([], 0.05) == 0.0
     assert crease_density([1.0, 2.0], 0.05) == 0.0
+
+
+def test_fold_spectrum():
+    assert fold_spectrum(2.0, 2.0) == "smooth"
+    assert fold_spectrum(1.0, 3.0) == "kink"
+    assert fold_spectrum(None, 1.0) == "tear"

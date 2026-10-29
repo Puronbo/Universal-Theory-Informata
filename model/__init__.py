@@ -48,6 +48,7 @@ from model.cusp import (
     crease_density,
     crease_density_proxy,
     cusp_roots,
+    fold_spectrum,
     on_cusp,
 )
 from model.dark_energy import (
@@ -186,6 +187,7 @@ __all__ = [
     "on_cusp",
     "crease_density",
     "crease_density_proxy",
+    "fold_spectrum",
     # Dark Energy
     "w_cpl",
     "rho_lambda_ratio",

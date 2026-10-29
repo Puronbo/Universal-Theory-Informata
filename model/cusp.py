@@ -105,3 +105,18 @@ def crease_density(values, eps=0.05):
         return 0.0
     n = sum(1 for v in values if abs(v) < eps)
     return n / len(values)
+
+
+def fold_spectrum(left_deriv, right_deriv, eps=1e-9):
+    """Classify a point as smooth/kink/cusp/tear based on derivative behavior.
+
+    Returns one of: 'smooth', 'kink', 'cusp', 'tear'.
+    """
+    if left_deriv is None or right_deriv is None:
+        return "tear"
+    if abs(left_deriv - right_deriv) < eps:
+        return "smooth"
+    # kink: finite jump in derivative
+    if abs(left_deriv) < float("inf") and abs(right_deriv) < float("inf"):
+        return "kink"
+    return "cusp"
