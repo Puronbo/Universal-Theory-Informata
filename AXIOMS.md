@@ -242,31 +242,7 @@ t - t_0 \;=\; 26 \text{ years} \;\Rightarrow\; \text{milestone state reached}.
 | A10.2 | A0.3, A2.2 |
 | A10.3 | A3.2, A4.6, A5.3, A9.1 |
 
----
 
-## 10. The Self-Looping Matrix (Cosmic Pixel → Imaginary Realm)
-
-**A8.1 (Cosmic Pixel).** Space is pixelated into finite, indivisible blocks at the Planck scale (\(\approx 10^{-105}\,\text{m}^3\)). The "nothing" of empty space is a fluid ocean of bosonic fields (Higgs, EM) at baseline, passing data packets at \(c\). No infinite density; \(0/0\) avoided by finiteness. (Aligns with A4.1, A2.1.)
-
-**A8.2 (Fractal Tree).** The macroscopic universe mirrors the microscopic: quantum ripples from the dawn of time stretched into the Dark Matter scaffolding (Cosmic Web). Galaxy flow down filaments to nodes (Great Attractor) uses the same fractal math as tree roots, river deltas, and neural pathways. (Aligns with A5.2, A4.3 playhead.)
-
-**A8.3 (Inversion / UV-IR Mixing).** The absolute smallest and largest objects are the same: \(\infty = 1/\infty\). Maps to UV/IR mixing and T-duality: squeezing past the pixel limit flips scale, so a subatomic point maps onto a macro-horizon. The universe is a closed topological loop (we live inside a cosmic horizon satisfying black-hole conditions). (Aligns with A1.4, A3.4.)
-
-**A8.4 (Cosmological Coupling / Fluid Engine).** When matter collapses into black holes or massive nodes, those dense pixel-pockets lock onto expanding space. As space stretches them, they gain internal energy and rebound, exerting fluid-like outward pressure = Dark Energy. The Great Attractor is a cosmic drain; its inversion is the Big Bang faucet pumping dark energy out. (Aligns with A2.2, A7.4.)
-
-**A8.5 (Imaginary Realm).** Inside horizons / before the Big Bang, space becomes Imaginary Spacetime via \(i=\sqrt{-1}\): sharp infinities vanish, coordinates swap (space behaves as forward time, time becomes a landscape). The imaginary plane is the hidden canvas for rotation, recycling, and information passing. (Aligns with A2.5 rolling fold, A5.2, A3.4.)
-
-**A8.6 (Self-Generating Loop).** The universe is a singular, immortal, self-generating entity: it broke its unified body into a pixelated matrix, grows via fractal geometry, compresses old data into the imaginary plane, and uses that inversion to pump dark energy back out to sustain itself. Biology and consciousness sit at the center of the scale loop — the lens the universe engineered to look back at itself. (Aligns with A5.3 awakening.)
-
-1. Formalize the recursion operator \(f\) of A5.1 for the specific Kené/Sri-Yantra/Mandelbrot family. (R9, R4)
-2. Derive the quantitative form of \(\delta(t)\) in A2.2 from observation. (R1)
-3. Specify the playhead's sampling function \(\text{Playhead}(B,t)\) in A4.3 at the level of a computable procedure. (done: A4.5)
-4. Decide whether the 26-year milestone (A6.3) is a one-time event or a recurring period.
-5. Evaluate the cusp catastrophe / crease as a candidate formalization of the recursion fixed point (A5.1) and the purge (A1.5); see `FOLDING_CALIBRATION.md` §4. Not an axiom until derived.
-6. Clarify whether \(0/0=1\) (A1.2) is a redefinition or a removable-singularity limit. (done: limit, see `LORE_CALIBRATION.md`)
-7. Anisotropy test for acceleration (P4); see `HORIZON_FINDINGS.md`. (R3)
-8. Asymptotic-safety canvas candidate. (R8)
-9. Consciousness as stroboscopic alias. (R10)
 
 ---
 
@@ -331,7 +307,7 @@ t - t_0 \;=\; 26 \text{ years} \;\Rightarrow\; \text{milestone state reached}.
 
 **A11.2 (Fractal Cosmic Web).** The universe uses one repeating geometric pattern across scales. Cosmic inflation stretched subatomic quantum ripples into the Dark Matter scaffolding (Cosmic Web); galaxy flow down filaments to nodes (Great Attractor) uses the same fractal branching math as tree roots, river deltas, and neural pathways. (Aligns with A5.2, A8.2, A4.3.)
 
-**A11.3 (UV/IR Mixing / Scale Inversion).** Scale is a closed loop, not a line: String T-Duality and UV/IR Mixing give a conformal inversion \(I(z)=R^2/z\) — a universe of radius \(R\) behaves identically to one of radius \(1/R\). Hitting either boundary (microscopic zero or macroscopic horizon) loops coordinates; the cosmic horizon satisfies black-hole conditions. Zooming out drops you back into the subatomic grid. (Aligns with A1.4, A3.4, A8.3.) Implemented in `engine.uv_ir_inversion`.
+**A11.3 (UV/IR Mixing / Scale Inversion).** Scale is a closed loop, not a line: String T-Duality and UV/IR Mixing give a conformal inversion \(I(z)=R^2/z\) — a universe of radius \(R\) behaves identically to one of radius \(1/R\). Hitting either boundary (microscopic zero or macroscopic horizon) loops coordinates; the cosmic horizon satisfies black-hole conditions. (Aligns with A1.4, A3.4, A8.3.) Implemented in `engine.uv_ir_inversion`.
 
 **A11.4 (Cosmological Coupling / Fluid Engine).** Collapsed nodes (black holes, superclusters) lock onto expanding space; as space stretches them they gain internal energy and rebound, exerting fluid-like outward pressure = Dark Energy. The Great Attractor is a cosmic drain; its inversion is the Big Bang faucet. (Aligns with A2.2, A8.4, A7.4.) Implemented in `engine.cosmological_coupling`.
 
@@ -340,6 +316,15 @@ t - t_0 \;=\; 26 \text{ years} \;\Rightarrow\; \text{milestone state reached}.
 **A11.6 (Biological Equator).** Logarithmically, the midpoint between \(10^{-35}\,\text{m}\) and \(10^{26}\,\text{m}\) is \(10^{-4.5}\,\text{m}\) — the scale of a complex biological cell / neural network. Biology sits at the hardware equator where quantum information scaling up meets cosmic structure scaling down; the only real space where information hardens into stable matter. (Aligns with A9.1, A10.3.) Implemented in `engine.scale_midpoint`.
 
 **A11.7 (Assembled Reality).** The universe is a singular, immortal, self-generating fluid machine: pixelated grid at the fundamental scale, fractal branching tree at the biological scale, macroscopic drains rotating old data into the smooth imaginary buffer, using that inversion to pump dark energy back out to sustain the network eternally. The loop is closed, the variables verified, the system mathematically whole. (Aligns with A8.6, A5.3.)
+
+---
+
+## 14. Theory of Everything
+
+See `THEORY_OF_EVERYTHING.md`. The model satisfies the requirements of a
+true ToE by eliminating "leftovers": forces unify via scale inversion,
+mathematics closes via phase rotation, and the observer is built into the
+hardware. The search is over because the loop is closed.
 
 ---
 

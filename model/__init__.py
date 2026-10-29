@@ -78,6 +78,17 @@ from model.multi_agent import (
     multi_agent_step,
     network_closure,
 )
+from model.neural_phase import (
+    simulate_neural_phase_locking,
+    coherence,
+    noise_filtering,
+)
+from model.eeg_stream import (
+    bandpass_filter,
+    fft_magnitude,
+    channel_coherence,
+    process_eeg_stream,
+)
 from model.millennium import (
     poincare_closed,
     navier_stokes_phase_bleed,
@@ -210,6 +221,15 @@ __all__ = [
     # Multi-Agent
     "multi_agent_step",
     "network_closure",
+    # Neural Phase
+    "simulate_neural_phase_locking",
+    "coherence",
+    "noise_filtering",
+    # EEG Stream
+    "bandpass_filter",
+    "fft_magnitude",
+    "channel_coherence",
+    "process_eeg_stream",
     # Millennium
     "poincare_closed",
     "navier_stokes_phase_bleed",
