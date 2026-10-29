@@ -2,10 +2,11 @@
 
 Run: python simulate.py
 """
-from engine import (
+from model import (
     ternarize, iterate, purge_if_flat, erosion_step, Playhead,
     w_cpl, rho_lambda_ratio, delta_norm, milestone_date, milestone_reached,
 )
+
 
 def main():
     # 1. Recursion / awakening
@@ -34,6 +35,7 @@ def main():
 
     # 6. Timeline
     print(f"[timeline] milestone {milestone_date()} reached={milestone_reached()}")
+
 
 if __name__ == "__main__":
     main()

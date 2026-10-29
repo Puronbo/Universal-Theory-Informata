@@ -3,22 +3,47 @@ import re, pathlib, ast
 
 ROOT = pathlib.Path(__file__).parent
 
+# Import the model package to get function/class names
+import model
+
+
 def check_engine_refs():
-    src = (ROOT / "engine.py").read_text(encoding="utf-8")
-    tree = ast.parse(src)
-    funcs = {n.name for n in tree.body if isinstance(n, (ast.FunctionDef, ast.ClassDef))}
-    # also module-level constants
-    consts = {t.targets[0].id for t in tree.body if isinstance(t, ast.Assign) and isinstance(t.targets[0], ast.Name)}
-    known = funcs | consts
+    src = (ROOT / "model" / "__init__.py").read_text(encoding="utf-8")
+    # Get all exports from __all__
+    all_match = re.search(r'__all__\s*=\s*\[(.*?)\]', src, re.DOTALL)
+    known = set()
+    if all_match:
+        items = all_match.group(1)
+        for item in re.findall(r'"([^"]+)"', items):
+            known.add(item)
+    # Also check module-level constants in engine modules
+    for mod_file in (ROOT / "model").glob("*.py"):
+        if mod_file.name == "__init__.py":
+            continue
+        try:
+            mod_src = mod_file.read_text(encoding="utf-8")
+            tree = ast.parse(mod_src)
+            for node in tree.body:
+                if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
+                    known.add(node.name)
+                elif isinstance(node, ast.Assign):
+                    for target in node.targets:
+                        if isinstance(target, ast.Name):
+                            known.add(target.id)
+        except SyntaxError:
+            pass
+
     missing = []
     for md in ROOT.glob("*.md"):
-        for m in re.finditer(r"engine\.([A-Za-z_][A-Za-z0-9_]*)", md.read_text(encoding="utf-8")):
+        for m in re.finditer(r"model\.([A-Za-z_][A-Za-z0-9_]*)", md.read_text(encoding="utf-8")):
             name = m.group(1)
             if name == "py":
                 continue
             if name not in known:
                 missing.append((md.name, name))
     return missing
+
+
 FORBIDDEN = [
     "is entirely governed",
     "physics is entirely",
@@ -26,6 +51,7 @@ FORBIDDEN = [
     "the model proves",
     "True Observer downloaded",
 ]
+
 
 def check_overclaims():
     hits = []
@@ -45,6 +71,7 @@ def check_overclaims():
                     hits.append((name, i, phrase, line.strip()[:120]))
     return hits
 
+
 def check_cross_refs():
     # Every axiom label A#.# in AXIOMS.md should appear in CONNECTIONS.md
     axioms = set(re.findall(r"\*\*A\d+\.\d+", (ROOT / "AXIOMS.md").read_text(encoding="utf-8")))
@@ -52,6 +79,7 @@ def check_cross_refs():
     conn = (ROOT / "CONNECTIONS.md").read_text(encoding="utf-8")
     missing = [a for a in sorted(axioms) if a not in conn]
     return missing
+
 
 def main():
     hits = check_overclaims()
@@ -62,17 +90,14 @@ def main():
         return 1
     missing_refs = check_engine_refs()
     if missing_refs:
-        print("ENGINE REFERENCES NOT FOUND:")
+        print("MODEL REFERENCES NOT FOUND:")
         for m in missing_refs:
-            print(f"  {m[0]}: engine.{m[1]}")
+            print(f"  {m[0]}: model.{m[1]}")
         return 1
     print("Meta-audit: no overclaim phrases found.")
-    print("Engine references: all valid.")
+    print("Model references: all valid.")
     return 0
-    print("Meta-audit: no overclaim phrases found.")
-    if missing:
-        print(f"  ({len(missing)} axioms not yet in CONNECTIONS.md)")
-    return 0
+
 
 if __name__ == "__main__":
     raise SystemExit(main())

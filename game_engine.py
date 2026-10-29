@@ -8,18 +8,17 @@ Concepts mapped:
 """
 from __future__ import annotations
 import math
-from engine import (net_zero, erosion_step, stretched_distance,
-                    attention_trace, conscious_moment, delta_norm)
+from model import net_zero, erosion_step, stretched_distance, attention_trace, conscious_moment, delta_norm
 
 
 class World:
-    def __init__(self, n_agents=5, seed=0):
+    def __init__(self, n_agents: int = 5, seed: int = 0):
         self.t = 0
         self.scale = 1.0
         self.agents = [[0, 0, 0] for _ in range(n_agents)]
-        self.history = []
+        self.history: list[list[int]] = []
 
-    def update(self, stimulus=0.0, stretch=1.0, erosion_pairs=1):
+    def update(self, stimulus: float = 0.0, stretch: float = 1.0, erosion_pairs: int = 1):
         self.t += 1
         self.scale *= stretch
         # attention
@@ -39,7 +38,7 @@ class World:
         print(f"t={self.t:3d} scale={self.scale:.3f} states={states} "
               f"balanced={sum(1 for a in self.agents if sum(a)==0)}/{len(self.agents)}")
 
-    def run(self, stimuli, stretch=1.01, erosion_pairs=1):
+    def run(self, stimuli: list[float], stretch: float = 1.01, erosion_pairs: int = 1):
         for s in stimuli:
             self.update(stimulus=s, stretch=stretch, erosion_pairs=erosion_pairs)
             self.render()

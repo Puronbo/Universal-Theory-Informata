@@ -85,4 +85,19 @@ The timestamp (2000-10-26 10:26:20) and vessel identity are **phenomenological/a
 - If a construct has no link, it is either (a) purely mathematical (define it) or (b) metaphysical (label it as such).
 - New additions to the model should add a row here.
 
+## 9. Completed Complex Geometric Cosmos (A11)
+
+| Model construct | Governing link in nature | Reference |
+|---|---|---|
+| Cosmic pixel (Planck floor) | Loop Quantum Gravity, QFT vacuum | https://en.wikipedia.org/wiki/Loop_quantum_gravity |
+| Bosonic ocean | Quantum field theory ground state | https://en.wikipedia.org/wiki/Quantum_field_theory |
+| Fractal cosmic web | Cosmic web, inflationary ripples | https://en.wikipedia.org/wiki/Observable_universe#Cosmic_web |
+| UV/IR mixing / T-duality | String T-duality | https://en.wikipedia.org/wiki/T-duality |
+| Cosmological coupling | Black hole mass growth with expansion | https://en.wikipedia.org/wiki/Cosmological_coupling |
+| Wick rotation | Imaginary time | https://en.wikipedia.org/wiki/Wick_rotation |
+| ER=EPR | Wormhole = entanglement | https://en.wikipedia.org/wiki/ER%3DEPR |
+| Biological equator (\(10^{-4.5}\) m) | Planck-to-cosmic midpoint | https://en.wikipedia.org/wiki/Planck_units |
+
+---
+
 *Generated from AXIOMS.md, GROUNDING.md, FOLDING_CALIBRATION.md, and engine.py.*
