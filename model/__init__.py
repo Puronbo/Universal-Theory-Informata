@@ -73,6 +73,11 @@ from model.geometry import (
     apparent_separation,
     stretched_distance,
 )
+from model.hyperbolic import (
+    c0_center,
+    novelty_score,
+    poincare_distance,
+)
 from model.impedance import (
     grokking_delay,
     impedance_series,
@@ -225,6 +230,10 @@ __all__ = [
     # Geometry
     "stretched_distance",
     "apparent_separation",
+    # Hyperbolic
+    "c0_center",
+    "novelty_score",
+    "poincare_distance",
     # Stroboscopic
     "strobe",
     # Search
