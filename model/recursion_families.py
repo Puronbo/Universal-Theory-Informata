@@ -1,10 +1,10 @@
-"""Recursion families (R4): Mandelbrot / Kené-style complex iteration."""
+"""Recursion families (R4): Mandelbrot / KenÃ©-style complex iteration."""
 
 from __future__ import annotations
 
 
 def kene_step(z: complex, c: complex) -> complex:
-    """One step of the Kené/Mandelbrot-style recursion: z -> z^2 + c."""
+    """One step of the KenÃ©/Mandelbrot-style recursion: z -> z^2 + c."""
     return z * z + c
 
 
@@ -104,3 +104,21 @@ def stroboscopic_shift(sample_rate, event_time):
         raise ValueError("sample_rate must be > 0")
     period = 1.0 / sample_rate
     return event_time % period
+
+
+def rg_beta(g, g_star=0.0):
+    """Toy beta function: beta(g) = g*(g - g_star). Fixed point at g_star."""
+    return g * (g - g_star)
+
+
+def rg_flow_with_beta(g0, g_star=0.0, steps=1000, lr=0.01):
+    """RG flow using the beta function. Returns (g_final, converged)."""
+    x = g0
+    for _ in range(steps):
+        x = x - lr * rg_beta(x, g_star)
+    return x, abs(x - g_star) < 1e-6
+
+
+def kene_recursive(z, c, phi=1.618033988749895):
+    """Kené-style recursion: z -> z^2 + c, with golden-ratio scaling on c."""
+    return z * z + c * phi
