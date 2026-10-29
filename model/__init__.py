@@ -136,6 +136,7 @@ from model.recursion import (
     purge_if_flat,
 )
 from model.recursion_families import (
+    alias_shift_prediction,
     fractal_dimension,
     julia_escape,
     julia_fractal_dimension,
@@ -149,6 +150,7 @@ from model.recursion_families import (
     rg_flow_with_beta,
     scale_invariance_check,
     stroboscopic_shift,
+    zeno_freeze,
 )
 from model.rolling_fold import (
     roll_convert,
@@ -259,6 +261,7 @@ __all__ = [
     "goldbach_check",
     "zeta_partial",
     # Recursion Families
+    "alias_shift_prediction",
     "fractal_dimension",
     "julia_escape",
     "julia_fractal_dimension",
@@ -272,6 +275,7 @@ __all__ = [
     "rg_flow_with_beta",
     "scale_invariance_check",
     "stroboscopic_shift",
+    "zeno_freeze",
     # Consciousness
     "attention_trace",
     "conscious_moment",

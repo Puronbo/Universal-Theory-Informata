@@ -1,5 +1,5 @@
 """Tests for model.recursion_families."""
-from model import fractal_dimension, julia_escape, julia_fractal_dimension, kene_recursive, kene_step, mandelbrot_escape, rg_beta, rg_fixed_point, rg_fixed_point_prediction, rg_flow_trajectory, rg_flow_with_beta, scale_invariance_check, stroboscopic_shift
+from model import alias_shift_prediction, fractal_dimension, julia_escape, julia_fractal_dimension, kene_recursive, kene_step, mandelbrot_escape, rg_beta, rg_fixed_point, rg_fixed_point_prediction, rg_flow_trajectory, rg_flow_with_beta, scale_invariance_check, stroboscopic_shift, zeno_freeze
 
 
 def test_kene_step():
@@ -87,3 +87,13 @@ def test_rg_flow_with_beta():
 def test_kene_recursive():
     z = kene_recursive(1+1j, 0+0j)
     assert z == (1+1j)**2
+
+
+def test_alias_shift_prediction():
+    shifts = alias_shift_prediction(10.0, [0.05, 0.15, 0.25])
+    assert len(shifts) == 3
+    assert all(s >= 0 for s in shifts)
+
+def test_zeno_freeze():
+    assert zeno_freeze(10.0, 0.05)
+    assert not zeno_freeze(10.0, 0.2)

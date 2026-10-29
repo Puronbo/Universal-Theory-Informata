@@ -122,3 +122,13 @@ def rg_flow_with_beta(g0, g_star=0.0, steps=1000, lr=0.01):
 def kene_recursive(z, c, phi=1.618033988749895):
     """Kené-style recursion: z -> z^2 + c, with golden-ratio scaling on c."""
     return z * z + c * phi
+
+
+def alias_shift_prediction(sample_rate, event_times):
+    """Predicted conscious 'now' positions for a list of event times."""
+    return [stroboscopic_shift(sample_rate, t) for t in event_times]
+
+
+def zeno_freeze(sample_rate, probe_interval):
+    """Quantum-Zeno analogue: probing faster than the sample rate freezes state."""
+    return probe_interval < (1.0 / sample_rate)
