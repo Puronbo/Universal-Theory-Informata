@@ -85,6 +85,11 @@ from model.impedance import (
     schwinger_mass_gap,
     thirring_gn_mass_gap,
 )
+from model.mp_operator import (
+    mp_discriminant,
+    mp_regime,
+    mp_roots,
+)
 from model.multi_agent import (
     multi_agent_step,
     network_closure,
@@ -227,6 +232,10 @@ __all__ = [
     "schwinger_mass_gap",
     "thirring_gn_mass_gap",
     "grokking_delay",
+    # MP-Operator
+    "mp_discriminant",
+    "mp_regime",
+    "mp_roots",
     # Geometry
     "stretched_distance",
     "apparent_separation",
