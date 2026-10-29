@@ -91,3 +91,16 @@ def rg_fixed_point_prediction(g0, target=0.0, steps=1000, lr=0.1, tol=1e-6):
     """RG flow with convergence check. Returns (fixed_point, converged)."""
     x = rg_fixed_point(g0, target=target, steps=steps, lr=lr)
     return x, abs(x - target) < tol
+
+
+def scale_invariance_check(micro, macro, tol=1e-9):
+    """Check that micro * macro ~ 1 (scale inversion, A1.4 / A8.3)."""
+    return abs(micro * macro - 1.0) < tol
+
+
+def stroboscopic_shift(sample_rate, event_time):
+    """Alias shift: where an event lands in the sampled (conscious) frame."""
+    if sample_rate <= 0:
+        raise ValueError("sample_rate must be > 0")
+    period = 1.0 / sample_rate
+    return event_time % period

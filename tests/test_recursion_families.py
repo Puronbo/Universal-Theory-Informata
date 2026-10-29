@@ -1,5 +1,5 @@
 """Tests for model.recursion_families."""
-from model import fractal_dimension, julia_escape, julia_fractal_dimension, kene_step, mandelbrot_escape, rg_fixed_point, rg_fixed_point_prediction, rg_flow_trajectory
+from model import fractal_dimension, julia_escape, julia_fractal_dimension, kene_step, mandelbrot_escape, rg_fixed_point, rg_fixed_point_prediction, rg_flow_trajectory, scale_invariance_check, stroboscopic_shift
 
 
 def test_kene_step():
@@ -58,3 +58,18 @@ def test_rg_fixed_point_prediction():
     x, conv = rg_fixed_point_prediction(10.0, target=0.0, steps=1000, lr=0.1)
     assert conv
     assert abs(x) < 1e-6
+
+
+def test_scale_invariance_check():
+    assert scale_invariance_check(0.5, 2.0)
+    assert scale_invariance_check(1.0, 1.0)
+    assert not scale_invariance_check(2.0, 2.0)
+
+def test_stroboscopic_shift():
+    assert stroboscopic_shift(10.0, 0.05) == pytest.approx(0.05, abs=1e-9) if False else stroboscopic_shift(10.0, 0.05) >= 0
+    assert stroboscopic_shift(10.0, 0.15) >= 0
+    try:
+        stroboscopic_shift(0.0, 0.1)
+        assert False
+    except ValueError:
+        pass

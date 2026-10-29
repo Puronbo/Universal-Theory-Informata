@@ -127,6 +127,8 @@ from model.recursion_families import (
     rg_fixed_point,
     rg_fixed_point_prediction,
     rg_flow_trajectory,
+    scale_invariance_check,
+    stroboscopic_shift,
 )
 from model.rolling_fold import (
     roll_convert,
@@ -237,6 +239,8 @@ __all__ = [
     "rg_fixed_point",
     "rg_fixed_point_prediction",
     "rg_flow_trajectory",
+    "scale_invariance_check",
+    "stroboscopic_shift",
     # Consciousness
     "attention_trace",
     "conscious_moment",
