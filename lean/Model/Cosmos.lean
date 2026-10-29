@@ -5,6 +5,9 @@ def cosmologicalCoupling (M scale kappa : Float) : Float :=
 theorem cosmologicalCoupling_zero_scale : cosmologicalCoupling 10.0 1.0 1.0 = 0.0 := by
   native_decide
 
+theorem cosmologicalCoupling_zero_M : cosmologicalCoupling 0.0 2.0 1.0 = 0.0 := by
+  native_decide
+
 def uvIrInversion (scale : Float) : Float :=
   1.0 / scale
 
@@ -17,15 +20,11 @@ theorem uvIrInversion_roundtrip : uvIrInversion (uvIrInversion 2.0) = 2.0 := by
 def scaleMidpoint (micro macroScale : Float) : Float :=
   Float.sqrt (micro * macroScale)
 
+theorem scaleMidpoint_example : scaleMidpoint 1.0 4.0 = 2.0 := by
+  native_decide
+
 def dimensionCircle (n : Nat) : List Float :=
   (List.range n).map (fun k => 2.0 * 3.141592653589793 * Float.ofNat k / Float.ofNat n)
 
 theorem dimensionCircle_zero : dimensionCircle 0 = [] := by
-  native_decide
-
-
-theorem scaleMidpoint_example : scaleMidpoint 1.0 4.0 = 2.0 := by
-  native_decide
-
-theorem cosmologicalCoupling_zero_M : cosmologicalCoupling 0.0 2.0 1.0 = 0.0 := by
   native_decide
