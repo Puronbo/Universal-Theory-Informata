@@ -1,5 +1,5 @@
 """Tests for model.recursion_families."""
-from model import fractal_dimension, julia_escape, kene_step, mandelbrot_escape, rg_fixed_point, rg_flow_trajectory
+from model import fractal_dimension, julia_escape, julia_fractal_dimension, kene_step, mandelbrot_escape, rg_fixed_point, rg_fixed_point_prediction, rg_flow_trajectory
 
 
 def test_kene_step():
@@ -48,3 +48,13 @@ def test_rg_flow_trajectory():
     traj = rg_flow_trajectory(10.0, target=0.0, steps=5, lr=0.5)
     assert len(traj) == 6
     assert traj[-1] < traj[0]
+
+
+def test_julia_fractal_dimension():
+    d = julia_fractal_dimension(0+0j)
+    assert 0.0 <= d <= 2.5
+
+def test_rg_fixed_point_prediction():
+    x, conv = rg_fixed_point_prediction(10.0, target=0.0, steps=1000, lr=0.1)
+    assert conv
+    assert abs(x) < 1e-6

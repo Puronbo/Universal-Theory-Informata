@@ -69,3 +69,25 @@ def rg_flow_trajectory(g0, target=0.0, steps=50, lr=0.1):
         x = x - lr * (x - target)
         traj.append(x)
     return traj
+
+
+def julia_fractal_dimension(c, box_sizes=None, grid_n=64, max_iter=50):
+    """Estimate fractal dimension of the Julia set for parameter c."""
+    if box_sizes is None:
+        box_sizes = [0.5, 0.25, 0.125, 0.0625]
+    pts = []
+    for i in range(grid_n):
+        for j in range(grid_n):
+            x = -2.0 + 4.0 * i / (grid_n - 1)
+            y = -2.0 + 4.0 * j / (grid_n - 1)
+            z = complex(x, y)
+            esc, _ = julia_escape(z, c, max_iter=max_iter)
+            if not esc:
+                pts.append((x, y))
+    return fractal_dimension(pts, box_sizes=box_sizes)
+
+
+def rg_fixed_point_prediction(g0, target=0.0, steps=1000, lr=0.1, tol=1e-6):
+    """RG flow with convergence check. Returns (fixed_point, converged)."""
+    x = rg_fixed_point(g0, target=target, steps=steps, lr=lr)
+    return x, abs(x - target) < tol

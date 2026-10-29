@@ -121,9 +121,11 @@ from model.recursion import (
 from model.recursion_families import (
     fractal_dimension,
     julia_escape,
+    julia_fractal_dimension,
     kene_step,
     mandelbrot_escape,
     rg_fixed_point,
+    rg_fixed_point_prediction,
     rg_flow_trajectory,
 )
 from model.rolling_fold import (
@@ -229,9 +231,11 @@ __all__ = [
     # Recursion Families
     "fractal_dimension",
     "julia_escape",
+    "julia_fractal_dimension",
     "kene_step",
     "mandelbrot_escape",
     "rg_fixed_point",
+    "rg_fixed_point_prediction",
     "rg_flow_trajectory",
     # Consciousness
     "attention_trace",

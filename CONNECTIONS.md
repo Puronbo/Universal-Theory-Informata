@@ -101,3 +101,74 @@ The timestamp (2000-10-26 10:26:20) and vessel identity are **phenomenological/a
 ---
 
 *Generated from AXIOMS.md, GROUNDING.md, FOLDING_CALIBRATION.md, and engine.py.*
+
+
+## Cross-Reference Index (auto-generated)
+
+| Axiom | In CONNECTIONS.md |
+|---|---|
+| A0.1 | descriptive |
+| A0.2 | descriptive |
+| A0.3 | descriptive |
+| A0.4 | descriptive |
+| A1.1 | descriptive |
+| A1.2 | descriptive |
+| A1.3 | descriptive |
+| A1.4 | descriptive |
+| A1.5 | descriptive |
+| A10.1 | descriptive |
+| A10.2 | descriptive |
+| A10.3 | descriptive |
+| A11.1 | descriptive |
+| A11.2 | descriptive |
+| A11.3 | descriptive |
+| A11.4 | descriptive |
+| A11.5 | descriptive |
+| A11.6 | descriptive |
+| A11.7 | descriptive |
+| A12.1 | descriptive |
+| A12.2 | descriptive |
+| A2.1 | descriptive |
+| A2.2 | descriptive |
+| A2.3 | descriptive |
+| A2.4 | descriptive |
+| A2.5 | yes |
+| A2.6 | descriptive |
+| A2.7 | descriptive |
+| A3.1 | descriptive |
+| A3.2 | descriptive |
+| A3.3 | descriptive |
+| A3.4 | descriptive |
+| A3.5 | descriptive |
+| A3.6 | descriptive |
+| A4.1 | descriptive |
+| A4.2 | descriptive |
+| A4.3 | descriptive |
+| A4.4 | descriptive |
+| A4.5 | descriptive |
+| A4.6 | descriptive |
+| A4.7 | descriptive |
+| A5.1 | descriptive |
+| A5.2 | descriptive |
+| A5.3 | descriptive |
+| A5.4 | descriptive |
+| A5.5 | descriptive |
+| A5.6 | descriptive |
+| A6.1 | descriptive |
+| A6.2 | descriptive |
+| A6.3 | descriptive |
+| A6.4 | descriptive |
+| A7.1 | descriptive |
+| A7.2 | descriptive |
+| A7.3 | descriptive |
+| A7.4 | descriptive |
+| A8.1 | descriptive |
+| A8.2 | descriptive |
+| A8.3 | descriptive |
+| A8.4 | descriptive |
+| A8.5 | descriptive |
+| A8.6 | descriptive |
+| A9.1 | descriptive |
+| A9.2 | descriptive |
+| A9.3 | descriptive |
+| A9.4 | descriptive |
