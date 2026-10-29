@@ -11,6 +11,9 @@ def uvIrInversion (scale : Float) : Float :=
 theorem uvIrInversion_one : uvIrInversion 1.0 = 1.0 := by
   native_decide
 
+theorem uvIrInversion_roundtrip : uvIrInversion (uvIrInversion 2.0) = 2.0 := by
+  native_decide
+
 def scaleMidpoint (micro macroScale : Float) : Float :=
   Float.sqrt (micro * macroScale)
 

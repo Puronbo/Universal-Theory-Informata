@@ -1,8 +1,6 @@
-module
-
 import Mathlib
 
--- Erosion (A7.4): removing a +1 and a -1 preserves the sum.
+-- Erosion (A7.4): net-zero preservation.
 -- General proof pending (R5); concrete cases verified here.
 def erodeOne (xs : List Int) : List Int :=
   (xs.erase (-1)).erase 1

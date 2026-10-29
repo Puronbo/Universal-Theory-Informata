@@ -31,6 +31,7 @@
 - **Tool:** Lean 4 + mathlib.
 
 ### R5. Prove erosion preserves net-zero in Lean
+- **Status:** Attempted via induction on `sum_erase` helper. Blocked: `List.erase_cons_tail` condition requires converting propositional `x != a` to boolean; `of_decide_eq_true` path stalled. Concrete cases verified with `native_decide`.
 - **Task:** Define `erodePairs` on `List Ternary` and prove `listSum (erodePairs xs) = listSum xs`.
 - **Success:** Theorem compiles in `lean/Model/Erosion.lean`.
 
