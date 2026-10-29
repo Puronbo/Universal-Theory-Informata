@@ -1,3 +1,5 @@
+module
+
 import Mathlib
 
 -- Erosion (A7.4): net-zero preservation.
