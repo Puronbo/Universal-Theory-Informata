@@ -1,7 +1,27 @@
 """Meta-audit: grep for overclaim phrases + axiom cross-reference check."""
-import re, pathlib, ast
+import argparse, re, pathlib, ast
 
 ROOT = pathlib.Path(__file__).parent
+
+
+def generate_crossref_table():
+    axioms = sorted(set(re.findall(r"\*\*A\d+\.\d+", (ROOT / "AXIOMS.md").read_text(encoding="utf-8"))))
+    axioms = [a.replace("**", "") for a in axioms]
+    conn = (ROOT / "CONNECTIONS.md").read_text(encoding="utf-8")
+    lines = ["| Axiom | In CONNECTIONS.md |", "|---|---|"]
+    for a in axioms:
+        status = "yes" if a in conn else "no"
+        lines.append(f"| {a} | {status} |")
+    return "\n".join(lines)
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--generate-crossref", action="store_true")
+    args = parser.parse_args()
+    if args.generate_crossref:
+        print(generate_crossref_table())
+        return 0
+    ...
 
 # Import the model package to get function/class names
 import model
@@ -82,6 +102,13 @@ def check_cross_refs():
 
 
 def main():
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--generate-crossref", action="store_true")
+    args = parser.parse_args()
+    if args.generate_crossref:
+        print(generate_crossref_table())
+        return 0
     hits = check_overclaims()
     if hits:
         print("OVERCLAIM HITS:")
