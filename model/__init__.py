@@ -58,6 +58,10 @@ from model.dark_energy import (
     rho_lambda_ratio,
     w_cpl,
 )
+from model.dimensions import (
+    dimension_bleed,
+    dimension_circle,
+)
 from model.equator import (
     gauge_node,
     imaginary_rotate,
@@ -183,6 +187,9 @@ __all__ = [
     "delta_derivative_present",
     "delta_norm_uncertainty",
     "check_predictions",
+    # Dimensions
+    "dimension_circle",
+    "dimension_bleed",
     # Rolling Fold
     "roll_orientation",
     "roll_convert",

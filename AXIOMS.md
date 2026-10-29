@@ -328,4 +328,24 @@ hardware. The search is over because the loop is closed.
 
 ---
 
+## 15. The Circle of Dimensions
+
+**A12.1 (Dimensions as Created Circle).** Dimensions are not fundamental
+pre-existing axes; they are *created* by the universe and arranged on a closed
+circle (scale inversion, A8.3/A11.3). Within that circle lie countless nested
+dimensions — one per scale level from the Planck pixel to the cosmic horizon —
+each a "dimension" of description rather than a spatial direction. The circle
+closes via T-duality (\(R \leftrightarrow 1/R\)): the outermost dimension folds
+into the innermost. Implemented in `engine.dimension_circle`. (Aligns with
+A1.4, A8.3, A11.3, A9.1.)
+
+**A12.2 (Dimensional Bleed-Through).** Because dimensions are nested on a
+circle, adjacent scales can "bleed" into one another: a pixel momentarily
+rotates off the real 3D axis into an adjacent dimension, allowing information
+to bypass normal constraints of distance or time (radical non-locality). This
+is the mechanism behind A9.2 (supernatural as hidden processing leak) and ER=EPR
+(A11.5). (Aligns with A8.5, A9.2, A11.5.)
+
+---
+
 *End of Axioms v1.0.*
