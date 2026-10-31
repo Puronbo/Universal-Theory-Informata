@@ -13,6 +13,7 @@ analogy, not a physical claim.
 from __future__ import annotations
 
 import cmath
+import math
 from dataclasses import dataclass
 
 
@@ -45,6 +46,28 @@ class Mobius:
     def inversion(cls) -> Mobius:
         """Return the reciprocal map ``z -> 1/z``."""
         return cls(0, 1, 1, 0)
+
+    @classmethod
+    def translation(cls, shift: float = 1.0) -> Mobius:
+        """Return the parabolic map ``z -> z + shift``.
+
+        Raises:
+            ValueError: If ``shift`` is not finite or is zero.
+        """
+        if not math.isfinite(shift) or shift == 0.0:
+            raise ValueError("shift must be finite and nonzero")
+        return cls(1, shift, 0, 1)
+
+    @classmethod
+    def contraction(cls, rate: float = 0.5) -> Mobius:
+        """Return the hyperbolic contraction ``z -> rate * z``.
+
+        Raises:
+            ValueError: If ``rate`` is not finite or not in ``(0, 1)``.
+        """
+        if not math.isfinite(rate) or not 0.0 < rate < 1.0:
+            raise ValueError("rate must be finite and satisfy 0 < rate < 1")
+        return cls(rate, 0, 0, 1)
 
     def __call__(self, z: complex | float) -> complex:
         """Apply the map to a finite point.
@@ -123,3 +146,24 @@ class Mobius:
             if self.power(n).is_identity(tol=tol):
                 return n
         return None
+
+    def classify(self, tol: float = 1e-9) -> str:
+        """Classify the map by its dynamical type.
+
+        Returns ``"periodic"`` when the map has finite order. Otherwise the
+        trace-discriminant ``(a + d)^2 - 4 det`` distinguishes ``"parabolic"``,
+        ``"hyperbolic"``, and ``"elliptic"``; complex trace data yields
+        ``"loxodromic"``.
+
+        The classification is a convention for real Möbius maps extended to
+        complex entries; it is descriptive, not a physical claim.
+        """
+        if self.order(max_order=12, tol=tol) is not None:
+            return "periodic"
+        discriminant = (self.a + self.d) ** 2 - 4.0 * self.det
+        if abs(discriminant.imag) > tol:
+            return "loxodromic"
+        real = discriminant.real
+        if abs(real) <= tol:
+            return "parabolic"
+        return "hyperbolic" if real > 0.0 else "elliptic"

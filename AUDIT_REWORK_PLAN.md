@@ -1,7 +1,7 @@
 # Comprehensive Audit & Rework Plan
 
 > **Status update (2026-10-31, v0.2.0): Phases 1–5 implemented.**
-> Current state: 227 tests passing, 96% branch-aware coverage with a 90% CI gate,
+> Current state: 317 tests passing, 97% branch-aware coverage with a 90% CI gate,
 > `ruff`/`black`/strict `mypy` clean, `bandit` clean, `python -m model` works, and
 > CI runs a Python 3.10–3.13 matrix plus quality, smoke-test, docs, and Lean jobs.
 > Lean builds with 0 `sorry`; pdoc API docs build. Remaining nice-to-haves:
@@ -183,7 +183,7 @@ Many functions have hardcoded thresholds:
 ## Validation Criteria
 
 After rework:
-- [x] All tests pass (227 as of 2026-10-31)
+- [x] All tests pass (317 as of 2026-10-31)
 - [x] `python -m model` CLI works
 - [x] `python simulate.py` works
 - [x] `python validate_claims.py` works
@@ -191,7 +191,7 @@ After rework:
 - [x] `mypy model cli.py` passes (strict mode)
 - [x] `ruff check .` passes
 - [x] `black --check` passes (model, CLI, tests, examples)
-- [x] Test coverage ≥ 90% (96% branch-aware, enforced in CI via `--cov-fail-under=90`)
+- [x] Test coverage ≥ 90% (97% branch-aware, enforced in CI via `--cov-fail-under=90`)
 - [x] Lean 4 `lake build` succeeds with 0 `sorry`
 
 ---
@@ -204,7 +204,7 @@ Beyond the original plan, the repository gained:
   validated domains for `portal_journey`/`uv_ir_inversion`, memoized Goldbach
   sieve, input validation in Collatz/zeta, compiled regexes in `search_text`,
   and a real difference-of-moving-averages EEG bandpass.
-- **Test depth:** 227 tests including CLI, exports, meta-audit, phenomena,
+- **Test depth:** 317 tests including CLI, exports, meta-audit, phenomena,
   plotting error paths, neural fallback, cusp precision, Möbius algebra, root
   duality, UV/IR invariants, and CWD independence.
 - **Packaging:** version 0.2.0, classifiers, keywords, `py.typed`, `docs` extra,

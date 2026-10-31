@@ -58,6 +58,8 @@ Matplotlib in `plotting` (lazy, inside functions).
 | `self_looping.py` | Cosmological coupling, UV/IR inversion, portal trajectory | **candidate** |
 | `roots.py` | Integer roots, negative roots, root/power duality | **grounded** (pure algebra) |
 | `mobius.py` | Möbius matrices, composition, powers, fixed points | **grounded** (standard geometry) |
+| `duality.py` | Binary poles and the involution that swaps them | **taxonomy** (no physical claim) |
+| `antithesis.py` | Contractive counter-model, entropy, orbit comparison | **toy** (conceptual counter-model) |
 | `equator.py` | Equator of scale | **candidate** |
 | `clock.py` | Planck refresh, CP tilt, entropy brake | **phenomenological** |
 | `consciousness.py` | Attention / closure analogues | **phenomenological** |
@@ -112,6 +114,22 @@ continuous flow. The model should not be read as claiming a continuous UV/IR
 evolution. This is an algebraic property of the map, not evidence for the
 physical T-duality interpretation.
 
+## Dual pairs and the antithesis
+
+`model.duality` registers the framework's binary poles and provides a single
+swap: UV/IR, exterior/interior, compression/expansion, photon/dark energy,
+entropy/structure, becoming/block, discrete/continuous, and
+reprocessed/erased. By construction `dual_of(dual_of(pole)) == pole`.
+
+`model.antithesis` implements the limit cases in which the return loop is
+removed: a contraction `g(x) = rate * x` with `0 < rate < 1`, a parabolic
+translation `x + shift`, and the nilpotent `N(x, y) = (0, x)`. It adds monotone
+entropy `-log(x)`, `lyapunov_exponent`, `information_loss`, cycle detection via
+`orbit_period`/`is_cyclic`, and `compare_regimes`, which places a periodic
+involution, a hyperbolic contraction, and a parabolic translation side by side.
+`Mobius.classify()` reports the corresponding Möbius dynamical type. The
+conceptual rationale, axis table, and limits are in `ANTITHESIS.md`.
+
 ## Dependencies
 
 - Runtime: Python ≥ 3.10 standard library only.
@@ -132,7 +150,7 @@ physical T-duality interpretation.
 4. **Meta-audit tests** that run `validate_claims.py` in-process so docs cannot
    drift silently.
 
-Coverage is branch-aware and gated at 90% in CI (currently ~96%). Numerical
+Coverage is branch-aware and gated at 90% in CI (currently ~97%). Numerical
 claims in tests use explicit tolerances; see `tests/test_cusp.py` for the
 near-double-root case.
 
@@ -150,6 +168,8 @@ interpretation. `lake build` is part of CI.
 - `eeg_stream.py` is a schematic, not a validated signal-processing pipeline.
 - `neural_phase.py` is a toy Kuramoto simulation with a pure-Python fallback.
 - `recursion_families.py` is explicitly toy mathematics.
+- `antithesis.py`/`ANTITHESIS.md` are a conceptual counter-model, not a physical
+  alternative or a refutation.
 - The meta-audit catches listed phrases, not every possible overclaim; prose
   review is still required.
 

@@ -14,6 +14,19 @@ All notable changes to this project are documented here. The format follows
   duality (`x^(1/e^(iπ)) = 1/x`).
 - `model/mobius.py`: Möbius matrix representation, composition, powers, order,
   and fixed-point solving; `Mobius.inversion()` is `z -> 1/z`.
+- `model/duality.py`: explicit dual pairs (UV/IR, exterior/interior,
+  compression/expansion, photon/dark energy, entropy/structure, time,
+  substrate, information), `dual_of`, `dual_pair`, and `all_poles`.
+- `model/antithesis.py`: contractive, translating, and nilpotent counter-models;
+  entropy `-log(x)`; invariants (`lyapunov_exponent`, `information_loss`);
+  cycle detection (`orbit_period`, `is_cyclic`); and side-by-side
+  involution/contraction/translation orbits (`compare_regimes`).
+- `model/mobius.py`: `translation()` and `contraction()` constructors and
+  `classify()` for periodic, hyperbolic, parabolic, elliptic, and loxodromic
+  maps.
+- `ANTITHESIS.md`: axis table, the Open Dissipative Exterior, the
+  group-versus-semigroup contrast, the periodic/hyperbolic/parabolic
+  trichotomy, the nilpotent limit, and information loss.
 - Property tests for `uv_ir_inversion`: involution, multiplicativity, order
   reversal, self-dual point, and agreement with `nth_root(scale, -1)`.
 - Architecture note: UV/IR inversion is an order-2 automorphism, not a flow.

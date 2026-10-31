@@ -1,5 +1,7 @@
 """Tests for model.mobius."""
 
+import math
+
 import pytest
 
 from model import Mobius
@@ -103,3 +105,59 @@ def test_degenerate_matrix_is_rejected(matrix):
 def test_non_finite_entries_are_rejected(bad):
     with pytest.raises(ValueError):
         Mobius(bad, 0, 0, 1)
+
+
+def test_translation_constructor():
+    shift = Mobius.translation(2.0)
+    assert shift(0.0) == pytest.approx(2.0)
+    assert shift.fixed_points() == ()
+    assert shift.classify() == "parabolic"
+
+
+def test_contraction_constructor():
+    contraction = Mobius.contraction(0.5)
+    assert contraction(4.0) == pytest.approx(2.0)
+    assert contraction.fixed_points() == pytest.approx((0.0,))
+    assert contraction.classify() == "hyperbolic"
+
+
+@pytest.mark.parametrize("shift", [0.0, math.inf, -math.inf, math.nan])
+def test_translation_constructor_rejects_bad_shift(shift):
+    with pytest.raises(ValueError):
+        Mobius.translation(shift)
+
+
+@pytest.mark.parametrize("rate", [0.0, 1.0, -0.5, math.inf, math.nan])
+def test_contraction_constructor_rejects_bad_rate(rate):
+    with pytest.raises(ValueError):
+        Mobius.contraction(rate)
+
+
+def test_classify_periodic_parabolic_hyperbolic():
+    assert Mobius(1, 0, 0, 1).classify() == "periodic"
+    assert Mobius.inversion().classify() == "periodic"
+    assert Mobius.translation().classify() == "parabolic"
+    assert Mobius.contraction().classify() == "hyperbolic"
+
+
+def test_classify_projective_period():
+    # A 20-degree rotation is a 180/20 = 9-fold projective map.
+    angle = math.radians(20.0)
+    rotation = Mobius(math.cos(angle), -math.sin(angle), math.sin(angle), math.cos(angle))
+    assert rotation.order() == 9
+    assert rotation.classify() == "periodic"
+
+
+def test_classify_elliptic_rotation():
+    # One radian is an irrational multiple of pi, so the projective order is
+    # infinite and the map is elliptic.
+    angle = 1.0
+    rotation = Mobius(math.cos(angle), -math.sin(angle), math.sin(angle), math.cos(angle))
+    assert rotation.order() is None
+    assert rotation.classify() == "elliptic"
+
+
+def test_classify_loxodromic():
+    loxodromic = Mobius(2 + 1j, 0, 0, 1)
+    assert loxodromic.order() is None
+    assert loxodromic.classify() == "loxodromic"

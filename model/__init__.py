@@ -3,6 +3,7 @@
 A rigorous alternative architecture of reality: axioms, engine, Lean 4 core.
 
 Modules:
+- antithesis: Contractive, translating, and nilpotent counter-models; entropy.
 - ternary: three-state grammar and net-zero invariant (A0.2, A0.3).
 - recursion: fixed-point iteration (awakening) and purge (A1.5).
 - cusp: cusp catastrophe roots, bifurcation set, crease density proxy.
@@ -21,6 +22,7 @@ Modules:
 - self_looping: Cosmological coupling & UV/IR inversion (A8).
 - roots: Integer roots and the root/power duality.
 - mobius: Möbius transformations, composition, fixed points.
+- duality: Binary poles and the involution that swaps them.
 - equator: Equator of Scale (A9.1-A9.4).
 - clock: Clock, broken mirror, entropy brake (A10).
 - phenomena: Phenomenon → canvas-operation map.
@@ -35,6 +37,24 @@ Constants:
 - DESI_REFERENCE: DESI DR2 reference values
 """
 
+from model.antithesis import (
+    OrbitComparison,
+    RegimeComparison,
+    compare_orbits,
+    compare_regimes,
+    contract,
+    contract_orbit,
+    entropy,
+    information_loss,
+    inversion_orbit,
+    is_cyclic,
+    lyapunov_exponent,
+    nilpotent_apply,
+    nilpotent_orbit,
+    orbit_period,
+    translation,
+    translation_orbit,
+)
 from model.clock import (
     PLANCK_TIME,
     cp_violation_tilt,
@@ -66,6 +86,14 @@ from model.dark_energy import (
 from model.dimensions import (
     dimension_bleed,
     dimension_circle,
+)
+from model.duality import (
+    DUAL_PAIRS,
+    DualPair,
+    all_poles,
+    dual_of,
+    dual_pair,
+    dual_pairs,
 )
 from model.eeg_stream import (
     bandpass_filter,
@@ -320,6 +348,30 @@ __all__ = [
     "cosmological_coupling",
     "uv_ir_inversion",
     "portal_journey",
+    # Antithesis
+    "OrbitComparison",
+    "RegimeComparison",
+    "compare_orbits",
+    "compare_regimes",
+    "contract",
+    "contract_orbit",
+    "entropy",
+    "information_loss",
+    "inversion_orbit",
+    "is_cyclic",
+    "lyapunov_exponent",
+    "nilpotent_apply",
+    "nilpotent_orbit",
+    "orbit_period",
+    "translation",
+    "translation_orbit",
+    # Duality
+    "DUAL_PAIRS",
+    "DualPair",
+    "all_poles",
+    "dual_of",
+    "dual_pair",
+    "dual_pairs",
     # Roots
     "nth_root",
     # Equator
