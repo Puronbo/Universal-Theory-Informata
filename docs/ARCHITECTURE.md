@@ -56,6 +56,8 @@ Matplotlib in `plotting` (lazy, inside functions).
 | `stroboscopic.py` | Aliased sampling | **phenomenological** |
 | `timeline.py` | 26-year milestone, logistic map | **phenomenological** |
 | `self_looping.py` | Cosmological coupling, UV/IR inversion, portal trajectory | **candidate** |
+| `roots.py` | Integer roots, negative roots, root/power duality | **grounded** (pure algebra) |
+| `mobius.py` | Möbius matrices, composition, powers, fixed points | **grounded** (standard geometry) |
 | `equator.py` | Equator of scale | **candidate** |
 | `clock.py` | Planck refresh, CP tilt, entropy brake | **phenomenological** |
 | `consciousness.py` | Attention / closure analogues | **phenomenological** |
@@ -81,6 +83,35 @@ Stable entry points:
 - Library: `from model import iterate, cusp_roots, w_cpl, portal_journey, ...`
 - Audit: `python validate_claims.py [--generate-crossref]`
 
+## UV/IR inversion as an order-2 automorphism
+
+`uv_ir_inversion(scale)` is the reciprocal map \(f(s)=1/s\) on positive
+scales. It is the \(-1\)-th root, because \(1/e^{i\pi}=-1\):
+
+\[
+f(s)=s^{1/e^{i\pi}}=s^{-1}.
+\]
+
+Mathematically it is:
+
+- an involution: \(f(f(s))=s\);
+- a multiplicative automorphism: \(f(st)=f(s)f(t)\);
+- order-reversing on positives: \(s<t \Rightarrow f(s)>f(t)\);
+- represented on the Riemann sphere by the Möbius matrix
+  \(\begin{pmatrix}0&1\\1&0\end{pmatrix}\), with fixed points \(s=\pm1\)
+  (the positive self-dual scale is \(s=1\)).
+
+`tests/test_self_looping.py` enforces the first three invariants;
+`model.mobius` exposes the matrix form, composition, powers, and fixed-point
+solver; `model.roots` shows that the \(-1\)-th root is simultaneously the
+\(-1\)-th power.
+
+Because \(f^2=\mathrm{id}\) and \(f\) reverses order on \(\mathbb{R}_{>0}\),
+the UV/IR flip is a **discrete order-2 symmetry**, not the time-1 map of a
+continuous flow. The model should not be read as claiming a continuous UV/IR
+evolution. This is an algebraic property of the map, not evidence for the
+physical T-duality interpretation.
+
 ## Dependencies
 
 - Runtime: Python ≥ 3.10 standard library only.
@@ -101,7 +132,7 @@ Stable entry points:
 4. **Meta-audit tests** that run `validate_claims.py` in-process so docs cannot
    drift silently.
 
-Coverage is branch-aware and gated at 90% in CI (currently ~97%). Numerical
+Coverage is branch-aware and gated at 90% in CI (currently ~96%). Numerical
 claims in tests use explicit tolerances; see `tests/test_cusp.py` for the
 near-double-root case.
 

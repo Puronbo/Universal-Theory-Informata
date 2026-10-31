@@ -10,6 +10,13 @@ All notable changes to this project are documented here. The format follows
 
 - `model/__main__.py`: `python -m model` now works.
 - `model/phenomena.py`: phenomenon → canvas-operation map, exported publicly.
+- `model/roots.py`: integer roots, including the `-1`-th root / `-1`-th power
+  duality (`x^(1/e^(iπ)) = 1/x`).
+- `model/mobius.py`: Möbius matrix representation, composition, powers, order,
+  and fixed-point solving; `Mobius.inversion()` is `z -> 1/z`.
+- Property tests for `uv_ir_inversion`: involution, multiplicativity, order
+  reversal, self-dual point, and agreement with `nth_root(scale, -1)`.
+- Architecture note: UV/IR inversion is an order-2 automorphism, not a flow.
 - Tests for phenomena, plotting error paths, neural fallback, EEG bandpass,
   cusp precision, CLI entry points, exports, and the meta-audit itself.
 - Governance: `LICENSE`, `CONTRIBUTING.md`, `SECURITY.md`, `CODE_OF_CONDUCT.md`,

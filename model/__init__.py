@@ -19,6 +19,8 @@ Modules:
 - consciousness: Attention, closure (phenomenological, A3.2, A4.6, A5.3).
 - multi_agent: Multi-agent consciousness simulation (phenomenological).
 - self_looping: Cosmological coupling & UV/IR inversion (A8).
+- roots: Integer roots and the root/power duality.
+- mobius: Möbius transformations, composition, fixed points.
 - equator: Equator of Scale (A9.1-A9.4).
 - clock: Clock, broken mirror, entropy brake (A10).
 - phenomena: Phenomenon → canvas-operation map.
@@ -96,6 +98,9 @@ from model.millennium import (
     navier_stokes_phase_bleed,
     poincare_closed,
 )
+from model.mobius import (
+    Mobius,
+)
 from model.mp_operator import (
     mp_discriminant,
     mp_regime,
@@ -155,6 +160,9 @@ from model.recursion_families import (
 from model.rolling_fold import (
     roll_convert,
     roll_orientation,
+)
+from model.roots import (
+    nth_root,
 )
 from model.rubber_ball import (
     hertz_contact_radius,
@@ -250,6 +258,8 @@ __all__ = [
     "mp_discriminant",
     "mp_regime",
     "mp_roots",
+    # Möbius
+    "Mobius",
     # Geometry
     "stretched_distance",
     "apparent_separation",
@@ -310,6 +320,8 @@ __all__ = [
     "cosmological_coupling",
     "uv_ir_inversion",
     "portal_journey",
+    # Roots
+    "nth_root",
     # Equator
     "scale_midpoint",
     "imaginary_rotate",
