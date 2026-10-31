@@ -1,4 +1,5 @@
 """Tests for model.search."""
+
 from model import search_text
 
 

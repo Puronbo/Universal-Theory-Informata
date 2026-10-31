@@ -1,4 +1,5 @@
 """Tests for model.clock."""
+
 from model import PLANCK_TIME, cp_violation_tilt, entropy_brake, planck_refresh_rate
 
 

@@ -1,4 +1,3 @@
-import pytest
 from model import hertz_contact_radius, hertz_indentation, mie_efficiency, thermal_speed
 
 
@@ -23,5 +22,6 @@ def test_thermal_speed():
 
 def test_mie_efficiency():
     import math
+
     assert mie_efficiency(math.pi, complex(1.5, 0.0)) == 3.4822
     assert mie_efficiency(1.0, complex(1.5, 0.0)) == 0.0

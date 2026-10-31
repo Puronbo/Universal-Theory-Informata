@@ -1,15 +1,42 @@
 """CLI entry point: python -m model ..."""
+
+from __future__ import annotations
+
 import argparse
 import json
+import math
+import subprocess
+import sys
+from pathlib import Path
+
 from model import (
-    w_cpl, rho_lambda_ratio, delta_norm, check_predictions,
-    iterate, logistic, milestone_reached, milestone_date, net_zero,
+    check_predictions,
+    delta_norm,
+    iterate,
+    logistic,
+    milestone_date,
+    milestone_reached,
+    rho_lambda_ratio,
 )
 
 
-def main():
-    p = argparse.ArgumentParser(prog="model", description="Model engine CLI")
-    sub = p.add_subparsers(dest="cmd", required=True)
+def _run_meta_audit() -> None:
+    """Run validate_claims.py from the repository checkout."""
+    script = Path(__file__).resolve().with_name("validate_claims.py")
+    if not script.exists():
+        raise SystemExit(f"validate_claims.py not found next to {__file__}")
+    result = subprocess.run(
+        [sys.executable, str(script)], capture_output=True, text=True, check=False
+    )
+    print(result.stdout.strip())
+    if result.returncode != 0:
+        print(result.stderr.strip())
+        raise SystemExit(result.returncode)
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(prog="model", description="Model engine CLI")
+    sub = parser.add_subparsers(dest="cmd", required=True)
 
     de = sub.add_parser("darkenergy", help="CPL dark energy calc")
     de.add_argument("--w0", type=float, default=-0.75)
@@ -21,32 +48,37 @@ def main():
     rec.add_argument("--r", type=float, default=2.5)
     rec.add_argument("--x0", type=float, default=0.5)
 
-    tl = sub.add_parser("timeline", help="Milestone status")
+    sub.add_parser("timeline", help="Milestone status")
+    sub.add_parser("validate", help="Run meta-audit")
 
-    val = sub.add_parser("validate", help="Run meta-audit")
-
-    args = p.parse_args()
+    args = parser.parse_args()
     if args.cmd == "darkenergy":
-        print(json.dumps({
-            "rho_ratio": rho_lambda_ratio(args.z, args.w0, args.wa),
-            "delta_norm": delta_norm(args.z, args.w0, args.wa),
-            "predictions": check_predictions(args.w0, args.wa, 0.06, 0.25),
-        }, indent=2))
+        print(
+            json.dumps(
+                {
+                    "rho_ratio": rho_lambda_ratio(args.z, args.w0, args.wa),
+                    "delta_norm": delta_norm(args.z, args.w0, args.wa),
+                    "predictions": check_predictions(args.w0, args.wa, 0.06, 0.25),
+                },
+                indent=2,
+            )
+        )
     elif args.cmd == "recurse":
-        import math
-        f = (lambda x: math.cos(x)) if args.map == "cos" else logistic(args.r)
-        x, steps, conv, _ = iterate(f, args.x0)
-        print(json.dumps({"fixed_point": x, "steps": steps, "converged": conv}, indent=2))
+        f = math.cos if args.map == "cos" else logistic(args.r)
+        x, steps, converged, _ = iterate(f, args.x0)
+        print(json.dumps({"fixed_point": x, "steps": steps, "converged": converged}, indent=2))
     elif args.cmd == "timeline":
-        print(json.dumps({"milestone_date": str(milestone_date()),
-                          "reached": milestone_reached()}, indent=2))
+        print(
+            json.dumps(
+                {
+                    "milestone_date": str(milestone_date()),
+                    "reached": milestone_reached(),
+                },
+                indent=2,
+            )
+        )
     elif args.cmd == "validate":
-        import subprocess, sys
-        r = subprocess.run([sys.executable, "validate_claims.py"], capture_output=True, text=True)
-        print(r.stdout.strip())
-        if r.returncode != 0:
-            print(r.stderr.strip())
-            raise SystemExit(r.returncode)
+        _run_meta_audit()
 
 
 if __name__ == "__main__":

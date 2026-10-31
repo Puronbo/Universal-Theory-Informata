@@ -1,4 +1,5 @@
 """Tests for model.equator."""
+
 from model import gauge_node, imaginary_rotate, scale_midpoint
 
 

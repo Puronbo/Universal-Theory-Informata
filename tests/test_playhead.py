@@ -1,4 +1,5 @@
 """Tests for model.playhead."""
+
 from model import Playhead
 
 

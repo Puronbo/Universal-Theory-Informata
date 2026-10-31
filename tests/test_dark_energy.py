@@ -1,4 +1,5 @@
 """Tests for model.dark_energy."""
+
 from model import (
     DESI_REFERENCE,
     check_predictions,

@@ -21,6 +21,7 @@ Modules:
 - self_looping: Cosmological coupling & UV/IR inversion (A8).
 - equator: Equator of Scale (A9.1-A9.4).
 - clock: Clock, broken mirror, entropy brake (A10).
+- phenomena: Phenomenon → canvas-operation map.
 - plotting: Optional matplotlib visualization.
 
 Constants:
@@ -64,6 +65,12 @@ from model.dimensions import (
     dimension_bleed,
     dimension_circle,
 )
+from model.eeg_stream import (
+    bandpass_filter,
+    channel_coherence,
+    fft_magnitude,
+    process_eeg_stream,
+)
 from model.equator import (
     gauge_node,
     imaginary_rotate,
@@ -85,6 +92,10 @@ from model.impedance import (
     schwinger_mass_gap,
     thirring_gn_mass_gap,
 )
+from model.millennium import (
+    navier_stokes_phase_bleed,
+    poincare_closed,
+)
 from model.mp_operator import (
     mp_discriminant,
     mp_regime,
@@ -95,25 +106,14 @@ from model.multi_agent import (
     network_closure,
 )
 from model.neural_phase import (
-    simulate_neural_phase_locking,
     coherence,
     noise_filtering,
+    simulate_neural_phase_locking,
 )
-from model.rubber_ball import (
-    hertz_contact_radius,
-    hertz_indentation,
-    mie_efficiency,
-    thermal_speed,
-)
-from model.eeg_stream import (
-    bandpass_filter,
-    fft_magnitude,
-    channel_coherence,
-    process_eeg_stream,
-)
-from model.millennium import (
-    poincare_closed,
-    navier_stokes_phase_bleed,
+from model.phenomena import (
+    PHENOMENA,
+    phenomena_list,
+    phenomenon_type,
 )
 from model.playhead import (
     Playhead,
@@ -155,6 +155,12 @@ from model.recursion_families import (
 from model.rolling_fold import (
     roll_convert,
     roll_orientation,
+)
+from model.rubber_ball import (
+    hertz_contact_radius,
+    hertz_indentation,
+    mie_efficiency,
+    thermal_speed,
 )
 from model.search import (
     search_text,
@@ -312,9 +318,13 @@ __all__ = [
     "planck_refresh_rate",
     "cp_violation_tilt",
     "entropy_brake",
+    # Phenomena
+    "PHENOMENA",
+    "phenomena_list",
+    "phenomenon_type",
     # Plotting
     "plot_cosmic_web",
     "plot_delta",
 ]
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"

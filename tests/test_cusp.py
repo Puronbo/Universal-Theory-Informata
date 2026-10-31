@@ -1,7 +1,15 @@
 """Tests for model.cusp."""
+
 import math
 
-from model import bifurcation_value, crease_density, crease_density_proxy, cusp_roots, fold_spectrum, on_cusp
+from model import (
+    bifurcation_value,
+    crease_density,
+    crease_density_proxy,
+    cusp_roots,
+    fold_spectrum,
+    on_cusp,
+)
 
 
 def test_cusp_bifurcation():
@@ -61,3 +69,22 @@ def test_fold_spectrum():
     assert fold_spectrum(2.0, 2.0) == "smooth"
     assert fold_spectrum(1.0, 3.0) == "kink"
     assert fold_spectrum(None, 1.0) == "tear"
+
+
+def test_fold_spectrum_cusp():
+    assert fold_spectrum(float("inf"), 1.0) == "cusp"
+    assert fold_spectrum(1.0, float("inf")) == "cusp"
+
+
+def test_cusp_negative_cube_root_path():
+    a, b = 1.0, -3.0
+    roots = cusp_roots(a, b)
+    assert all(abs(r**3 - a * r - b) < 1e-6 for r in roots)
+
+
+def test_cusp_near_double_root_precision():
+    # Regression case from the audit: cancellation in Cardano's formula used
+    # to leave a residual around 1e-7.
+    a, b = 0.0001686062008392497, 3.103702465848132
+    roots = cusp_roots(a, b)
+    assert min(abs(r**3 - a * r - b) for r in roots) < 1e-12

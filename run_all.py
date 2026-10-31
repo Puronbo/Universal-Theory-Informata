@@ -1,8 +1,12 @@
 """Run all checks: tests, meta-audit, lean build."""
-import subprocess, sys, os
+
+import os
+import subprocess
+import sys
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 LEAN = os.path.join(ROOT, "lean")
+
 
 def run(label, cmd, cwd=None):
     print(f"\n=== {label} ===")
@@ -11,6 +15,7 @@ def run(label, cmd, cwd=None):
     if r.stderr.strip():
         print(r.stderr.strip()[:500])
     return r.returncode
+
 
 rc = 0
 rc |= run("Python tests", [sys.executable, "-m", "pytest", "tests/", "-q"], cwd=ROOT)

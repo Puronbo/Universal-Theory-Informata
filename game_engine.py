@@ -6,9 +6,12 @@ Concepts mapped:
 - Update = ternary attention + erosion (A7.4) + canvas stretch (A3.6)
 - Render = stroboscopic alias (A4.6)
 """
+
 from __future__ import annotations
-import math
-from model import net_zero, erosion_step, stretched_distance, attention_trace, conscious_moment, delta_norm
+
+from model import (
+    erosion_step,
+)
 
 
 class World:
@@ -33,10 +36,11 @@ class World:
         self.history.append([a[-1] for a in self.agents])
 
     def render(self):
-        positions = [i * self.scale for i in range(len(self.agents))]
         states = [a[-1] for a in self.agents]
-        print(f"t={self.t:3d} scale={self.scale:.3f} states={states} "
-              f"balanced={sum(1 for a in self.agents if sum(a)==0)}/{len(self.agents)}")
+        print(
+            f"t={self.t:3d} scale={self.scale:.3f} states={states} "
+            f"balanced={sum(1 for a in self.agents if sum(a)==0)}/{len(self.agents)}"
+        )
 
     def run(self, stimuli: list[float], stretch: float = 1.01, erosion_pairs: int = 1):
         for s in stimuli:

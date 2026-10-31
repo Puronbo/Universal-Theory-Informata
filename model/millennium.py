@@ -6,7 +6,7 @@ def poincare_closed() -> bool:
     return True
 
 
-def navier_stokes_phase_bleed(velocity: float, threshold: float):
+def navier_stokes_phase_bleed(velocity: float, threshold: float) -> complex:
     """If velocity exceeds threshold, rotate into imaginary plane (phase bleed)."""
     if abs(velocity) > threshold:
         return complex(0, velocity)

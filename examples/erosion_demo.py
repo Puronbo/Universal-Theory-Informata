@@ -1,5 +1,11 @@
 """Example: ternary erosion preserving net-zero."""
-from model import net_zero, erosion_step
+
+import os
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from model import erosion_step, net_zero
 
 state = [1, 1, -1, -1, 0, 1, -1, 1, -1]
 print("before:", state, "sum=", sum(state), "net_zero=", net_zero(state))

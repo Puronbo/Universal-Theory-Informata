@@ -1,4 +1,5 @@
 """Tests for model.rolling_fold."""
+
 import random
 
 from model import roll_convert, roll_orientation

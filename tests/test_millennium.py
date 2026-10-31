@@ -1,5 +1,4 @@
-import pytest
-from model import poincare_closed, navier_stokes_phase_bleed
+from model import navier_stokes_phase_bleed, poincare_closed
 
 
 def test_poincare_closed():

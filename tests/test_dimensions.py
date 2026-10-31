@@ -1,6 +1,8 @@
 import math
+
 import pytest
-from model import dimension_circle, dimension_bleed
+
+from model import dimension_bleed, dimension_circle
 
 
 def test_dimension_circle():
@@ -12,11 +14,8 @@ def test_dimension_circle():
 
 
 def test_dimension_circle_validation():
-    try:
+    with pytest.raises(ValueError):
         dimension_circle(0)
-        assert False
-    except ValueError:
-        pass
 
 
 def test_dimension_bleed():

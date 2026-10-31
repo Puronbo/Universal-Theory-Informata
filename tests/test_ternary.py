@@ -1,4 +1,5 @@
 """Tests for model.ternary."""
+
 from model import ACTIVE, BALANCE, VOID, is_valid_state, net_zero, ternarize, ternary_compose
 
 

@@ -1,4 +1,3 @@
-import pytest
 from model import mp_discriminant, mp_regime, mp_roots
 
 

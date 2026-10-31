@@ -1,4 +1,5 @@
 """Tests for model.multi_agent."""
+
 from model import multi_agent_step, network_closure
 
 

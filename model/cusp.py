@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import math
-from collections.abc import Iterable
+from collections.abc import Iterable, Sequence
 
 
 def cusp_roots(a: float, b: float) -> list[complex]:
@@ -23,10 +23,16 @@ def cusp_roots(a: float, b: float) -> list[complex]:
     disc = (q / 2.0) ** 2 + (p / 3.0) ** 3
 
     if disc >= 0:
-        # One real root
-        # Handle negative cube roots properly
-        u = _cbrt(-q / 2.0 + math.sqrt(disc))
-        v = _cbrt(-q / 2.0 - math.sqrt(disc))
+        # One real root. Compute both Cardano terms, then recover the
+        # smaller-magnitude one from u*v = -p/3. This avoids catastrophic
+        # cancellation when disc is close to zero (near-double roots).
+        sqrt_disc = math.sqrt(disc)
+        u = _cbrt(-q / 2.0 + sqrt_disc)
+        v = _cbrt(-q / 2.0 - sqrt_disc)
+        if abs(u) < abs(v):
+            u, v = v, u
+        if u != 0.0:
+            v = -p / (3.0 * u)
         r1 = u + v
         # Complex conjugate pair
         w = complex(-0.5, math.sqrt(3) / 2.0)
@@ -34,16 +40,8 @@ def cusp_roots(a: float, b: float) -> list[complex]:
         r3 = (w**2) * u + w * v
         return [r1, r2, r3]
 
-    # Three real roots (casus irreducibilis)
-    if p == 0:
-        # Edge case: x^3 = b, roots are cbrt(b) * (1, w, w^2)
-        rho = _cbrt(-q)
-        r1 = rho
-        w = complex(-0.5, math.sqrt(3) / 2.0)
-        r2 = w * rho
-        r3 = w**2 * rho
-        return [r1, r2, r3]
-
+    # Three real roots (casus irreducibilis). Note p == 0 implies disc >= 0,
+    # so the one-real-root branch above already handles it.
     rho = 2.0 * math.sqrt(-p / 3.0)
     # Clamp acos argument to [-1, 1] for numerical stability
     arg = (3.0 * q) / (2.0 * p) * math.sqrt(-3.0 / p)
@@ -86,9 +84,8 @@ def crease_density_proxy(
     switching boundary. Only meaningful in controlled settings.
     """
     roots = cusp_roots(a, b)
+    # A real cubic always has at least one real root.
     real_roots = [r.real for r in roots if abs(r.imag) < 1e-9]
-    if not real_roots:
-        real_roots = [r.real for r in roots]
 
     n = 0
     total = 0
@@ -99,7 +96,7 @@ def crease_density_proxy(
     return n / total if total else 0.0
 
 
-def crease_density(values, eps=0.05):
+def crease_density(values: Sequence[float], eps: float = 0.05) -> float:
     """Fraction of values within eps of zero (crease density proxy)."""
     if not values:
         return 0.0
@@ -107,7 +104,11 @@ def crease_density(values, eps=0.05):
     return n / len(values)
 
 
-def fold_spectrum(left_deriv, right_deriv, eps=1e-9):
+def fold_spectrum(
+    left_deriv: float | None,
+    right_deriv: float | None,
+    eps: float = 1e-9,
+) -> str:
     """Classify a point as smooth/kink/cusp/tear based on derivative behavior.
 
     Returns one of: 'smooth', 'kink', 'cusp', 'tear'.

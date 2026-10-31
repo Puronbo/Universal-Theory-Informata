@@ -1,4 +1,5 @@
 """Tests for model.timeline."""
+
 from datetime import date
 
 from model import (
@@ -29,6 +30,7 @@ def test_years_since_anchor():
 
 def test_logistic_fixed_point():
     from model import iterate
+
     # r=2.5 has stable fixed point at 1 - 1/r = 0.6
     x, steps, conv, _ = iterate(logistic(2.5), 0.5)
     assert conv

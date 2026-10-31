@@ -1,4 +1,5 @@
 """Tests for model.consciousness."""
+
 import random
 
 from model import attention_trace, closure_check, conscious_moment

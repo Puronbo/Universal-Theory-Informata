@@ -1,6 +1,6 @@
-import math
 import pytest
-from model import poincare_distance, novelty_score, c0_center
+
+from model import c0_center, novelty_score, poincare_distance
 
 
 def test_poincare_distance_origin():
@@ -22,8 +22,5 @@ def test_c0_center():
 
 
 def test_poincare_distance_invalid():
-    try:
+    with pytest.raises(ValueError):
         poincare_distance((1.0, 0.0), (0.0, 0.0))
-        assert False
-    except ValueError:
-        pass

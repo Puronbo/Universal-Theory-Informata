@@ -1,5 +1,7 @@
 """MP-Operator: A_{alpha,beta} = alpha D + beta V (fold + unfold)."""
+
 from __future__ import annotations
+
 import math
 
 
@@ -18,7 +20,7 @@ def mp_regime(alpha: float, beta: float, lam: float) -> str:
     return "underdamped"
 
 
-def mp_roots(alpha: float, beta: float, lam: float):
+def mp_roots(alpha: float, beta: float, lam: float) -> tuple[complex, complex]:
     """Roots of alpha*r^2 - lam*r + beta = 0 (characteristic equation)."""
     d = mp_discriminant(alpha, beta, lam)
     if d >= 0:

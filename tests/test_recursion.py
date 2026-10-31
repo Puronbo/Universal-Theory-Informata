@@ -1,4 +1,5 @@
 """Tests for model.recursion."""
+
 import math
 import random
 

@@ -2,9 +2,17 @@
 
 Run: python simulate.py
 """
+
 from model import (
-    ternarize, iterate, purge_if_flat, erosion_step, Playhead,
-    w_cpl, rho_lambda_ratio, delta_norm, milestone_date, milestone_reached,
+    Playhead,
+    delta_norm,
+    erosion_step,
+    iterate,
+    milestone_date,
+    milestone_reached,
+    purge_if_flat,
+    rho_lambda_ratio,
+    w_cpl,
 )
 
 
@@ -30,8 +38,10 @@ def main():
 
     # 5. Dark energy (DESI-anchored)
     w0, wa = -0.75, -0.87
-    print(f"[darkE] w(0.5)={w_cpl(0.5,w0,wa):.3f} rho(z=1)={rho_lambda_ratio(1.0,w0,wa):.4f} "
-          f"delta(z=1)={delta_norm(1.0,w0,wa):.4f}")
+    print(
+        f"[darkE] w(0.5)={w_cpl(0.5,w0,wa):.3f} rho(z=1)={rho_lambda_ratio(1.0,w0,wa):.4f} "
+        f"delta(z=1)={delta_norm(1.0,w0,wa):.4f}"
+    )
 
     # 6. Timeline
     print(f"[timeline] milestone {milestone_date()} reached={milestone_reached()}")

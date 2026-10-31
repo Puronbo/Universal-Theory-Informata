@@ -1,5 +1,7 @@
 """Photon-sized rubber ball physics (Puronbo/Photon-Rubber-Ball-Research)."""
+
 from __future__ import annotations
+
 import math
 
 # Constants
@@ -8,7 +10,7 @@ K_BOLTZMANN = 1.380649e-23  # J/K
 
 def hertz_contact_radius(R: float, E_star: float, P: float) -> float:
     """Hertz contact radius a = (3*P*R/(4*E*))^(1/3)."""
-    return (3.0 * P * R / (4.0 * E_star)) ** (1.0 / 3.0)
+    return float((3.0 * P * R / (4.0 * E_star)) ** (1.0 / 3.0))
 
 
 def hertz_indentation(R: float, E_star: float, P: float) -> float:

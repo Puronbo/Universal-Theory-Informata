@@ -18,15 +18,16 @@ def search_text(
     """
     root_path = Path(root)
     results: list[tuple[str, int, str]] = []
+    compiled = re.compile(pattern) if regex else None
 
-    for p in root_path.rglob(include):
-        if not p.is_file():
+    for path in root_path.rglob(include):
+        if not path.is_file():
             continue
         try:
-            text = p.read_text(encoding="utf-8")
-            for i, line in enumerate(text.splitlines(), 1):
-                if (pattern in line) if not regex else re.search(pattern, line):
-                    results.append((str(p), i, line.strip()))
+            text = path.read_text(encoding="utf-8")
         except (UnicodeDecodeError, OSError):
             continue
+        for line_no, line in enumerate(text.splitlines(), 1):
+            if compiled.search(line) if compiled else pattern in line:
+                results.append((str(path), line_no, line.strip()))
     return results

@@ -1,9 +1,11 @@
 """Circle of dimensions (A12)."""
+
 from __future__ import annotations
+
 import math
 
 
-def dimension_circle(n: int):
+def dimension_circle(n: int) -> list[float]:
     """Angles of n dimensions arranged on a closed circle."""
     if n < 1:
         raise ValueError("n must be >= 1")

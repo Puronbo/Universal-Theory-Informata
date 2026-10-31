@@ -1,4 +1,5 @@
 """Tests for model.geometry."""
+
 from model import apparent_separation, stretched_distance
 
 

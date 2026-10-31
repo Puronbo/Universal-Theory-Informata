@@ -1,4 +1,5 @@
 """Tests for model.impedance."""
+
 import math
 
 from model import (

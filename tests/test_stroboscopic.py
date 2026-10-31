@@ -1,4 +1,5 @@
 """Tests for model.stroboscopic."""
+
 import random
 
 from model import strobe

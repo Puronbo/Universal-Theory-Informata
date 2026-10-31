@@ -1,5 +1,14 @@
 # Comprehensive Audit & Rework Plan
 
+> **Status update (2026-10-31, v0.2.0): Phases 1–5 implemented.**
+> Current state: 167 tests passing, 96% branch-aware coverage with a 90% CI gate,
+> `ruff`/`black`/strict `mypy` clean, `bandit` clean, `python -m model` works, and
+> CI runs a Python 3.10–3.13 matrix plus quality, smoke-test, docs, and Lean jobs.
+> Lean builds with 0 `sorry`; pdoc API docs build. Remaining nice-to-haves:
+> per-module notebooks (item 14), richer CLI output formats (item 12), and
+> broader Lean coverage of the physical interpretation (item 13). Historical
+> descriptions below are kept for context.
+
 ## Project Overview
 This is a "rigorous alternative architecture of reality" model with:
 - **engine.py**: Core computational engine (689 lines, monolithic)
@@ -117,6 +126,8 @@ Many functions have hardcoded thresholds:
 ### 13. Lean 4 Formalization
 - All Lean files are skeletons with `sorry` or minimal proofs
 - Should be fleshed out to match engine.py functionality
+- **Resolved (v0.2.0):** no `sorry` remains; `lake build` succeeds (18,110 jobs).
+  The core still mirrors selected algebraic facts, not the physical interpretation.
 
 ### 14. Examples
 - `demo.ipynb` exists but minimal
@@ -172,13 +183,35 @@ Many functions have hardcoded thresholds:
 ## Validation Criteria
 
 After rework:
-- [ ] All 66 tests still pass
-- [ ] `python -m model` CLI works
-- [ ] `python simulate.py` works
-- [ ] `python validate_claims.py` works
-- [ ] `python game_engine.py` works
-- [ ] `mypy model/` passes (strict mode)
-- [ ] `ruff check model/` passes
-- [ ] `black --check model/` passes
-- [ ] Test coverage ≥ 90%
-- [ ] Lean 4 files at least parse (`lake build`)
+- [x] All tests pass (167 as of 2026-10-31)
+- [x] `python -m model` CLI works
+- [x] `python simulate.py` works
+- [x] `python validate_claims.py` works
+- [x] `python game_engine.py` works
+- [x] `mypy model cli.py` passes (strict mode)
+- [x] `ruff check .` passes
+- [x] `black --check` passes (model, CLI, tests, examples)
+- [x] Test coverage ≥ 90% (96% branch-aware, enforced in CI via `--cov-fail-under=90`)
+- [x] Lean 4 `lake build` succeeds with 0 `sorry`
+
+---
+
+## Post-Audit Hardening (v0.2.0)
+
+Beyond the original plan, the repository gained:
+
+- **Code robustness:** cancellation-free `cusp_roots` (residual ~1e-16),
+  validated domains for `portal_journey`/`uv_ir_inversion`, memoized Goldbach
+  sieve, input validation in Collatz/zeta, compiled regexes in `search_text`,
+  and a real difference-of-moving-averages EEG bandpass.
+- **Test depth:** 167 tests including CLI, exports, meta-audit, phenomena,
+  plotting error paths, neural fallback, cusp precision, and CWD independence.
+- **Packaging:** version 0.2.0, classifiers, keywords, `py.typed`, `docs` extra,
+  package-data, and coverage/bandit configuration in `pyproject.toml`.
+- **Governance:** `LICENSE`, `CONTRIBUTING.md`, `SECURITY.md`,
+  `CODE_OF_CONDUCT.md`, `CHANGELOG.md`, `.editorconfig`, pre-commit hooks,
+  Dependabot, and issue/PR templates.
+- **CI:** Python 3.10–3.13 tests, lint/format/type/security job, CLI and
+  example smoke tests, pdoc build artifact, and Lean build.
+- **Docs:** `docs/ARCHITECTURE.md`, `docs/README.md`, `examples/README.md`, and
+  removal of the stale generated `docs/engine.html`.

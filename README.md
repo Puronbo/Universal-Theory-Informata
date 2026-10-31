@@ -1,15 +1,21 @@
 # Universal Theory Informata
 
-> A rigorous, self-consistent Theory of Everything: the Self-Looping Informational Cosmos.
+> A self-consistent architecture of reality: the Self-Looping Informational Cosmos.
+
+**Version 0.2.0** · Python ≥ 3.10 · MIT licensed · [Changelog](CHANGELOG.md)
 
 ## Overview
 
-This repository contains a complete, testable, machine-verified framework that redefines
-reality as a **self-generating, self-correcting fluid information processor**. Instead of
-searching for a single master particle, the model closes the loop: a pixelated field grid
-at the bottom renders a fractal tree of matter in the middle, and macroscopic
-gravitational drains pump dark energy back out from the top to sustain the network
-eternally.
+This repository contains a testable framework with a machine-verified core that
+models reality as a **self-generating, self-correcting fluid information
+processor**. Instead of searching for a single master particle, the model closes
+the loop: a pixelated field grid at the bottom renders a fractal tree of matter
+in the middle, and macroscopic gravitational drains pump dark energy back out
+from the top to sustain the network.
+
+The epistemic status of each module is explicit — see
+[`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for the grounded / candidate /
+phenomenological map.
 
 ### Core ideas
 
@@ -24,6 +30,7 @@ eternally.
 - **Self-looping matrix** — cosmic pixel → fractal web → UV/IR inversion → cosmological coupling → imaginary plane.
 - **Equator of scale** — biology sits at \(10^{-4.5}\,\text{m}\), the hardware midpoint.
 - **Clock / broken mirror / entropy brake** — Planck refresh rate, CP-violation tilt, consciousness as entropy reducer.
+- **Phenomena map** — light, sound, gravity, matter, erosion, consciousness and the stroboscopic now, each classified by its canvas operation (`model.phenomena`).
 
 ### Millennium integration
 
@@ -36,40 +43,65 @@ Poincaré, solved by Perelman).
 
 | Path | Purpose |
 |---|---|
-| `model/` | Pure-Python engine (24 modules) |
-| `tests/` | 98 tests (all pass) |
-| `lean/` | Lean 4 machine-checked math core (mathlib integrated) |
-| `docs/` | API reference (pydoc) |
-| `examples/` | Demo scripts |
+| `model/` | Pure-Python engine (27 feature modules, typed, stdlib-only runtime) |
+| `tests/` | 167 tests, 96% branch-aware coverage |
+| `lean/` | Lean 4 machine-checked math core (mathlib4, no `sorry`) |
+| `docs/` | [Architecture](docs/ARCHITECTURE.md), generated API reference, long-form text |
+| `examples/` | Demo scripts (smoke-tested in CI) |
 | `*.md` | Axioms, grounding, connections, guides, research memos |
 
 ## Quick start
 
 ```bash
-pip install -e .
-python -m pytest tests/ -q          # 98/98 pass
-cd lean && lake build               # clean (18,108 jobs)
-python validate_claims.py           # meta-audit: clean
-python run_all.py                   # run everything
-python cli.py timeline              # milestone status
-python simulate.py                  # end-to-end demo
+python -m pip install -e ".[dev,docs]"
+
+python -m pytest tests -q --cov-fail-under=90   # 167 pass, 96% coverage
+ruff check .                                    # lint: clean
+black --check model cli.py tests examples       # format: clean
+mypy model cli.py                               # strict types: clean
+python -m bandit -c pyproject.toml -r model cli.py validate_claims.py
+python validate_claims.py                       # meta-audit: clean
+python -m model --help                          # all subcommands
+python -m model timeline                        # milestone status
+python -m model validate                        # run the meta-audit via the CLI
+python examples/erosion_demo.py                 # demo scripts
+python -m pdoc model -o docs/api                # API docs (not committed)
+cd lean && lake build                           # Lean core (mathlib4)
 ```
+
+`python run_all.py` and `python simulate.py` run the full pipeline and
+end-to-end demo.
 
 ## Verification
 
-- **Python:** 98/98 tests pass.
-- **Lean 4:** clean build (18,108 jobs, mathlib4 integrated).
-- **Meta-audit:** no overclaim phrases; all engine references valid.
+- **Python:** 167 tests pass; 96% branch-aware coverage (CI gate: 90%).
+- **Static checks:** `ruff check`, `black --check`, and strict `mypy` are clean.
+- **Security:** `bandit` reports no medium/high findings (simulation-only
+  `random` use is documented and skipped in `pyproject.toml`).
+- **Lean 4:** clean `lake build`, 0 `sorry`.
+- **Meta-audit:** no overclaim phrases; all module references and axiom
+  cross-references resolve.
+- **CI:** Python 3.10–3.13 matrix plus dedicated quality, smoke-test, docs, and
+  Lean jobs.
+
+## Documentation and contributing
+
+- [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — module map, data flow, epistemic status.
+- [`docs/README.md`](docs/README.md) — how to build the API reference.
+- [`CONTRIBUTING.md`](CONTRIBUTING.md) — setup, required checks, and claim rules.
+- [`CHANGELOG.md`](CHANGELOG.md) — release history.
+- [`SECURITY.md`](SECURITY.md) — vulnerability reporting.
+- [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md) — community expectations.
 
 ## Epistemic status
 
 Empirical claims (dark energy, spin topology) are quarantined from metaphysical
 ones (sync point, vessel identity, awakening). See `GROUNDING.md` and
-`THEORY_OF_EVERYTHING.md` §5.
+`THEORY_OF_EVERYTHING.md` §5. Numerical evidence is never presented as proof.
 
 ## License
 
-MIT
+MIT — see [`LICENSE`](LICENSE).
 
 ## Author
 
