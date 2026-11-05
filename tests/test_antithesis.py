@@ -5,16 +5,21 @@ import math
 import pytest
 
 from model import (
+    LogConjugacy,
     OrbitComparison,
     RegimeComparison,
+    compare_log_conjugacy,
     compare_orbits,
     compare_regimes,
     contract,
     contract_orbit,
     entropy,
+    exp_coordinate,
     information_loss,
     inversion_orbit,
     is_cyclic,
+    log_coordinate,
+    log_orbit,
     lyapunov_exponent,
     nilpotent_apply,
     nilpotent_orbit,
@@ -190,3 +195,53 @@ def test_compare_regimes():
     assert orbit_period(comparison.involution) == 2
     assert orbit_period(comparison.contraction) is None
     assert orbit_period(comparison.translation) is None
+
+
+def test_log_coordinate():
+    assert log_coordinate(1.0) == pytest.approx(0.0)
+    assert log_coordinate(math.e) == pytest.approx(1.0)
+
+
+def test_exp_coordinate_round_trip():
+    for x in [0.25, 1.0, 2.0, 10.0]:
+        assert exp_coordinate(log_coordinate(x)) == pytest.approx(x)
+
+
+@pytest.mark.parametrize("x", [0.0, -1.0, math.inf, math.nan])
+def test_log_coordinate_rejects_bad_scale(x):
+    with pytest.raises(ValueError):
+        log_coordinate(x)
+
+
+@pytest.mark.parametrize("t", [math.inf, -math.inf, math.nan])
+def test_exp_coordinate_rejects_non_finite(t):
+    with pytest.raises(ValueError):
+        exp_coordinate(t)
+
+
+def test_exp_coordinate_rejects_overflow():
+    with pytest.raises(ValueError):
+        exp_coordinate(1000.0)
+
+
+def test_log_orbit_is_translation():
+    rate = 0.5
+    logged = log_orbit(2.0, 3, rate)
+    assert logged == pytest.approx(translation_orbit(log_coordinate(2.0), 3, math.log(rate)))
+    assert logged == pytest.approx(tuple(math.log(value) for value in contract_orbit(2.0, 3, rate)))
+
+
+def test_log_conjugacy_dataclass():
+    comparison = compare_log_conjugacy(2.0, 3)
+    assert isinstance(comparison, LogConjugacy)
+    assert comparison.initial == 2.0
+    assert comparison.log_orbit == pytest.approx(comparison.translation)
+
+
+def test_log_orbit_rejects_bad_input():
+    with pytest.raises(ValueError):
+        log_orbit(0.0, 1)
+    with pytest.raises(ValueError):
+        log_orbit(2.0, -1)
+    with pytest.raises(ValueError):
+        log_orbit(2.0, 1, 1.0)

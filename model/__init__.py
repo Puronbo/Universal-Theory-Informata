@@ -3,7 +3,7 @@
 A rigorous alternative architecture of reality: axioms, engine, Lean 4 core.
 
 Modules:
-- antithesis: Contractive, translating, and nilpotent counter-models; entropy.
+- antithesis: Contractive, translating, and nilpotent counter-models; entropy; log conjugacy.
 - ternary: three-state grammar and net-zero invariant (A0.2, A0.3).
 - recursion: fixed-point iteration (awakening) and purge (A1.5).
 - cusp: cusp catastrophe roots, bifurcation set, crease density proxy.
@@ -23,6 +23,7 @@ Modules:
 - roots: Integer roots and the root/power duality.
 - mobius: Möbius transformations, composition, fixed points.
 - duality: Binary poles and the involution that swaps them.
+- fold: Quotient fold x+1/x and fundamental-domain representative.
 - equator: Equator of Scale (A9.1-A9.4).
 - clock: Clock, broken mirror, entropy brake (A10).
 - phenomena: Phenomenon → canvas-operation map.
@@ -38,16 +39,21 @@ Constants:
 """
 
 from model.antithesis import (
+    LogConjugacy,
     OrbitComparison,
     RegimeComparison,
+    compare_log_conjugacy,
     compare_orbits,
     compare_regimes,
     contract,
     contract_orbit,
     entropy,
+    exp_coordinate,
     information_loss,
     inversion_orbit,
     is_cyclic,
+    log_coordinate,
+    log_orbit,
     lyapunov_exponent,
     nilpotent_apply,
     nilpotent_orbit,
@@ -105,6 +111,13 @@ from model.equator import (
     gauge_node,
     imaginary_rotate,
     scale_midpoint,
+)
+from model.fold import (
+    FoldComparison,
+    compare_fold,
+    fold,
+    fold_preimages,
+    representative,
 )
 from model.geometry import (
     apparent_separation,
@@ -349,22 +362,33 @@ __all__ = [
     "uv_ir_inversion",
     "portal_journey",
     # Antithesis
+    "LogConjugacy",
     "OrbitComparison",
     "RegimeComparison",
+    "compare_log_conjugacy",
     "compare_orbits",
     "compare_regimes",
     "contract",
     "contract_orbit",
     "entropy",
+    "exp_coordinate",
     "information_loss",
     "inversion_orbit",
     "is_cyclic",
+    "log_coordinate",
+    "log_orbit",
     "lyapunov_exponent",
     "nilpotent_apply",
     "nilpotent_orbit",
     "orbit_period",
     "translation",
     "translation_orbit",
+    # Fold
+    "FoldComparison",
+    "compare_fold",
+    "fold",
+    "fold_preimages",
+    "representative",
     # Duality
     "DUAL_PAIRS",
     "DualPair",

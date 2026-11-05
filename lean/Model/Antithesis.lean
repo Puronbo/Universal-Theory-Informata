@@ -74,4 +74,44 @@ theorem entropy_gain_pos (r : ℝ) (hr0 : 0 < r) (hr1 : r < 1) :
   rw [h0] at h
   linarith
 
+/-- The inversion-invariant quotient `q x = x + x⁻¹`. -/
+noncomputable def fold (x : ℝ) : ℝ := x + x⁻¹
+
+/-- The quotient is invariant under inversion: `q (1/x) = q x`. -/
+theorem fold_invariant (x : ℝ) : fold x⁻¹ = fold x := by
+  unfold fold
+  rw [inv_inv]
+  ring
+
+/-- The quotient is at least 2 on positive scales. -/
+theorem fold_ge_two {x : ℝ} (hx : 0 < x) : 2 ≤ fold x := by
+  unfold fold
+  have h : 0 ≤ (x - 1) ^ 2 := sq_nonneg (x - 1)
+  have hdiv : 0 ≤ (x - 1) ^ 2 / x := div_nonneg h hx.le
+  have hEq : (x - 1) ^ 2 / x = x - 2 + x⁻¹ := by
+    field_simp [hx.ne']
+    ring
+  rw [hEq] at hdiv
+  linarith
+
+/-- The quotient is not injective: `2` and `1/2` have the same image. -/
+theorem fold_not_injective : ¬ Function.Injective fold := by
+  intro h
+  have h2 : fold (2 : ℝ) = fold (1 / 2) := by
+    unfold fold
+    norm_num
+  have hEq : (2 : ℝ) = 1 / 2 := h h2
+  norm_num at hEq
+
+/-- The log coordinate turns contraction into translation. -/
+theorem log_contraction (x r : ℝ) (hx : 0 < x) (hr : 0 < r) :
+    Real.log (r * x) = Real.log x + Real.log r := by
+  rw [Real.log_mul hr.ne' hx.ne']
+  ring
+
+/-- The exponential coordinate is the inverse of the log coordinate. -/
+theorem exp_log_coordinate {x : ℝ} (hx : 0 < x) :
+    Real.exp (Real.log x) = x :=
+  Real.exp_log hx
+
 end Model

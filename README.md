@@ -31,7 +31,7 @@ phenomenological map.
 - **Equator of scale** — biology sits at \(10^{-4.5}\,\text{m}\), the hardware midpoint.
 - **Clock / broken mirror / entropy brake** — Planck refresh rate, CP-violation tilt, consciousness as entropy reducer.
 - **Phenomena map** — light, sound, gravity, matter, erosion, consciousness and the stroboscopic now, each classified by its canvas operation (`model.phenomena`).
-- **Dual pairs / antithesis** — explicit poles (UV/IR, exterior/interior, compression/expansion, time, substrate, information) and an executable counter-model spanning periodic, hyperbolic, parabolic, and nilpotent regimes (`model.duality`, `model.antithesis`); a Lean mirror proves `f² = id` and `N² = 0` (`lean/Model/Antithesis.lean`).
+- **Dual pairs / antithesis** — explicit poles (UV/IR, exterior/interior, compression/expansion, time, substrate, information) and an executable counter-model spanning periodic, hyperbolic, parabolic, and nilpotent regimes (`model.duality`, `model.antithesis`), plus the non-invertible quotient fold `x + 1/x` (`model.fold`) and the log-coordinate conjugacy between scaling and translation; a Lean mirror proves `f² = id`, `N² = 0`, and `q(1/x) = q(x)` (`lean/Model/Antithesis.lean`).
 
 ### Millennium integration
 
@@ -44,8 +44,8 @@ Poincaré, solved by Perelman).
 
 | Path | Purpose |
 |---|---|
-| `model/` | Pure-Python engine (31 feature modules, typed, stdlib-only runtime) |
-| `tests/` | 333 tests, 97% branch-aware coverage |
+| `model/` | Pure-Python engine (32 feature modules, typed, stdlib-only runtime) |
+| `tests/` | 380 tests, 97% branch-aware coverage |
 | `lean/` | Lean 4 machine-checked math core (mathlib4, no `sorry`) |
 | `docs/` | [Architecture](docs/ARCHITECTURE.md), generated API reference, long-form text |
 | `examples/` | Demo scripts (smoke-tested in CI) |
@@ -56,7 +56,7 @@ Poincaré, solved by Perelman).
 ```bash
 python -m pip install -e ".[dev,docs]"
 
-python -m pytest tests -q --cov-fail-under=90   # 333 pass, 97% coverage
+python -m pytest tests -q --cov-fail-under=90   # 380 pass, 97% coverage
 ruff check .                                    # lint: clean
 black --check model cli.py tests examples       # format: clean
 mypy model cli.py                               # strict types: clean
@@ -68,6 +68,8 @@ python -m model duality                         # list dual pairs
 python -m model duality --pole UV               # opposite pole
 python -m model antithesis --x 2 --steps 3      # periodic/hyperbolic/parabolic
 python -m model antithesis --nilpotent --y 4    # add N² = 0 collapse
+python -m model antithesis --log                # scaling ↔ translation conjugacy
+python -m model fold --x 2                      # quotient x + 1/x and preimages
 python -m model validate                        # run the meta-audit via the CLI
 python examples/erosion_demo.py                 # demo scripts
 python -m pdoc model -o docs/api                # API docs (not committed)
@@ -79,7 +81,7 @@ end-to-end demo.
 
 ## Verification
 
-- **Python:** 333 tests pass; 97% branch-aware coverage (CI gate: 90%).
+- **Python:** 380 tests pass; 97% branch-aware coverage (CI gate: 90%).
 - **Static checks:** `ruff check`, `black --check`, and strict `mypy` are clean.
 - **Security:** `bandit` reports no medium/high findings (simulation-only
   `random` use is documented and skipped in `pyproject.toml`).
@@ -92,7 +94,7 @@ end-to-end demo.
 ## Documentation and contributing
 
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — module map, data flow, epistemic status.
-- [`ANTITHESIS.md`](ANTITHESIS.md) — dual pairs, the Open Dissipative Exterior, and the limits of the opposition.
+- [`ANTITHESIS.md`](ANTITHESIS.md) — dual pairs, the quotient fold, the Open Dissipative Exterior, and the limits of the opposition.
 - [`docs/README.md`](docs/README.md) — how to build the API reference.
 - [`CONTRIBUTING.md`](CONTRIBUTING.md) — setup, required checks, and claim rules.
 - [`CHANGELOG.md`](CHANGELOG.md) — release history.

@@ -13,13 +13,17 @@ from typing import NoReturn
 from model import (
     DUAL_PAIRS,
     check_predictions,
+    compare_fold,
     compare_regimes,
     delta_norm,
     dual_of,
     dual_pair,
     entropy,
+    fold_preimages,
     information_loss,
     iterate,
+    log_coordinate,
+    log_orbit,
     logistic,
     lyapunov_exponent,
     milestone_date,
@@ -28,6 +32,7 @@ from model import (
     nilpotent_orbit,
     orbit_period,
     rho_lambda_ratio,
+    translation_orbit,
 )
 
 
@@ -78,6 +83,7 @@ def _antithesis_command(
     shift: float,
     y: float,
     show_nilpotent: bool,
+    show_log: bool,
 ) -> None:
     """Report the periodic, hyperbolic, and parabolic orbits from ``x``."""
     if not math.isfinite(x) or x <= 0.0:
@@ -107,9 +113,37 @@ def _antithesis_command(
                 "orbit": [list(point) for point in orbit],
                 "n_squared": list(squared),
             }
+        if show_log:
+            logged = log_coordinate(x)
+            payload["log_conjugacy"] = {
+                "log_initial": logged,
+                "log_orbit": list(log_orbit(x, steps, rate)),
+                "translation": list(translation_orbit(logged, steps, math.log(rate))),
+            }
     except ValueError as exc:
         _fail(str(exc))
     print(json.dumps(payload, indent=2))
+
+
+def _fold_command(x: float) -> None:
+    """Report the inversion quotient, its representative, and its preimages."""
+    try:
+        comparison = compare_fold(x)
+        preimages = fold_preimages(comparison.quotient)
+    except ValueError as exc:
+        _fail(str(exc))
+    print(
+        json.dumps(
+            {
+                "initial": comparison.initial,
+                "dual": comparison.dual,
+                "quotient": comparison.quotient,
+                "representative": comparison.representative,
+                "preimages": list(preimages),
+            },
+            indent=2,
+        )
+    )
 
 
 def _run_meta_audit() -> None:
@@ -159,6 +193,14 @@ def main() -> None:
         action="store_true",
         help="include the nilpotent N(x, y) = (0, x), N^2 = 0 orbit",
     )
+    anti.add_argument(
+        "--log",
+        action="store_true",
+        help="include the log-coordinate contraction/translation conjugacy",
+    )
+
+    fold_cmd = sub.add_parser("fold", help="Quotient x + 1/x by the UV/IR involution")
+    fold_cmd.add_argument("--x", type=float, default=2.0)
 
     args = parser.parse_args()
     if args.cmd == "darkenergy":
@@ -191,7 +233,11 @@ def main() -> None:
     elif args.cmd == "duality":
         _duality_command(args.pole, args.pair_name)
     elif args.cmd == "antithesis":
-        _antithesis_command(args.x, args.steps, args.rate, args.shift, args.y, args.nilpotent)
+        _antithesis_command(
+            args.x, args.steps, args.rate, args.shift, args.y, args.nilpotent, args.log
+        )
+    elif args.cmd == "fold":
+        _fold_command(args.x)
 
 
 if __name__ == "__main__":

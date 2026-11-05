@@ -59,7 +59,8 @@ Matplotlib in `plotting` (lazy, inside functions).
 | `roots.py` | Integer roots, negative roots, root/power duality | **grounded** (pure algebra) |
 | `mobius.py` | Möbius matrices, composition, powers, fixed points | **grounded** (standard geometry) |
 | `duality.py` | Binary poles and the involution that swaps them | **taxonomy** (no physical claim) |
-| `antithesis.py` | Contractive counter-model, entropy, orbit comparison | **toy** (conceptual counter-model) |
+| `fold.py` | Inversion quotient `x + 1/x`, preimages, representative | **toy** (conceptual quotient) |
+| `antithesis.py` | Contraction, translation, nilpotent, entropy, log conjugacy | **toy** (conceptual counter-model) |
 | `equator.py` | Equator of scale | **candidate** |
 | `clock.py` | Planck refresh, CP tilt, entropy brake | **phenomenological** |
 | `consciousness.py` | Attention / closure analogues | **phenomenological** |
@@ -122,11 +123,18 @@ entropy/structure, becoming/block, discrete/continuous, and
 reprocessed/erased. By construction `dual_of(dual_of(pole)) == pole`.
 
 `model.antithesis` implements the limit cases in which the return loop is
-removed: a contraction `g(x) = rate * x` with `0 < rate < 1`, a parabolic
-translation `x + shift`, and the nilpotent `N(x, y) = (0, x)`. It adds monotone
-entropy `-log(x)`, `lyapunov_exponent`, `information_loss`, cycle detection via
+removed: a dissipative contraction `g(x) = rate * x` (invertible, with the
+expansion inverse `x / rate`), a parabolic translation `x + shift`, and the
+nilpotent `N(x, y) = (0, x)`. It adds monotone entropy `-log(x)`,
+`lyapunov_exponent`, `information_loss`, cycle detection via
 `orbit_period`/`is_cyclic`, and `compare_regimes`, which places a periodic
 involution, a hyperbolic contraction, and a parabolic translation side by side.
+`log_coordinate`/`log_orbit`/`compare_log_conjugacy` show that contraction is
+translation in log coordinates.
+
+`model.fold` is the genuinely non-invertible opposite of the involution: the
+quotient `q(x) = x + 1/x`, invariant under `x -> 1/x`, two-to-one on positive
+scales, with `fold_preimages` and `representative`.
 `Mobius.classify()` reports the corresponding Möbius dynamical type. The
 conceptual rationale, axis table, and limits are in `ANTITHESIS.md`.
 
@@ -160,8 +168,9 @@ The Lean tree (`lean/Model`) mirrors selected algebraic facts: ternary net-zero,
 the cusp bifurcation value, CPL relations, playhead indexing, rolling-fold
 identities, and the antithesis contrast (`involution_involutive`,
 `contractOrbit_eq`, `translation_no_fixed`, `nilpotent_sq_zero`,
-`entropy_gain_pos`). It contains no `sorry`, but it does **not** formalize the
-physical interpretation. `lake build` is part of CI.
+`entropy_gain_pos`, `fold_invariant`, `fold_ge_two`, `fold_not_injective`,
+`log_contraction`, `exp_log_coordinate`). It contains no `sorry`, but it does
+**not** formalize the physical interpretation. `lake build` is part of CI.
 
 ## Known limitations
 

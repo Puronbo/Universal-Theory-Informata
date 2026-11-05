@@ -27,10 +27,19 @@ All notable changes to this project are documented here. The format follows
 - CLI: `python -m model duality` (list, `--pair`, or `--pole`) and
   `python -m model antithesis` (three regimes plus entropy, information loss,
   and Lyapunov exponent; `--nilpotent` adds the `N² = 0` collapse).
+- `model/fold.py`: the inversion quotient `q(x) = x + 1/x`, preimage solver,
+  fundamental-domain representative, and `compare_fold`. Unlike the
+  contraction, `q` is genuinely non-invertible: `q(1/x) = q(x)`.
+- `model/antithesis.py`: log-coordinate conjugacy (`log_coordinate`,
+  `exp_coordinate`, `log_orbit`, `compare_log_conjugacy`); under `t = log x`
+  the contraction becomes translation by `log(rate)`.
+- CLI: `python -m model fold --x 2`, and `python -m model antithesis --log`
+  for the conjugacy.
 - `lean/Model/Antithesis.lean`: formal mirror of the contrast —
   `involution_involutive` (`f² = id`), `contractOrbit_eq` (`gⁿx = rⁿx`),
-  `translation_no_fixed`, `nilpotent_sq_zero` (`N² = 0`), and
-  `entropy_gain_pos`.
+  `translation_no_fixed`, `nilpotent_sq_zero` (`N² = 0`), `entropy_gain_pos`,
+  plus `fold_invariant`, `fold_ge_two`, `fold_not_injective`,
+  `log_contraction`, and `exp_log_coordinate`.
 - `ANTITHESIS.md`: axis table, the Open Dissipative Exterior, the
   group-versus-semigroup contrast, the periodic/hyperbolic/parabolic
   trichotomy, the nilpotent limit, and information loss.
@@ -59,6 +68,9 @@ All notable changes to this project are documented here. The format follows
   both `low` and `high`.
 - `search_text` compiles regexes once.
 - README, module counts, commands, and validation status refreshed.
+- Corrected the antithesis wording: the contraction `g(x) = r x` is invertible
+  (inverse `x / r`); the genuinely non-invertible opposites are the quotient
+  fold and the nilpotent.
 - Version bumped to 0.2.0 (Python package and Lean library).
 
 ### Fixed

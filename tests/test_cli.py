@@ -132,3 +132,34 @@ def test_antithesis_rejects_invalid_input(monkeypatch, capsys, argv, message):
         _run(monkeypatch, capsys, ["antithesis", *argv])
     assert excinfo.value.code == 2
     assert message in capsys.readouterr().err
+
+
+def test_fold_reports_quotient_and_preimages(monkeypatch, capsys):
+    payload = json.loads(_run(monkeypatch, capsys, ["fold", "--x", "2"]).out)
+    assert payload["initial"] == 2.0
+    assert payload["dual"] == pytest.approx(0.5)
+    assert payload["quotient"] == pytest.approx(2.5)
+    assert payload["representative"] == pytest.approx(2.0)
+    assert payload["preimages"] == pytest.approx([0.5, 2.0])
+
+
+def test_fold_rejects_bad_scale(monkeypatch, capsys):
+    with pytest.raises(SystemExit) as excinfo:
+        _run(monkeypatch, capsys, ["fold", "--x", "0"])
+    assert excinfo.value.code == 2
+    assert "x must be finite" in capsys.readouterr().err
+
+
+def test_antithesis_omits_log_by_default(monkeypatch, capsys):
+    payload = json.loads(_run(monkeypatch, capsys, ["antithesis"]).out)
+    assert "log_conjugacy" not in payload
+
+
+def test_antithesis_reports_log_conjugacy(monkeypatch, capsys):
+    payload = json.loads(
+        _run(monkeypatch, capsys, ["antithesis", "--x", "2", "--steps", "3", "--log"]).out
+    )
+    conjugated = payload["log_conjugacy"]
+    assert conjugated["log_initial"] == pytest.approx(math.log(2.0))
+    assert conjugated["log_orbit"] == pytest.approx(conjugated["translation"])
+    assert conjugated["log_orbit"][1] - conjugated["log_orbit"][0] == pytest.approx(math.log(0.5))

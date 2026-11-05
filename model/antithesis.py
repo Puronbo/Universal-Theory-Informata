@@ -2,11 +2,12 @@
 
 The main framework is built on the involution ``f(x) = 1/x``: reversible,
 order two, with fixed points ``+/-1``. This module implements the opposite
-limits: a non-invertible contraction ``g(x) = rate * x`` with ``0 < rate < 1``,
+limits: a dissipative contraction ``g(x) = rate * x`` with ``0 < rate < 1``,
 a parabolic translation ``x + shift``, and the nilpotent ``N(x, y) = (0, x)``.
 It also supplies monotone entropy ``-log(x)``, information-loss and Lyapunov
-measures, cycle detection, and three-way regime comparison. These are
-conceptual counter-models, not physical claims.
+measures, cycle detection, three-way regime comparison, and the log-coordinate
+conjugacy that turns contraction into translation. These are conceptual
+counter-models, not physical claims.
 """
 
 from __future__ import annotations
@@ -33,6 +34,15 @@ class RegimeComparison:
     initial: float
     involution: tuple[float, ...]
     contraction: tuple[float, ...]
+    translation: tuple[float, ...]
+
+
+@dataclass(frozen=True)
+class LogConjugacy:
+    """A contraction orbit in log coordinates and the matching translation."""
+
+    initial: float
+    log_orbit: tuple[float, ...]
     translation: tuple[float, ...]
 
 
@@ -101,6 +111,60 @@ def translation_orbit(x: float, steps: int, shift: float = 1.0) -> tuple[float, 
     for _ in range(steps):
         values.append(values[-1] + shift)
     return tuple(values)
+
+
+def log_coordinate(x: float) -> float:
+    """Return ``log(x)``, the additive coordinate for positive scales.
+
+    Raises:
+        ValueError: If ``x`` is not finite or is not positive.
+    """
+    if not math.isfinite(x) or x <= 0.0:
+        raise ValueError("x must be finite and > 0")
+    return math.log(x)
+
+
+def exp_coordinate(t: float) -> float:
+    """Return ``exp(t)``, the inverse of :func:`log_coordinate`.
+
+    Raises:
+        ValueError: If ``t`` is not finite or is too large to exponentiate.
+    """
+    if not math.isfinite(t):
+        raise ValueError("t must be finite")
+    try:
+        return math.exp(t)
+    except OverflowError as exc:
+        raise ValueError("t is too large to exponentiate") from exc
+
+
+def log_orbit(x: float, steps: int, rate: float = 0.5) -> tuple[float, ...]:
+    """Return the contraction orbit in log coordinates.
+
+    Under ``t = log(x)`` the contraction becomes a translation by
+    ``log(rate)``, so this equals
+    ``translation_orbit(log_coordinate(x), steps, log(rate))``.
+
+    Raises:
+        ValueError: If ``steps`` is negative or the inputs are invalid.
+    """
+    log_coordinate(x)
+    _validate_steps(steps)
+    _validate_rate(rate)
+    return tuple(math.log(value) for value in contract_orbit(x, steps, rate))
+
+
+def compare_log_conjugacy(x: float, steps: int, rate: float = 0.5) -> LogConjugacy:
+    """Return the log orbit and the matching translation orbit.
+
+    Raises:
+        ValueError: If ``steps`` is negative or the inputs are invalid.
+    """
+    return LogConjugacy(
+        initial=x,
+        log_orbit=log_orbit(x, steps, rate),
+        translation=translation_orbit(log_coordinate(x), steps, math.log(rate)),
+    )
 
 
 def nilpotent_apply(x: float, y: float) -> tuple[float, float]:
