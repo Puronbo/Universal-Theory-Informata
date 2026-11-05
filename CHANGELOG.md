@@ -24,6 +24,9 @@ All notable changes to this project are documented here. The format follows
 - `model/mobius.py`: `translation()` and `contraction()` constructors and
   `classify()` for periodic, hyperbolic, parabolic, elliptic, and loxodromic
   maps.
+- CLI: `python -m model duality` (list, `--pair`, or `--pole`) and
+  `python -m model antithesis` (three regimes plus entropy, information loss,
+  and Lyapunov exponent).
 - `ANTITHESIS.md`: axis table, the Open Dissipative Exterior, the
   group-versus-semigroup contrast, the periodic/hyperbolic/parabolic
   trichotomy, the nilpotent limit, and information loss.

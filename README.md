@@ -45,7 +45,7 @@ Poincaré, solved by Perelman).
 | Path | Purpose |
 |---|---|
 | `model/` | Pure-Python engine (31 feature modules, typed, stdlib-only runtime) |
-| `tests/` | 317 tests, 97% branch-aware coverage |
+| `tests/` | 330 tests, 97% branch-aware coverage |
 | `lean/` | Lean 4 machine-checked math core (mathlib4, no `sorry`) |
 | `docs/` | [Architecture](docs/ARCHITECTURE.md), generated API reference, long-form text |
 | `examples/` | Demo scripts (smoke-tested in CI) |
@@ -56,7 +56,7 @@ Poincaré, solved by Perelman).
 ```bash
 python -m pip install -e ".[dev,docs]"
 
-python -m pytest tests -q --cov-fail-under=90   # 317 pass, 97% coverage
+python -m pytest tests -q --cov-fail-under=90   # 330 pass, 97% coverage
 ruff check .                                    # lint: clean
 black --check model cli.py tests examples       # format: clean
 mypy model cli.py                               # strict types: clean
@@ -64,6 +64,9 @@ python -m bandit -c pyproject.toml -r model cli.py validate_claims.py
 python validate_claims.py                       # meta-audit: clean
 python -m model --help                          # all subcommands
 python -m model timeline                        # milestone status
+python -m model duality                         # list dual pairs
+python -m model duality --pole UV               # opposite pole
+python -m model antithesis --x 2 --steps 3      # periodic/hyperbolic/parabolic
 python -m model validate                        # run the meta-audit via the CLI
 python examples/erosion_demo.py                 # demo scripts
 python -m pdoc model -o docs/api                # API docs (not committed)
@@ -75,7 +78,7 @@ end-to-end demo.
 
 ## Verification
 
-- **Python:** 317 tests pass; 97% branch-aware coverage (CI gate: 90%).
+- **Python:** 330 tests pass; 97% branch-aware coverage (CI gate: 90%).
 - **Static checks:** `ruff check`, `black --check`, and strict `mypy` are clean.
 - **Security:** `bandit` reports no medium/high findings (simulation-only
   `random` use is documented and skipped in `pyproject.toml`).

@@ -8,16 +8,91 @@ import math
 import subprocess
 import sys
 from pathlib import Path
+from typing import NoReturn
 
 from model import (
+    DUAL_PAIRS,
     check_predictions,
+    compare_regimes,
     delta_norm,
+    dual_of,
+    dual_pair,
+    entropy,
+    information_loss,
     iterate,
     logistic,
+    lyapunov_exponent,
     milestone_date,
     milestone_reached,
+    orbit_period,
     rho_lambda_ratio,
 )
+
+
+def _fail(message: str) -> NoReturn:
+    """Print a CLI error to stderr and exit with status 2."""
+    print(message, file=sys.stderr)
+    raise SystemExit(2)
+
+
+def _duality_command(pole: str | None, pair_name: str | None) -> None:
+    """Report dual pairs, one named pair, or the opposite of one pole."""
+    if pole is not None:
+        try:
+            opposite = dual_of(pole)
+        except ValueError as exc:
+            _fail(str(exc))
+        print(json.dumps({"pole": pole, "dual": opposite}, indent=2))
+    elif pair_name is not None:
+        try:
+            pair = dual_pair(pair_name)
+        except ValueError as exc:
+            _fail(str(exc))
+        print(
+            json.dumps(
+                {"name": pair.name, "left": pair.left, "right": pair.right},
+                indent=2,
+            )
+        )
+    else:
+        print(
+            json.dumps(
+                {
+                    "count": len(DUAL_PAIRS),
+                    "pairs": [
+                        {"name": pair.name, "left": pair.left, "right": pair.right}
+                        for pair in DUAL_PAIRS
+                    ],
+                },
+                indent=2,
+            )
+        )
+
+
+def _antithesis_command(x: float, steps: int, rate: float, shift: float) -> None:
+    """Report the periodic, hyperbolic, and parabolic orbits from ``x``."""
+    if not math.isfinite(x) or x <= 0.0:
+        _fail("x must be finite and > 0")
+    try:
+        regimes = compare_regimes(x, steps, rate, shift)
+        payload = {
+            "initial": regimes.initial,
+            "steps": steps,
+            "involution": list(regimes.involution),
+            "contraction": list(regimes.contraction),
+            "translation": list(regimes.translation),
+            "periods": {
+                "involution": orbit_period(regimes.involution),
+                "contraction": orbit_period(regimes.contraction),
+                "translation": orbit_period(regimes.translation),
+            },
+            "entropy": entropy(x),
+            "information_loss": information_loss(x, steps, rate),
+            "lyapunov_exponent": lyapunov_exponent(rate),
+        }
+    except ValueError as exc:
+        _fail(str(exc))
+    print(json.dumps(payload, indent=2))
 
 
 def _run_meta_audit() -> None:
@@ -51,6 +126,17 @@ def main() -> None:
     sub.add_parser("timeline", help="Milestone status")
     sub.add_parser("validate", help="Run meta-audit")
 
+    dual = sub.add_parser("duality", help="Dual pairs and opposite poles")
+    dual_group = dual.add_mutually_exclusive_group()
+    dual_group.add_argument("--pole", help="pole to flip, e.g. UV")
+    dual_group.add_argument("--pair", dest="pair_name", help="pair name, e.g. scale")
+
+    anti = sub.add_parser("antithesis", help="Periodic, hyperbolic, and parabolic orbits")
+    anti.add_argument("--x", type=float, default=2.0)
+    anti.add_argument("--steps", type=int, default=3)
+    anti.add_argument("--rate", type=float, default=0.5)
+    anti.add_argument("--shift", type=float, default=1.0)
+
     args = parser.parse_args()
     if args.cmd == "darkenergy":
         print(
@@ -79,6 +165,10 @@ def main() -> None:
         )
     elif args.cmd == "validate":
         _run_meta_audit()
+    elif args.cmd == "duality":
+        _duality_command(args.pole, args.pair_name)
+    elif args.cmd == "antithesis":
+        _antithesis_command(args.x, args.steps, args.rate, args.shift)
 
 
 if __name__ == "__main__":
