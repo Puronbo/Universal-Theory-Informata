@@ -24,6 +24,8 @@ from model import (
     lyapunov_exponent,
     milestone_date,
     milestone_reached,
+    nilpotent_apply,
+    nilpotent_orbit,
     orbit_period,
     rho_lambda_ratio,
 )
@@ -69,7 +71,14 @@ def _duality_command(pole: str | None, pair_name: str | None) -> None:
         )
 
 
-def _antithesis_command(x: float, steps: int, rate: float, shift: float) -> None:
+def _antithesis_command(
+    x: float,
+    steps: int,
+    rate: float,
+    shift: float,
+    y: float,
+    show_nilpotent: bool,
+) -> None:
     """Report the periodic, hyperbolic, and parabolic orbits from ``x``."""
     if not math.isfinite(x) or x <= 0.0:
         _fail("x must be finite and > 0")
@@ -90,6 +99,14 @@ def _antithesis_command(x: float, steps: int, rate: float, shift: float) -> None
             "information_loss": information_loss(x, steps, rate),
             "lyapunov_exponent": lyapunov_exponent(rate),
         }
+        if show_nilpotent:
+            orbit = nilpotent_orbit(x, y, steps)
+            squared = nilpotent_apply(*nilpotent_apply(x, y))
+            payload["nilpotent"] = {
+                "seed": [x, y],
+                "orbit": [list(point) for point in orbit],
+                "n_squared": list(squared),
+            }
     except ValueError as exc:
         _fail(str(exc))
     print(json.dumps(payload, indent=2))
@@ -136,6 +153,12 @@ def main() -> None:
     anti.add_argument("--steps", type=int, default=3)
     anti.add_argument("--rate", type=float, default=0.5)
     anti.add_argument("--shift", type=float, default=1.0)
+    anti.add_argument("--y", type=float, default=0.0, help="second coordinate for --nilpotent")
+    anti.add_argument(
+        "--nilpotent",
+        action="store_true",
+        help="include the nilpotent N(x, y) = (0, x), N^2 = 0 orbit",
+    )
 
     args = parser.parse_args()
     if args.cmd == "darkenergy":
@@ -168,7 +191,7 @@ def main() -> None:
     elif args.cmd == "duality":
         _duality_command(args.pole, args.pair_name)
     elif args.cmd == "antithesis":
-        _antithesis_command(args.x, args.steps, args.rate, args.shift)
+        _antithesis_command(args.x, args.steps, args.rate, args.shift, args.y, args.nilpotent)
 
 
 if __name__ == "__main__":

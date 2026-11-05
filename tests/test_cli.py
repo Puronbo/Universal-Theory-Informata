@@ -95,6 +95,26 @@ def test_antithesis_honours_options(monkeypatch, capsys):
     assert payload["lyapunov_exponent"] == pytest.approx(math.log(0.25))
 
 
+def test_antithesis_omits_nilpotent_by_default(monkeypatch, capsys):
+    payload = json.loads(_run(monkeypatch, capsys, ["antithesis"]).out)
+    assert "nilpotent" not in payload
+
+
+def test_antithesis_reports_nilpotent_collapse(monkeypatch, capsys):
+    payload = json.loads(
+        _run(
+            monkeypatch,
+            capsys,
+            ["antithesis", "--x", "3", "--steps", "3", "--nilpotent", "--y", "4"],
+        ).out
+    )
+    assert payload["nilpotent"] == {
+        "seed": [3.0, 4.0],
+        "orbit": [[3.0, 4.0], [0.0, 3.0], [0.0, 0.0], [0.0, 0.0]],
+        "n_squared": [0.0, 0.0],
+    }
+
+
 @pytest.mark.parametrize(
     ("argv", "message"),
     [
@@ -104,6 +124,7 @@ def test_antithesis_honours_options(monkeypatch, capsys):
         (["--rate", "1"], "rate must be finite"),
         (["--rate", "0"], "rate must be finite"),
         (["--shift", "0"], "shift must be nonzero"),
+        (["--nilpotent", "--y", "nan"], "x and y must be finite"),
     ],
 )
 def test_antithesis_rejects_invalid_input(monkeypatch, capsys, argv, message):

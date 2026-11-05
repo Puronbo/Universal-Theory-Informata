@@ -15,5 +15,6 @@ lake build
 - `Model/DarkEnergy.lean` — CPL w, rho ratio, delta; theorem.
 - `Model/Playhead.lean` — index function.
 - `Model/Erosion.lean` — erosion placeholder.
+- `Model/Antithesis.lean` — involution vs contraction and nilpotent (`N² = 0`).
 - `Model.lean` — library root imports.
 - `Main.lean` — executable entry point.

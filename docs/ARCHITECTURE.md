@@ -157,9 +157,11 @@ near-double-root case.
 ## Formalization boundary
 
 The Lean tree (`lean/Model`) mirrors selected algebraic facts: ternary net-zero,
-the cusp bifurcation value, CPL relations, playhead indexing, and rolling-fold
-identities. It contains no `sorry`, but it does **not** formalize the physical
-interpretation. `lake build` is part of CI.
+the cusp bifurcation value, CPL relations, playhead indexing, rolling-fold
+identities, and the antithesis contrast (`involution_involutive`,
+`contractOrbit_eq`, `translation_no_fixed`, `nilpotent_sq_zero`,
+`entropy_gain_pos`). It contains no `sorry`, but it does **not** formalize the
+physical interpretation. `lake build` is part of CI.
 
 ## Known limitations
 

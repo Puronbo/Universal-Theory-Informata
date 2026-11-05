@@ -204,6 +204,8 @@ rhetorical.
 | Möbius constructors | `Mobius.translation()`, `Mobius.contraction()` |
 | Möbius classification | `Mobius.classify()` |
 | Root/power duality | `model.roots.nth_root` |
+| CLI | `python -m model duality`, `python -m model antithesis [--nilpotent]` |
+| Lean mirror | `lean/Model/Antithesis.lean`: `involution_involutive`, `nilpotent_sq_zero` |
 
 Example:
 
@@ -258,6 +260,7 @@ Open Dissipative Exterior. Remove the void and you get binary erasure.
 
 ```bash
 python -m pytest tests/test_antithesis.py tests/test_duality.py -q
+cd lean && lake build
 ```
 
 The tests enforce:
@@ -272,6 +275,11 @@ The tests enforce:
 - Möbius classification of periodic, hyperbolic, parabolic, elliptic, and
   loxodromic maps,
 - input validation for rates, scales, shifts, and step counts.
+
+The Lean mirror (`lean/Model/Antithesis.lean`) proves the corresponding
+algebraic facts without `sorry`: `involution_involutive` (`f² = id`),
+`contractOrbit_eq` (`gⁿx = rⁿx`), `translation_no_fixed`,
+`nilpotent_sq_zero` (`N² = 0`), and `entropy_gain_pos`.
 
 ## 11. Open questions
 

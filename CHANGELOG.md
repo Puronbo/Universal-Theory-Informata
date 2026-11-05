@@ -26,7 +26,11 @@ All notable changes to this project are documented here. The format follows
   maps.
 - CLI: `python -m model duality` (list, `--pair`, or `--pole`) and
   `python -m model antithesis` (three regimes plus entropy, information loss,
-  and Lyapunov exponent).
+  and Lyapunov exponent; `--nilpotent` adds the `N² = 0` collapse).
+- `lean/Model/Antithesis.lean`: formal mirror of the contrast —
+  `involution_involutive` (`f² = id`), `contractOrbit_eq` (`gⁿx = rⁿx`),
+  `translation_no_fixed`, `nilpotent_sq_zero` (`N² = 0`), and
+  `entropy_gain_pos`.
 - `ANTITHESIS.md`: axis table, the Open Dissipative Exterior, the
   group-versus-semigroup contrast, the periodic/hyperbolic/parabolic
   trichotomy, the nilpotent limit, and information loss.
