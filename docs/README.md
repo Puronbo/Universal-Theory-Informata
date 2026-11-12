@@ -3,7 +3,8 @@
 | File | Purpose |
 |---|---|
 | `ARCHITECTURE.md` | Module map, data flow, epistemic status, testing strategy |
-| `../ANTITHESIS.md` | Dual pairs and the Open Dissipative Exterior counter-model |
+| `../ANTITHESIS.md` | Dual pairs, the pole-string lattice, and the Open Dissipative Exterior counter-model |
+| `../IMAGINARY_UNIVERSE.md` | Audit of the attached analysis and the integrated phase/Liouvillian tooling |
 | `the_book_of_puno.md` | Long-form conceptual text |
 | `api/` | Generated API reference (not committed) |
 

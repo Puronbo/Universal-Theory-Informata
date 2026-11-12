@@ -163,3 +163,31 @@ def test_antithesis_reports_log_conjugacy(monkeypatch, capsys):
     assert conjugated["log_initial"] == pytest.approx(math.log(2.0))
     assert conjugated["log_orbit"] == pytest.approx(conjugated["translation"])
     assert conjugated["log_orbit"][1] - conjugated["log_orbit"][0] == pytest.approx(math.log(0.5))
+
+
+def test_lattice_summary(monkeypatch, capsys):
+    payload = json.loads(_run(monkeypatch, capsys, ["lattice"]).out)
+    assert payload["width"] == 8
+    assert payload["size"] == 256
+    assert payload["orbit_count"] == 128
+    assert payload["bottom"] == "00000000"
+    assert payload["top"] == "11111111"
+    assert len(payload["atoms"]) == 8
+
+
+def test_lattice_reports_one_string(monkeypatch, capsys):
+    payload = json.loads(_run(monkeypatch, capsys, ["lattice", "--bits", "10101010"]).out)
+    assert payload["rank"] == 4
+    assert payload["poles"][0] == "IR"
+    assert payload["poles"][1] == "exterior"
+    assert payload["dual"]["bits"] == "01010101"
+    assert payload["canonical"] == "01010101"
+    assert payload["join_dual"] == "11111111"
+    assert payload["meet_dual"] == "00000000"
+
+
+def test_lattice_rejects_bad_bits(monkeypatch, capsys):
+    with pytest.raises(SystemExit) as excinfo:
+        _run(monkeypatch, capsys, ["lattice", "--bits", "0101"])
+    assert excinfo.value.code == 2
+    assert "expected 8 bits" in capsys.readouterr().err

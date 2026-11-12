@@ -59,8 +59,11 @@ Matplotlib in `plotting` (lazy, inside functions).
 | `roots.py` | Integer roots, negative roots, root/power duality | **grounded** (pure algebra) |
 | `mobius.py` | Möbius matrices, composition, powers, fixed points | **grounded** (standard geometry) |
 | `duality.py` | Binary poles and the involution that swaps them | **taxonomy** (no physical claim) |
+| `lattice.py` | Boolean lattice of pole strings over the dual pairs | **taxonomy** (no physical claim) |
 | `fold.py` | Inversion quotient `x + 1/x`, preimages, representative | **toy** (conceptual quotient) |
 | `antithesis.py` | Contraction, translation, nilpotent, entropy, log conjugacy | **toy** (conceptual counter-model) |
+| `phase.py` | Complex phase, observable intensity, wavelength/wavenumber | **grounded** (standard complex arithmetic) |
+| `superoperator.py` | Liouvillian commutator and commutant zero modes | **grounded** (standard linear algebra) |
 | `equator.py` | Equator of scale | **candidate** |
 | `clock.py` | Planck refresh, CP tilt, entropy brake | **phenomenological** |
 | `consciousness.py` | Attention / closure analogues | **phenomenological** |
@@ -82,8 +85,8 @@ is unique and resolves. Add new public functions to both the import block and
 
 Stable entry points:
 
-- CLI: `python -m model {darkenergy,recurse,timeline,validate}`
-- Library: `from model import iterate, cusp_roots, w_cpl, portal_journey, ...`
+- CLI: `python -m model {darkenergy,recurse,timeline,validate,duality,fold,antithesis,lattice}`
+- Library: `from model import iterate, cusp_roots, w_cpl, portal_journey, wave_sample, liouvillian, ...`
 - Audit: `python validate_claims.py [--generate-crossref]`
 
 ## UV/IR inversion as an order-2 automorphism
@@ -138,6 +141,20 @@ scales, with `fold_preimages` and `representative`.
 `Mobius.classify()` reports the corresponding Möbius dynamical type. The
 conceptual rationale, axis table, and limits are in `ANTITHESIS.md`.
 
+`model.lattice` turns the eight dual pairs into a Boolean coordinate: a pole
+string chooses one pole from every pair, so there are `2**8 = 256` strings.
+Join and meet are bitwise OR and AND; complement is the duality involution; the
+fold identifies each string with its complement, giving 128 orbits. This is a
+taxonomy of the registered pairs, not a physical claim.
+
+`model.phase` makes the hidden/visible contrast explicit with standard complex
+arithmetic: a complex amplitude has an intensity `|psi|**2`, a phase angle, and
+real/imaginary coordinates. `model.superoperator` implements the finite-
+dimensional Liouvillian `L_H(A) = [H, A]`; its zero modes are the commutant of
+`H`, and its eigenvalues are the transition frequencies. Both are tooling, not
+physical claims. The source audit and the list of rejected metaphors are in
+`IMAGINARY_UNIVERSE.md`.
+
 ## Dependencies
 
 - Runtime: Python ≥ 3.10 standard library only.
@@ -169,8 +186,9 @@ the cusp bifurcation value, CPL relations, playhead indexing, rolling-fold
 identities, and the antithesis contrast (`involution_involutive`,
 `contractOrbit_eq`, `translation_no_fixed`, `nilpotent_sq_zero`,
 `entropy_gain_pos`, `fold_invariant`, `fold_ge_two`, `fold_not_injective`,
-`log_contraction`, `exp_log_coordinate`). It contains no `sorry`, but it does
-**not** formalize the physical interpretation. `lake build` is part of CI.
+`log_contraction`, `exp_log_coordinate`, plus the Boolean-lattice laws in
+`Model.Lattice`). It contains no `sorry`, but it does **not** formalize the
+physical interpretation. `lake build` is part of CI.
 
 ## Known limitations
 
@@ -181,6 +199,10 @@ identities, and the antithesis contrast (`involution_involutive`,
 - `recursion_families.py` is explicitly toy mathematics.
 - `antithesis.py`/`ANTITHESIS.md` are a conceptual counter-model, not a physical
   alternative or a refutation.
+- `phase.py` and `superoperator.py` are standard complex/linear algebra used as
+  tooling; they do not turn the source document into a physical theory.
+- `IMAGINARY_UNIVERSE.md` records which source claims are rejected or left as
+  metaphor; it is not an axiom set.
 - The meta-audit catches listed phrases, not every possible overclaim; prose
   review is still required.
 

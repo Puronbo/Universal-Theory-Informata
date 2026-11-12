@@ -35,6 +35,21 @@ All notable changes to this project are documented here. The format follows
   the contraction becomes translation by `log(rate)`.
 - CLI: `python -m model fold --x 2`, and `python -m model antithesis --log`
   for the conjugacy.
+- `model/lattice.py`: the Boolean lattice of pole strings over the eight dual
+  pairs (256 strings, 128 complement orbits), with join/meet, order,
+  complement, atoms, coatoms, and canonical representatives.
+- CLI: `python -m model lattice` (summary) and `--bits 10101010` (one string,
+  its dual, canonical representative, join, and meet).
+- `lean/Model/Lattice.lean`: Boolean-lattice laws for pole strings, including
+  commutativity, associativity, absorption, distributivity, complement, and
+  order.
+- `model/phase.py`: complex phase, observable intensity, wavelength/wavenumber,
+  quarter-turn rotation, and the real/imaginary split.
+- `model/superoperator.py`: finite-dimensional commutator/Liouvillian,
+  Hilbert–Schmidt self-adjointness, transition frequencies, and commutant zero
+  modes.
+- `IMAGINARY_UNIVERSE.md`: claim-by-claim audit of the attached analysis, with
+  the rigorous parts integrated and the metaphors quarantined.
 - `lean/Model/Antithesis.lean`: formal mirror of the contrast —
   `involution_involutive` (`f² = id`), `contractOrbit_eq` (`gⁿx = rⁿx`),
   `translation_no_fixed`, `nilpotent_sq_zero` (`N² = 0`), `entropy_gain_pos`,

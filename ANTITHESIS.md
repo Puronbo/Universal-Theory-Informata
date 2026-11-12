@@ -200,6 +200,29 @@ not by a Möbius map, so the periodic/hyperbolic/parabolic trichotomy of §4.1
 still stands. But on the multiplicative positive cone, scaling and translation
 are one dynamics in different coordinates.
 
+### 4.6 The lattice of pole strings
+
+The eight dual pairs are independent binary coordinates. A **pole string**
+\(s\in\{0,1\}^8\) chooses one pole from every pair, so there are
+\(2^8=256\) strings. Define
+
+\[
+(s\vee t)_i=s_i\vee t_i,\qquad
+(s\wedge t)_i=s_i\wedge t_i,\qquad
+(\neg s)_i=1-s_i.
+\]
+
+Then the strings form a Boolean lattice with bottom `00000000`, top
+`11111111`, eight atoms (rank one), and eight coatoms (rank seven). The
+duality involution is `complement`; the fold of §4.4 is its quotient, so the
+256 strings fall into \(2^7=128\) complement orbits. `canonical(s)` chooses
+the smaller of \(s\) and \(\neg s\) as the orbit representative.
+
+`model.lattice` implements `PoleString`, `from_bits`, `from_poles`, `join`,
+`meet`, `complement`, `leq`, `canonical`, `same_orbit`, `atoms`, `coatoms`,
+`all_strings`, and `orbit_count`. This is a taxonomy of the registered dual
+pairs, not a claim that nature is literally an eight-bit register.
+
 ## 5. The antithesis of the antithesis
 
 Apply the anti-framework's operation twice:
@@ -268,12 +291,14 @@ rhetorical.
 | Fold comparison | `model.fold.compare_fold` |
 | Log coordinate | `model.antithesis.log_coordinate`, `exp_coordinate` |
 | Log conjugacy | `model.antithesis.log_orbit`, `compare_log_conjugacy` |
+| Pole-string lattice | `model.lattice`: `PoleString`, `join`, `meet`, `complement` |
+| Folded lattice orbits | `model.lattice.canonical`, `same_orbit`, `orbit_count` |
 | Möbius matrix form | `model.mobius`: `Mobius.inversion()` |
 | Möbius constructors | `Mobius.translation()`, `Mobius.contraction()` |
 | Möbius classification | `Mobius.classify()` |
 | Root/power duality | `model.roots.nth_root` |
-| CLI | `python -m model duality`, `python -m model fold`, `python -m model antithesis [--nilpotent] [--log]` |
-| Lean mirror | `lean/Model/Antithesis.lean`: `involution_involutive`, `fold_invariant`, `fold_not_injective`, `nilpotent_sq_zero`, `log_contraction` |
+| CLI | `python -m model duality`, `python -m model fold`, `python -m model antithesis [--nilpotent] [--log]`, `python -m model lattice [--bits 10101010]` |
+| Lean mirror | `lean/Model/Antithesis.lean`: `involution_involutive`, `fold_invariant`, `fold_not_injective`, `nilpotent_sq_zero`, `log_contraction`; `lean/Model/Lattice.lean`: Boolean-lattice laws |
 
 Example:
 
@@ -329,7 +354,7 @@ Open Dissipative Exterior. Remove the void and you get binary erasure.
 ## 10. Verification
 
 ```bash
-python -m pytest tests/test_antithesis.py tests/test_duality.py tests/test_fold.py -q
+python -m pytest tests/test_antithesis.py tests/test_duality.py tests/test_fold.py tests/test_lattice.py -q
 cd lean && lake build
 ```
 
@@ -344,6 +369,7 @@ The tests enforce:
 - period and cyclicity detection,
 - fold invariance, two-to-one preimages, and fundamental representatives,
 - log-coordinate conjugacy between contraction and translation,
+- Boolean-lattice laws, order, atoms, coatoms, and 128 complement orbits,
 - Möbius classification of periodic, hyperbolic, parabolic, elliptic, and
   loxodromic maps,
 - input validation for rates, scales, shifts, and step counts.
@@ -353,7 +379,9 @@ algebraic facts without `sorry`: `involution_involutive` (`f² = id`),
 `contractOrbit_eq` (`gⁿx = rⁿx`), `translation_no_fixed`,
 `nilpotent_sq_zero` (`N² = 0`), `entropy_gain_pos`, `fold_invariant`,
 `fold_ge_two`, `fold_not_injective`, `log_contraction`, and
-`exp_log_coordinate`.
+`exp_log_coordinate`. `lean/Model/Lattice.lean` proves the Boolean-lattice
+laws (commutativity, associativity, idempotence, absorption, distributivity,
+complement, and order).
 
 ## 11. Open questions
 

@@ -16,5 +16,6 @@ lake build
 - `Model/Playhead.lean` — index function.
 - `Model/Erosion.lean` — erosion placeholder.
 - `Model/Antithesis.lean` — involution vs contraction and nilpotent (`N² = 0`).
+- `Model/Lattice.lean` — Boolean lattice laws for pole strings.
 - `Model.lean` — library root imports.
 - `Main.lean` — executable entry point.

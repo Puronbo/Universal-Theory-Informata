@@ -98,6 +98,22 @@ The timestamp (2000-10-26 10:26:20) and vessel identity are **phenomenological/a
 | ER=EPR | Wormhole = entanglement | https://en.wikipedia.org/wiki/ER%3DEPR |
 | Biological equator (\(10^{-4.5}\) m) | Planck-to-cosmic midpoint | https://en.wikipedia.org/wiki/Planck_units |
 
+## 10. Imaginary-Universe Audit
+
+| Model construct | Governing link in nature | Reference |
+|---|---|---|
+| Complex phase / hidden register | Wavefunction phase; only intensity is observable | https://en.wikipedia.org/wiki/Born_rule |
+| Real width / imaginary height | Real oscillation and phase quadrature | https://en.wikipedia.org/wiki/Phase_(waves) |
+| `1 / 0` as infinity | Riemann sphere compactification; path-dependent limits | https://en.wikipedia.org/wiki/Riemann_sphere |
+| Operator-for-operators | Liouvillian superoperator `[H, .]` | https://en.wikipedia.org/wiki/Superoperator |
+| Zero modes = commutant | Conserved observables commute with `H` | https://en.wikipedia.org/wiki/Commutant |
+| Zeta zeros as spectrum | Hilbert–Pólya conjecture (research programme) | https://en.wikipedia.org/wiki/Hilbert%E2%80%93P%C3%B3lya_conjecture |
+| Broken mirror | CPT exact; CP violated in the weak sector | https://en.wikipedia.org/wiki/CPT_symmetry |
+| Matter residual | Baryon asymmetry | https://en.wikipedia.org/wiki/Baryon_asymmetry |
+
+The detailed claim ledger and the list of rejected metaphors are in
+`IMAGINARY_UNIVERSE.md`.
+
 ---
 
 *Generated from AXIOMS.md, GROUNDING.md, FOLDING_CALIBRATION.md, and engine.py.*

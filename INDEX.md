@@ -22,11 +22,12 @@
 - `GLOSSARY.md` — formal definitions
 - `CROSSREF.md` — axiom cross-reference index
 - `README.md` — project overview
+- `IMAGINARY_UNIVERSE.md` — audit of the attached imaginary-universe analysis
 
 ## Code
-- `model/` — 24 Python modules (engine)
-- `tests/` — 24 test files (103 tests)
-- `lean/` — Lean 4 math core (14 modules, mathlib)
+- `model/` — 35 Python modules (engine)
+- `tests/` — 39 test files (451 tests)
+- `lean/` — Lean 4 math core (16 modules, mathlib)
 - `cli.py` — CLI entry point
 - `simulate.py` — end-to-end demo
 - `game_engine.py` — game-engine-style simulation
@@ -36,7 +37,7 @@
 - `docs/` — API reference (pydoc)
 
 ## Verification
-- `python -m pytest tests/ -q` → 103/103 pass
-- `cd lean && lake build` → clean (18,110 jobs)
+- `python -m pytest tests/ -q` → 451/451 pass
+- `cd lean && lake build` → clean (18,114 jobs)
 - `python validate_claims.py` → clean
 - `python run_all.py` → PASS

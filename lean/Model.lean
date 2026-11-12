@@ -14,3 +14,4 @@ import Model.UniversalImpedance
 import Model.RollingFold
 import Model.MathlibTest
 import Model.Antithesis
+import Model.Lattice

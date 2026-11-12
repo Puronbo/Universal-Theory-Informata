@@ -12,6 +12,11 @@ from typing import NoReturn
 
 from model import (
     DUAL_PAIRS,
+    WIDTH,
+    all_strings,
+    atoms,
+    bottom,
+    canonical,
     check_predictions,
     compare_fold,
     compare_regimes,
@@ -20,18 +25,23 @@ from model import (
     dual_pair,
     entropy,
     fold_preimages,
+    from_bits,
     information_loss,
     iterate,
+    join,
     log_coordinate,
     log_orbit,
     logistic,
     lyapunov_exponent,
+    meet,
     milestone_date,
     milestone_reached,
     nilpotent_apply,
     nilpotent_orbit,
+    orbit_count,
     orbit_period,
     rho_lambda_ratio,
+    top,
     translation_orbit,
 )
 
@@ -146,6 +156,46 @@ def _fold_command(x: float) -> None:
     )
 
 
+def _lattice_command(bits: str | None) -> None:
+    """Report the pole-string lattice, or one string and its dual."""
+    if bits is None:
+        print(
+            json.dumps(
+                {
+                    "width": WIDTH,
+                    "size": len(all_strings()),
+                    "orbit_count": orbit_count(),
+                    "bottom": bottom().to_bits(),
+                    "top": top().to_bits(),
+                    "atoms": [atom.to_bits() for atom in atoms()],
+                },
+                indent=2,
+            )
+        )
+        return
+    try:
+        value = from_bits(bits)
+    except ValueError as exc:
+        _fail(str(exc))
+    print(
+        json.dumps(
+            {
+                "bits": value.to_bits(),
+                "poles": list(value.poles),
+                "rank": value.rank,
+                "dual": {
+                    "bits": value.dual.to_bits(),
+                    "poles": list(value.dual.poles),
+                },
+                "canonical": canonical(value).to_bits(),
+                "join_dual": join(value, value.dual).to_bits(),
+                "meet_dual": meet(value, value.dual).to_bits(),
+            },
+            indent=2,
+        )
+    )
+
+
 def _run_meta_audit() -> None:
     """Run validate_claims.py from the repository checkout."""
     script = Path(__file__).resolve().with_name("validate_claims.py")
@@ -202,6 +252,9 @@ def main() -> None:
     fold_cmd = sub.add_parser("fold", help="Quotient x + 1/x by the UV/IR involution")
     fold_cmd.add_argument("--x", type=float, default=2.0)
 
+    lat = sub.add_parser("lattice", help="Boolean lattice of pole strings")
+    lat.add_argument("--bits", help="8-bit pole string, e.g. 10101010")
+
     args = parser.parse_args()
     if args.cmd == "darkenergy":
         print(
@@ -238,6 +291,8 @@ def main() -> None:
         )
     elif args.cmd == "fold":
         _fold_command(args.x)
+    elif args.cmd == "lattice":
+        _lattice_command(args.bits)
 
 
 if __name__ == "__main__":

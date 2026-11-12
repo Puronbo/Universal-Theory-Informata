@@ -24,6 +24,9 @@ Modules:
 - mobius: Möbius transformations, composition, fixed points.
 - duality: Binary poles and the involution that swaps them.
 - fold: Quotient fold x+1/x and fundamental-domain representative.
+- lattice: Boolean lattice of pole strings over the dual pairs.
+- phase: Complex phase, observable intensity, and wavelength/wavenumber.
+- superoperator: Liouvillian commutator and commutant zero modes.
 - equator: Equator of Scale (A9.1-A9.4).
 - clock: Clock, broken mirror, entropy brake (A10).
 - phenomena: Phenomenon → canvas-operation map.
@@ -135,6 +138,24 @@ from model.impedance import (
     schwinger_mass_gap,
     thirring_gn_mass_gap,
 )
+from model.lattice import (
+    WIDTH,
+    PoleString,
+    all_strings,
+    atoms,
+    bottom,
+    canonical,
+    coatoms,
+    complement,
+    from_bits,
+    from_poles,
+    join,
+    leq,
+    meet,
+    orbit_count,
+    same_orbit,
+    top,
+)
 from model.millennium import (
     navier_stokes_phase_bleed,
     poincare_closed,
@@ -155,6 +176,19 @@ from model.neural_phase import (
     coherence,
     noise_filtering,
     simulate_neural_phase_locking,
+)
+from model.phase import (
+    WaveSample,
+    conjugate,
+    imaginary_height,
+    intensity,
+    phase_angle,
+    phase_factor,
+    real_width,
+    rotate_quarter_turn,
+    wave_sample,
+    wavelength_from_wavenumber,
+    wavenumber_from_wavelength,
 )
 from model.phenomena import (
     PHENOMENA,
@@ -221,6 +255,25 @@ from model.self_looping import (
 )
 from model.stroboscopic import (
     strobe,
+)
+from model.superoperator import (
+    commutant_dimension,
+    commutator,
+    commutes,
+    dagger,
+    diagonal,
+    hilbert_schmidt,
+    identity,
+    is_self_adjoint,
+    is_zero_matrix,
+    liouvillian,
+    liouvillian_eigenvalues,
+    matadd,
+    matmul,
+    matscale,
+    matsub,
+    zero_matrix,
+    zero_mode_pairs,
 )
 from model.ternary import (
     ACTIVE,
@@ -389,6 +442,53 @@ __all__ = [
     "fold",
     "fold_preimages",
     "representative",
+    # Lattice
+    "WIDTH",
+    "PoleString",
+    "all_strings",
+    "atoms",
+    "bottom",
+    "canonical",
+    "coatoms",
+    "complement",
+    "from_bits",
+    "from_poles",
+    "join",
+    "leq",
+    "meet",
+    "orbit_count",
+    "same_orbit",
+    "top",
+    # Phase
+    "WaveSample",
+    "conjugate",
+    "imaginary_height",
+    "intensity",
+    "phase_angle",
+    "phase_factor",
+    "real_width",
+    "rotate_quarter_turn",
+    "wave_sample",
+    "wavelength_from_wavenumber",
+    "wavenumber_from_wavelength",
+    # Superoperator
+    "commutant_dimension",
+    "commutes",
+    "commutator",
+    "dagger",
+    "diagonal",
+    "hilbert_schmidt",
+    "identity",
+    "is_self_adjoint",
+    "is_zero_matrix",
+    "liouvillian",
+    "liouvillian_eigenvalues",
+    "matadd",
+    "matmul",
+    "matscale",
+    "matsub",
+    "zero_matrix",
+    "zero_mode_pairs",
     # Duality
     "DUAL_PAIRS",
     "DualPair",
