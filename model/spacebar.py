@@ -59,6 +59,7 @@ def _nonnegative(value: float, name: str) -> float:
 def compton_period(mass: float) -> float:
     """Return ``2*pi*hbar / (m*c**2)``, the rest-frame clock period.
 
+    A larger mass gives a shorter period, hence a faster rest-frame clock.
     A massless particle has no rest frame and therefore no Compton period.
 
     Raises:

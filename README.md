@@ -49,7 +49,7 @@ Poincaré, solved by Perelman).
 | Path | Purpose |
 |---|---|
 | `model/` | Pure-Python engine (38 feature modules, typed, stdlib-only runtime) |
-| `tests/` | 661 tests, 97.58% branch-aware coverage |
+| `tests/` | 662 tests, 97.58% branch-aware coverage |
 | `lean/` | Lean 4 machine-checked math core (mathlib4, no `sorry`) |
 | `docs/` | [Architecture](docs/ARCHITECTURE.md), generated API reference, long-form text |
 | `examples/` | Demo scripts (smoke-tested in CI) |
@@ -60,7 +60,7 @@ Poincaré, solved by Perelman).
 ```bash
 python -m pip install -e ".[dev,docs]"
 
-python -m pytest tests -q --cov-fail-under=90   # 661 pass, 97.58% coverage
+python -m pytest tests -q --cov-fail-under=90   # 662 pass, 97.58% coverage
 ruff check .                                    # lint: clean
 black --check model cli.py tests examples       # format: clean
 mypy model cli.py                               # strict types: clean
@@ -86,7 +86,7 @@ end-to-end demo.
 
 ## Verification
 
-- **Python:** 661 tests pass; 97.58% branch-aware coverage (CI gate: 90%).
+- **Python:** 662 tests pass; 97.58% branch-aware coverage (CI gate: 90%).
 - **Static checks:** `ruff check`, `black --check`, and strict `mypy` are clean.
 - **Security:** `bandit` reports no medium/high findings (simulation-only
   `random` use is documented and skipped in `pyproject.toml`).

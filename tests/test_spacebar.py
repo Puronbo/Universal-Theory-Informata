@@ -76,6 +76,13 @@ def test_electron_compton_period_and_frequency():
     )
 
 
+def test_heavier_particles_have_shorter_compton_periods():
+    electron = compton_period(ELECTRON_MASS)
+    proton = compton_period(PROTON_MASS)
+    assert proton < electron
+    assert electron / proton == pytest.approx(PROTON_MASS / ELECTRON_MASS, rel=1e-9)
+
+
 def test_one_compton_period_is_one_full_press():
     period = compton_period(ELECTRON_MASS)
     assert spacebar_from_proper_time(period, ELECTRON_MASS) == pytest.approx(1.0 + 0.0j)

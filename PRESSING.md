@@ -108,15 +108,25 @@ which matches the essay’s `10.22999999543 MHz` to the quoted digits.
 
 ### What is corrected
 
-- **“Mass is the weight of the key; gravity is the same weight read on a
-  scale.”** This is metaphor. The precise statements are: the Compton frequency
-  sets the rest clock, and clock rates shift with gravitational potential. The
-  equivalence principle is the identification of inertial and gravitational
-  mass, tested to high precision (for example by MICROSCOPE and lunar laser
-  ranging).
-- **“A lighter key ticks faster.”** The sign is right — a clock higher in a
-  gravitational well runs faster — but “lighter key” is not a physical
-  explanation. The operational statement is the measured frequency shift.
+- **“Heavier particles tick slower.”** The formula says the opposite. Since
+  \(T_C=h/(mc^2)\), a larger mass gives a **shorter** period and a **higher**
+  Compton frequency. The electron period is \(8.09\times10^{-21}\ {\rm s}\); the
+  proton period is \(4.41\times10^{-24}\ {\rm s}\), shorter by
+  \(m_p/m_e\approx1836\). The correct statement is: heavier particles have a
+  faster rest-frame clock.
+- **“Mass is the resistance of the key; gravity is the same weight read on a
+  scale.”** This is metaphor, and at the level of the Compton clock it points
+  the wrong way: a heavier particle completes its rest-frame cycle *more
+  quickly*. Inertia is resistance to acceleration; it is not the same as a slow
+  clock. The precise statements are: the Compton frequency sets the rest clock,
+  and clock rates shift with gravitational potential. The equivalence principle
+  is the identification of inertial and gravitational mass, tested to high
+  precision (for example by MICROSCOPE and lunar laser ranging).
+- **“A lighter key ticks faster.”** The GPS sign is right — a clock higher in a
+  gravitational well runs faster — but “lighter” conflates weight with rest
+  mass. The effect comes from the gravitational potential, not from a change in
+  the clock’s rest mass. A clock of smaller rest mass would have a *longer*
+  Compton period.
 - **“Gravity is the phenomenon that spacebars weigh different amounts at
   different heights.”** Not operational. The operational statement is
   `Δf/f = ΔΦ/c²`, and the GPS numbers are its engineering confirmation.
@@ -124,8 +134,9 @@ which matches the essay’s `10.22999999543 MHz` to the quoted digits.
 ### What is quarantined
 
 “Mass is the resistance of the key” and “the key presses harder the deeper it
-sits in a well” are images. The checkable content is the Compton period, the
-equivalence principle, and the clock-drift formula.
+sits in a well” are images, and the first is directionally wrong for the
+Compton period. The checkable content is the Compton period, the equivalence
+principle, and the clock-drift formula.
 
 ## 3. Thesis III — The spacebar has a second spring
 

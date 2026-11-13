@@ -45,6 +45,9 @@ n=\frac{\tau}{T_C},\qquad
 T_C=\frac{2\pi\hbar}{mc^2}.
 \]
 
+A larger mass gives a shorter period, hence a faster rest-frame clock. The
+proton's period is shorter than the electron's by \(m_p/m_e\approx1836\).
+
 A real \(\theta\) gives \(|U|=1\): the press is unitary, and the clock ticks.
 An imaginary \(\theta\) gives a real exponential: after the standard Wick
 rotation \(\tau=-i\hbar\beta\), the operator is \(e^{-\beta H}\), a thermal
