@@ -114,6 +114,21 @@ The timestamp (2000-10-26 10:26:20) and vessel identity are **phenomenological/a
 The detailed claim ledger and the list of rejected metaphors are in
 `IMAGINARY_UNIVERSE.md`.
 
+## 11. Becoming-One Audit
+
+| Model construct | Governing link in nature | Reference |
+|---|---|---|
+| Commutator residue | Canonical commutation relation `[a, a†] = 1` | https://en.wikipedia.org/wiki/Canonical_commutation_relation |
+| Integer oscillator ladder | Stone–von Neumann representation and the number operator | https://en.wikipedia.org/wiki/Stone%E2%80%93von_Neumann_theorem |
+| Trace obstruction | Trace of any finite commutator is zero | https://en.wikipedia.org/wiki/Trace_(linear_algebra) |
+| Symmetric zero instability | Spontaneous symmetry breaking in a double well | https://en.wikipedia.org/wiki/Spontaneous_symmetry_breaking |
+| Nonzero vacuum value | Higgs mechanism (mechanism only; the value is measured) | https://en.wikipedia.org/wiki/Higgs_mechanism |
+| Resolvent poles | Spectrum as poles of `(zI - H)^-1` | https://en.wikipedia.org/wiki/Resolvent_formalism |
+| Eigenvalue response | Transition frequencies and resonance | https://en.wikipedia.org/wiki/Spectral_theory |
+| Zeta spectral candidate | Hilbert–Pólya programme (not a construction) | https://en.wikipedia.org/wiki/Hilbert%E2%80%93P%C3%B3lya_conjecture |
+
+The claim ledger and the corrections are in `BECOMING_ONE.md`.
+
 ---
 
 *Generated from AXIOMS.md, GROUNDING.md, FOLDING_CALIBRATION.md, and engine.py.*

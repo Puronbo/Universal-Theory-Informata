@@ -27,6 +27,7 @@ Modules:
 - lattice: Boolean lattice of pole strings over the dual pairs.
 - phase: Complex phase, observable intensity, and wavelength/wavenumber.
 - superoperator: Liouvillian commutator and commutant zero modes.
+- symmetry_breaking: Double-well potential and a nonzero vacuum value (toy model).
 - equator: Equator of Scale (A9.1-A9.4).
 - clock: Clock, broken mirror, entropy brake (A10).
 - phenomena: Phenomenon → canvas-operation map.
@@ -119,6 +120,8 @@ from model.fold import (
     FoldComparison,
     compare_fold,
     fold,
+    fold_from_log,
+    fold_power,
     fold_preimages,
     representative,
 )
@@ -153,7 +156,10 @@ from model.lattice import (
     leq,
     meet,
     orbit_count,
+    orbit_rank_counts,
+    rank_counts,
     same_orbit,
+    strings_of_rank,
     top,
 )
 from model.millennium import (
@@ -268,12 +274,25 @@ from model.superoperator import (
     is_zero_matrix,
     liouvillian,
     liouvillian_eigenvalues,
+    liouvillian_resolvent,
     matadd,
     matmul,
     matscale,
     matsub,
+    resolvent_diagonal,
+    resolvent_norm,
+    trace,
+    truncated_annihilation,
+    truncated_creation,
     zero_matrix,
     zero_mode_pairs,
+)
+from model.symmetry_breaking import (
+    double_well_curvature,
+    double_well_minima,
+    double_well_potential,
+    is_symmetric_zero_unstable,
+    vev_magnitude,
 )
 from model.ternary import (
     ACTIVE,
@@ -440,6 +459,8 @@ __all__ = [
     "FoldComparison",
     "compare_fold",
     "fold",
+    "fold_from_log",
+    "fold_power",
     "fold_preimages",
     "representative",
     # Lattice
@@ -457,7 +478,10 @@ __all__ = [
     "leq",
     "meet",
     "orbit_count",
+    "orbit_rank_counts",
+    "rank_counts",
     "same_orbit",
+    "strings_of_rank",
     "top",
     # Phase
     "WaveSample",
@@ -483,12 +507,24 @@ __all__ = [
     "is_zero_matrix",
     "liouvillian",
     "liouvillian_eigenvalues",
+    "liouvillian_resolvent",
     "matadd",
     "matmul",
     "matscale",
     "matsub",
+    "resolvent_diagonal",
+    "resolvent_norm",
+    "trace",
+    "truncated_annihilation",
+    "truncated_creation",
     "zero_matrix",
     "zero_mode_pairs",
+    # Symmetry breaking
+    "double_well_curvature",
+    "double_well_minima",
+    "double_well_potential",
+    "is_symmetric_zero_unstable",
+    "vev_magnitude",
     # Duality
     "DUAL_PAIRS",
     "DualPair",

@@ -63,7 +63,8 @@ Matplotlib in `plotting` (lazy, inside functions).
 | `fold.py` | Inversion quotient `x + 1/x`, preimages, representative | **toy** (conceptual quotient) |
 | `antithesis.py` | Contraction, translation, nilpotent, entropy, log conjugacy | **toy** (conceptual counter-model) |
 | `phase.py` | Complex phase, observable intensity, wavelength/wavenumber | **grounded** (standard complex arithmetic) |
-| `superoperator.py` | Liouvillian commutator and commutant zero modes | **grounded** (standard linear algebra) |
+| `superoperator.py` | Liouvillian, commutant zero modes, resolvent, truncated oscillator | **grounded** (standard linear algebra) |
+| `symmetry_breaking.py` | Double-well potential, minima, curvature, toy vev | **toy** (classical mechanism) |
 | `equator.py` | Equator of scale | **candidate** |
 | `clock.py` | Planck refresh, CP tilt, entropy brake | **phenomenological** |
 | `consciousness.py` | Attention / closure analogues | **phenomenological** |
@@ -138,22 +139,36 @@ translation in log coordinates.
 `model.fold` is the genuinely non-invertible opposite of the involution: the
 quotient `q(x) = x + 1/x`, invariant under `x -> 1/x`, two-to-one on positive
 scales, with `fold_preimages` and `representative`.
-`Mobius.classify()` reports the corresponding Möbius dynamical type. The
-conceptual rationale, axis table, and limits are in `ANTITHESIS.md`.
+`Mobius.classify()` reports the corresponding Möbius dynamical type. In the
+log coordinate the fold is `2*cosh(t)` (`fold_from_log`), and powers become
+Chebyshev composition (`fold_power`). The conceptual rationale, axis table,
+and limits are in `ANTITHESIS.md`.
 
 `model.lattice` turns the eight dual pairs into a Boolean coordinate: a pole
 string chooses one pole from every pair, so there are `2**8 = 256` strings.
 Join and meet are bitwise OR and AND; complement is the duality involution; the
-fold identifies each string with its complement, giving 128 orbits. This is a
-taxonomy of the registered pairs, not a physical claim.
+fold identifies each string with its complement, giving 128 orbits. The rank
+counts are binomial (`1, 8, 28, 56, 70, 56, 28, 8, 1`), the folded rank
+profile is `(1, 8, 28, 56, 35)`, and `strings_of_rank`/`rank_counts`/
+`orbit_rank_counts` expose them. This is a taxonomy of the registered pairs,
+not a physical claim.
 
 `model.phase` makes the hidden/visible contrast explicit with standard complex
 arithmetic: a complex amplitude has an intensity `|psi|**2`, a phase angle, and
 real/imaginary coordinates. `model.superoperator` implements the finite-
 dimensional Liouvillian `L_H(A) = [H, A]`; its zero modes are the commutant of
-`H`, and its eigenvalues are the transition frequencies. Both are tooling, not
-physical claims. The source audit and the list of rejected metaphors are in
+`H`, and its eigenvalues are the transition frequencies. The resolvent
+`(zI-H)**-1` has poles exactly at the eigenvalues, and
+`liouvillian_resolvent` applies the same statement to transition frequencies.
+The truncated oscillator shows the finite-dimensional near-miss:
+`[a, a^dagger] = I - N|N-1><N-1|`. Both are tooling, not physical claims. The
+source audit, the derived identities, and the list of rejected metaphors are in
 `IMAGINARY_UNIVERSE.md`.
+
+`model.symmetry_breaking` is a classical double-well toy model: the symmetric
+point is unstable and the minima give a nonzero order parameter. It does not
+derive the Higgs value. The passage audit, including the trace obstruction
+against finite-dimensional canonical commutation, is in `BECOMING_ONE.md`.
 
 ## Dependencies
 
@@ -201,8 +216,10 @@ physical interpretation. `lake build` is part of CI.
   alternative or a refutation.
 - `phase.py` and `superoperator.py` are standard complex/linear algebra used as
   tooling; they do not turn the source document into a physical theory.
-- `IMAGINARY_UNIVERSE.md` records which source claims are rejected or left as
-  metaphor; it is not an axiom set.
+- `symmetry_breaking.py` is a classical toy double well; it does not derive the
+  Higgs vev.
+- `IMAGINARY_UNIVERSE.md` and `BECOMING_ONE.md` record which source claims are
+  rejected or left as metaphor; they are not axiom sets.
 - The meta-audit catches listed phrases, not every possible overclaim; prose
   review is still required.
 

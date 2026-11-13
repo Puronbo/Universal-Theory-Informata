@@ -15,6 +15,7 @@ This is a taxonomy of the framework's dual pairs, not a physical claim.
 from __future__ import annotations
 
 import itertools
+import math
 from dataclasses import dataclass
 
 from model.duality import DUAL_PAIRS
@@ -156,3 +157,47 @@ def all_strings() -> tuple[PoleString, ...]:
 def orbit_count() -> int:
     """Return the number of complement orbits (the folded-cube size)."""
     return 1 << (WIDTH - 1)
+
+
+def strings_of_rank(rank: int) -> tuple[PoleString, ...]:
+    """Return every pole string with exactly ``rank`` right-pole choices.
+
+    The number of such strings is the binomial coefficient ``C(WIDTH, rank)``.
+
+    Raises:
+        ValueError: If ``rank`` is not an integer in ``0..WIDTH``.
+    """
+    if isinstance(rank, bool) or not isinstance(rank, int):
+        raise ValueError("rank must be an integer")
+    if rank < 0 or rank > WIDTH:
+        raise ValueError(f"rank must be in 0..{WIDTH}")
+    return tuple(
+        PoleString(bits)
+        for bits in itertools.product((False, True), repeat=WIDTH)
+        if sum(bits) == rank
+    )
+
+
+def rank_counts() -> tuple[int, ...]:
+    """Return the number of strings at each rank ``0..WIDTH``.
+
+    The result is row ``WIDTH`` of Pascal's triangle and sums to ``2**WIDTH``.
+    """
+    return tuple(math.comb(WIDTH, rank) for rank in range(WIDTH + 1))
+
+
+def orbit_rank_counts() -> tuple[int, ...]:
+    """Return the number of complement orbits by their smaller rank.
+
+    Each orbit ``{s, dual(s)}`` is labelled by
+    ``min(rank(s), WIDTH - rank(s))``. For ``2*k < WIDTH`` there are
+    ``C(WIDTH, k)`` such orbits; when ``2*k == WIDTH`` each orbit pairs two
+    rank-``k`` strings, so the count is ``C(WIDTH, k) // 2``.
+
+    The result sums to ``orbit_count()``.
+    """
+    counts: list[int] = []
+    for rank in range(WIDTH // 2 + 1):
+        count = math.comb(WIDTH, rank)
+        counts.append(count if 2 * rank < WIDTH else count // 2)
+    return tuple(counts)

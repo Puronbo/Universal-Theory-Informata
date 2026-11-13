@@ -45,6 +45,67 @@ def fold(x: float) -> float:
     return x + 1.0 / x
 
 
+def fold_from_log(t: float) -> float:
+    """Return ``fold(exp(t))``, which is ``2*cosh(t)``.
+
+    The log coordinate turns the quotient of the reciprocal involution into an
+    even function of ``t``: ``fold(exp(t)) == fold(exp(-t))``. This is the
+    fold-side analogue of the contraction/translation conjugacy.
+
+    Raises:
+        ValueError: If ``t`` is not finite or ``2*cosh(t)`` overflows.
+    """
+    if not math.isfinite(t):
+        raise ValueError("t must be finite")
+    try:
+        result = 2.0 * math.cosh(t)
+    except OverflowError:
+        raise ValueError("t is too large; 2*cosh(t) overflows") from None
+    if not math.isfinite(result):
+        raise ValueError("t is too large; 2*cosh(t) overflows")
+    return result
+
+
+def _chebyshev_pair(n: int, y: float) -> tuple[float, float]:
+    """Return ``(T_n(y), T_{n+1}(y))`` by fast doubling."""
+    if n == 0:
+        return 1.0, y
+    a, b = _chebyshev_pair(n // 2, y)
+    c = 2.0 * a * a - 1.0
+    d = 2.0 * a * b - y
+    if n % 2 == 0:
+        return c, d
+    return d, 2.0 * b * b - 1.0
+
+
+def fold_power(x: float, exponent: int) -> float:
+    """Return ``fold(x**exponent)`` through the Chebyshev recurrence.
+
+    With ``t = log x``, ``fold(x) = 2*cosh(t)``, so powers of the scale become
+
+        fold(x**n) = 2 * T_n(fold(x) / 2),
+
+    where ``T_n`` is the Chebyshev polynomial of the first kind. The recurrence
+    is used instead of forming ``x**n`` directly, and negative exponents reduce
+    to positive ones because the fold is inversion-invariant.
+
+    Raises:
+        ValueError: If ``x`` is not finite and positive, ``exponent`` is not an
+            integer, or the result overflows.
+    """
+    _validate_scale(x)
+    if isinstance(exponent, bool) or not isinstance(exponent, int):
+        raise ValueError("exponent must be an integer")
+    n = abs(exponent)
+    if n == 0:
+        return 2.0
+    value, _ = _chebyshev_pair(n, fold(x) / 2.0)
+    result = 2.0 * value
+    if not math.isfinite(result):
+        raise ValueError("exponent is too large; fold(x**exponent) overflows")
+    return result
+
+
 def representative(x: float) -> float:
     """Return ``max(x, 1/x)``, the representative in ``[1, infinity)``.
 

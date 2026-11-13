@@ -33,6 +33,7 @@ phenomenological map.
 - **Phenomena map** — light, sound, gravity, matter, erosion, consciousness and the stroboscopic now, each classified by its canvas operation (`model.phenomena`).
 - **Dual pairs / antithesis** — explicit poles (UV/IR, exterior/interior, compression/expansion, time, substrate, information), the Boolean lattice of pole strings (`model.lattice`), and an executable counter-model spanning periodic, hyperbolic, parabolic, and nilpotent regimes (`model.duality`, `model.antithesis`), plus the non-invertible quotient fold `x + 1/x` (`model.fold`) and the log-coordinate conjugacy between scaling and translation; a Lean mirror proves `f² = id`, `N² = 0`, and `q(1/x) = q(x)` (`lean/Model/Antithesis.lean`), plus the Boolean-lattice laws (`lean/Model/Lattice.lean`).
 - **Imaginary-universe audit** — complex phase and observable intensity (`model.phase`), the Liouvillian commutator and its commutant zero modes (`model.superoperator`), and a claim-by-claim separation of the attached analysis from its metaphors (`IMAGINARY_UNIVERSE.md`).
+- **Becoming-one audit** — the commutator residue, the unstable symmetric zero (`model.symmetry_breaking`), the resolvent pole picture, and the truncated-oscillator boundary defect, with the trace obstruction against finite-dimensional canonical commutation and the Higgs-vev overclaim corrected (`BECOMING_ONE.md`).
 
 ### Millennium integration
 
@@ -45,8 +46,8 @@ Poincaré, solved by Perelman).
 
 | Path | Purpose |
 |---|---|
-| `model/` | Pure-Python engine (35 feature modules, typed, stdlib-only runtime) |
-| `tests/` | 451 tests, 97% branch-aware coverage |
+| `model/` | Pure-Python engine (36 feature modules, typed, stdlib-only runtime) |
+| `tests/` | 568 tests, 97.30% branch-aware coverage |
 | `lean/` | Lean 4 machine-checked math core (mathlib4, no `sorry`) |
 | `docs/` | [Architecture](docs/ARCHITECTURE.md), generated API reference, long-form text |
 | `examples/` | Demo scripts (smoke-tested in CI) |
@@ -57,7 +58,7 @@ Poincaré, solved by Perelman).
 ```bash
 python -m pip install -e ".[dev,docs]"
 
-python -m pytest tests -q --cov-fail-under=90   # 451 pass, 97% coverage
+python -m pytest tests -q --cov-fail-under=90   # 568 pass, 97.30% coverage
 ruff check .                                    # lint: clean
 black --check model cli.py tests examples       # format: clean
 mypy model cli.py                               # strict types: clean
@@ -83,7 +84,7 @@ end-to-end demo.
 
 ## Verification
 
-- **Python:** 451 tests pass; 97% branch-aware coverage (CI gate: 90%).
+- **Python:** 568 tests pass; 97.30% branch-aware coverage (CI gate: 90%).
 - **Static checks:** `ruff check`, `black --check`, and strict `mypy` are clean.
 - **Security:** `bandit` reports no medium/high findings (simulation-only
   `random` use is documented and skipped in `pyproject.toml`).
@@ -98,6 +99,7 @@ end-to-end demo.
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — module map, data flow, epistemic status.
 - [`ANTITHESIS.md`](ANTITHESIS.md) — dual pairs, the quotient fold, the pole-string lattice, the Open Dissipative Exterior, and the limits of the opposition.
 - [`IMAGINARY_UNIVERSE.md`](IMAGINARY_UNIVERSE.md) — audit of the attached analysis: complex phase, Liouvillian zero modes, and what is deliberately not integrated.
+- [`BECOMING_ONE.md`](BECOMING_ONE.md) — the commutator residue, the unstable symmetric zero, the resolvent pole picture, and the corrected overclaims.
 - [`docs/README.md`](docs/README.md) — how to build the API reference.
 - [`CONTRIBUTING.md`](CONTRIBUTING.md) — setup, required checks, and claim rules.
 - [`CHANGELOG.md`](CHANGELOG.md) — release history.

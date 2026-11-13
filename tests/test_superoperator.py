@@ -16,10 +16,16 @@ from model import (
     is_zero_matrix,
     liouvillian,
     liouvillian_eigenvalues,
+    liouvillian_resolvent,
     matadd,
     matmul,
     matscale,
     matsub,
+    resolvent_diagonal,
+    resolvent_norm,
+    trace,
+    truncated_annihilation,
+    truncated_creation,
     zero_matrix,
     zero_mode_pairs,
 )
@@ -125,6 +131,159 @@ def test_zero_modes_are_degenerate_pairs():
     )
     assert commutant_dimension([1.0, 2.0, 2.0]) == 5
     assert commutant_dimension([1.0, 2.0, 3.0]) == 3
+
+
+def test_liouvillian_spectrum_sums_to_zero():
+    for spectrum in ([1.0, 2.0, 3.0], [0.0, 0.0, 2.5], [1.0 + 0.5j, -2.0j, 4.0]):
+        assert sum(liouvillian_eigenvalues(spectrum)) == pytest.approx(0j)
+
+
+def test_liouvillian_spectrum_is_negation_symmetric():
+    transitions = liouvillian_eigenvalues([1.0 + 0.5j, 2.0, 4.0])
+    for value in transitions:
+        assert any(abs(value + other) <= 1e-12 for other in transitions)
+
+
+def test_commutator_trace_is_zero():
+    hamiltonian = ((1.0, 2.0), (3.0, 4.0))
+    observable = ((0.0, 1.0), (1.0, 0.0))
+    result = commutator(hamiltonian, observable)
+    assert result[0][0] + result[1][1] == pytest.approx(0j)
+
+
+def test_commutant_dimension_is_sum_of_multiplicity_squares():
+    assert commutant_dimension([1.0, 2.0, 3.0]) == 1 + 1 + 1
+    assert commutant_dimension([1.0, 2.0, 2.0]) == 1 + 4
+    assert commutant_dimension([1.0, 1.0, 2.0, 2.0]) == 4 + 4
+    assert commutant_dimension([5.0, 5.0, 5.0, 5.0]) == 16
+
+
+def test_liouvillian_is_a_derivation():
+    hamiltonian = diagonal([1.0, 2.0])
+    left = ((1.0, 2.0), (3.0, 4.0))
+    right = ((0.0, 1.0), (1.0, 0.0))
+    assert_matrix_close(
+        liouvillian(hamiltonian, matmul(left, right)),
+        matadd(
+            matmul(liouvillian(hamiltonian, left), right),
+            matmul(left, liouvillian(hamiltonian, right)),
+        ),
+    )
+
+
+def test_commutant_is_closed_under_products():
+    hamiltonian = diagonal([1.0, 2.0, 2.0])
+    left = ((1.0, 0.0, 0.0), (0.0, 0.0, 1.0), (0.0, 0.0, 0.0))
+    right = ((0.0, 0.0, 0.0), (0.0, 1.0, 0.0), (0.0, 0.0, 1.0))
+    assert commutes(hamiltonian, left)
+    assert commutes(hamiltonian, right)
+    assert commutes(hamiltonian, matmul(left, right))
+
+
+def test_trace_of_a_commutator_is_zero():
+    pairs = [
+        (((1.0, 2.0), (3.0, 4.0)), ((0.0, 1.0), (1.0, 0.0))),
+        (((0.0, 1.0), (0.0, 0.0)), ((0.0, 0.0), (1.0, 0.0))),
+    ]
+    for left, right in pairs:
+        assert trace(commutator(left, right)) == pytest.approx(0j)
+
+
+def test_finite_dimensional_ccr_is_impossible():
+    # [a, a^dagger] = 1 would need a commutator with nonzero trace.
+    lowering = ((0.0, 1.0), (0.0, 0.0))
+    raising = ((0.0, 0.0), (1.0, 0.0))
+    residue = commutator(lowering, raising)
+    assert trace(residue) == pytest.approx(0j)
+    assert trace(identity(2)) == 2
+    assert residue != identity(2)
+
+
+def test_resolvent_diagonal_entries():
+    assert resolvent_diagonal([1.0, 2.0], 3.0) == pytest.approx((0.5, 1.0))
+    assert resolvent_diagonal([1.0 + 1.0j], 3.0) == pytest.approx((1.0 / (2.0 - 1.0j),))
+
+
+def test_resolvent_has_poles_at_eigenvalues():
+    for z in (1.0, 2.0):
+        with pytest.raises(ValueError):
+            resolvent_diagonal([1.0, 2.0], z)
+        with pytest.raises(ValueError):
+            resolvent_norm([1.0, 2.0], z)
+
+
+def test_resolvent_norm_diverges_near_a_pole():
+    far = resolvent_norm([1.0], 2.0)
+    near = resolvent_norm([1.0], 1.0 + 1e-3)
+    nearer = resolvent_norm([1.0], 1.0 + 1e-6)
+    assert far < near < nearer
+    assert near == pytest.approx(1e3)
+    assert nearer == pytest.approx(1e6)
+
+
+def test_truncated_oscillator_residue_is_one_except_at_the_top():
+    for dimension in (2, 3, 5):
+        lowering = truncated_annihilation(dimension)
+        raising = truncated_creation(dimension)
+        residue = commutator(lowering, raising)
+        for index in range(dimension - 1):
+            assert residue[index][index] == pytest.approx(1.0)
+        assert residue[dimension - 1][dimension - 1] == pytest.approx(1.0 - dimension)
+        for row in range(dimension):
+            for column in range(dimension):
+                if row != column:
+                    assert residue[row][column] == pytest.approx(0j)
+        assert trace(residue) == pytest.approx(0j)
+
+
+def test_truncated_oscillator_lowering_and_raising():
+    lowering = truncated_annihilation(4)
+    raising = truncated_creation(4)
+    assert all(lowering[row][0] == 0 for row in range(4))
+    assert raising[3][3] == 0
+    assert lowering[0][1] == pytest.approx(1.0)
+    assert lowering[1][2] == pytest.approx(math.sqrt(2.0))
+    assert raising[1][0] == pytest.approx(1.0)
+    assert raising[2][1] == pytest.approx(math.sqrt(2.0))
+
+
+@pytest.mark.parametrize("dimension", [0, -1])
+def test_truncated_oscillator_rejects_bad_dimension(dimension):
+    with pytest.raises(ValueError):
+        truncated_annihilation(dimension)
+    with pytest.raises(ValueError):
+        truncated_creation(dimension)
+
+
+def test_liouvillian_resolvent_poles_are_transition_frequencies():
+    values = [1.0, 2.0, 3.0]
+    assert liouvillian_resolvent(values, 0.5) == pytest.approx(
+        resolvent_diagonal(liouvillian_eigenvalues(values), 0.5)
+    )
+    for z in (0.0, 1.0, 2.0):
+        with pytest.raises(ValueError):
+            liouvillian_resolvent(values, z)
+    with pytest.raises(ValueError):
+        liouvillian_resolvent([1.0, 1.0], 0.0)
+
+
+@pytest.mark.parametrize("values", [(), [math.inf], [math.nan]])
+def test_resolvent_rejects_bad_eigenvalues(values):
+    with pytest.raises(ValueError):
+        resolvent_diagonal(values, 0.0)
+
+
+@pytest.mark.parametrize("z", [math.inf, math.nan, complex(math.inf, 0.0)])
+def test_resolvent_rejects_bad_z(z):
+    with pytest.raises(ValueError):
+        resolvent_diagonal([1.0], z)
+
+
+def test_trace_rejects_invalid_matrices():
+    with pytest.raises(ValueError):
+        trace(())
+    with pytest.raises(ValueError):
+        trace(((1.0, 0.0),))
 
 
 @pytest.mark.parametrize("matrix", [(), (((1.0, 0.0),), ((0.0, 1.0), (0.0, 0.0)))])

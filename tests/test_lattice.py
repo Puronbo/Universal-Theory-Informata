@@ -1,5 +1,7 @@
 """Tests for model.lattice."""
 
+import math
+
 import pytest
 
 from model import (
@@ -17,7 +19,10 @@ from model import (
     leq,
     meet,
     orbit_count,
+    orbit_rank_counts,
+    rank_counts,
     same_orbit,
+    strings_of_rank,
     top,
 )
 from model.duality import DUAL_PAIRS
@@ -188,3 +193,45 @@ def test_all_strings_are_unique_and_ordered():
     assert len(set(values)) == 256
     assert values[0] == bottom()
     assert values[-1] == top()
+
+
+def test_rank_counts_are_binomial():
+    counts = rank_counts()
+    assert counts == (1, 8, 28, 56, 70, 56, 28, 8, 1)
+    assert counts == tuple(math.comb(WIDTH, rank) for rank in range(WIDTH + 1))
+    assert sum(counts) == 2**WIDTH
+
+
+def test_strings_of_rank_partition_the_lattice():
+    for rank in range(WIDTH + 1):
+        values = strings_of_rank(rank)
+        assert len(values) == math.comb(WIDTH, rank)
+        assert all(value.rank == rank for value in values)
+        assert len(set(values)) == len(values)
+        assert {canonical(value) for value in values}.issubset(set(all_strings()))
+    grouped = [value for rank in range(WIDTH + 1) for value in strings_of_rank(rank)]
+    assert len(grouped) == len(all_strings())
+    assert set(grouped) == set(all_strings())
+
+
+def test_rank_is_complement_symmetric():
+    counts = rank_counts()
+    for rank in range(WIDTH + 1):
+        assert counts[rank] == counts[WIDTH - rank]
+        assert all(complement(value).rank == WIDTH - rank for value in strings_of_rank(rank))
+
+
+@pytest.mark.parametrize("rank", [-1, WIDTH + 1, 1.5, True, "1"])
+def test_strings_of_rank_rejects_bad_rank(rank):
+    with pytest.raises(ValueError):
+        strings_of_rank(rank)
+
+
+def test_orbit_rank_counts_match_the_folded_cube():
+    counts = orbit_rank_counts()
+    assert counts == (1, 8, 28, 56, 35)
+    assert sum(counts) == orbit_count() == 128
+    observed = [0] * len(counts)
+    for value in {canonical(item) for item in all_strings()}:
+        observed[min(value.rank, WIDTH - value.rank)] += 1
+    assert tuple(observed) == counts

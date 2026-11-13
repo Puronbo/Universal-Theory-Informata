@@ -1,5 +1,6 @@
 """Tests for model.phase."""
 
+import cmath
 import math
 
 import pytest
@@ -38,6 +39,30 @@ def test_global_phase_does_not_change_intensity():
     value = 2.0 - 1.0j
     rotated = value * complex(math.cos(0.7), math.sin(0.7))
     assert intensity(rotated) == pytest.approx(intensity(value))
+
+
+def test_equal_nonzero_intensity_means_unit_phase_ratio():
+    for left, right in [(2.0 - 1.0j, 1.0 + 2.0j), (3.0j, 3.0), (-1.0, 1.0j)]:
+        assert intensity(left) == pytest.approx(intensity(right))
+        ratio = left / right
+        assert abs(ratio) == pytest.approx(1.0)
+        assert cmath.exp(1j * phase_angle(left)) == pytest.approx(
+            ratio * cmath.exp(1j * phase_angle(right))
+        )
+
+
+def test_intensity_is_pythagorean():
+    for value in [3.0 + 4.0j, -2.0 + 1.0j, 0.5 - 0.25j]:
+        assert intensity(value) == pytest.approx(
+            real_width(value) ** 2 + imaginary_height(value) ** 2
+        )
+
+
+def test_intensity_satisfies_the_parallelogram_law():
+    for left, right in [(3.0 + 4.0j, 1.0 - 2.0j), (0.5j, -2.0), (1.0, 1.0j)]:
+        assert intensity(left + right) + intensity(left - right) == pytest.approx(
+            2.0 * intensity(left) + 2.0 * intensity(right)
+        )
 
 
 def test_phase_angle():

@@ -29,6 +29,7 @@ OVERCLAIM_TARGETS = [
     "STROBOSCOPIC.md",
     "PRIZED_PROBLEMS.md",
     "IMAGINARY_UNIVERSE.md",
+    "BECOMING_ONE.md",
 ]
 
 

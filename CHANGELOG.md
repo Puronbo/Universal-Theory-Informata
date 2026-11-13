@@ -37,7 +37,9 @@ All notable changes to this project are documented here. The format follows
   for the conjugacy.
 - `model/lattice.py`: the Boolean lattice of pole strings over the eight dual
   pairs (256 strings, 128 complement orbits), with join/meet, order,
-  complement, atoms, coatoms, and canonical representatives.
+  complement, atoms, coatoms, canonical representatives, binomial rank
+  enumeration (`strings_of_rank`, `rank_counts`), and the folded rank profile
+  (`orbit_rank_counts`).
 - CLI: `python -m model lattice` (summary) and `--bits 10101010` (one string,
   its dual, canonical representative, join, and meet).
 - `lean/Model/Lattice.lean`: Boolean-lattice laws for pole strings, including
@@ -46,15 +48,27 @@ All notable changes to this project are documented here. The format follows
 - `model/phase.py`: complex phase, observable intensity, wavelength/wavenumber,
   quarter-turn rotation, and the real/imaginary split.
 - `model/superoperator.py`: finite-dimensional commutator/Liouvillian,
-  Hilbert–Schmidt self-adjointness, transition frequencies, and commutant zero
-  modes.
+  Hilbert–Schmidt self-adjointness, transition frequencies, commutant zero
+  modes, trace, the diagonal resolvent with pole validation, the Liouvillian
+  resolvent, and truncated oscillator operators that expose the boundary defect
+  in the canonical commutator.
+- `model/symmetry_breaking.py`: classical double-well potential, stable minima,
+  curvature, and a toy vacuum expectation value.
+- `model/fold.py`: `fold_from_log(t) = 2*cosh(t)`, the fold/contraction law,
+  and `fold_power(x, n) = fold(x**n)` via Chebyshev fast doubling.
 - `IMAGINARY_UNIVERSE.md`: claim-by-claim audit of the attached analysis, with
-  the rigorous parts integrated and the metaphors quarantined.
+  the rigorous parts integrated, the derived identities listed, and the
+  metaphors quarantined.
+- `BECOMING_ONE.md`: audit of the "force of becoming one" passage, correcting
+  the finite-dimensional CCR claim and the Higgs-vev overclaim while keeping
+  the commutator residue, the double-well instability, the resolvent-pole
+  picture, and the truncated-oscillator boundary defect.
 - `lean/Model/Antithesis.lean`: formal mirror of the contrast —
   `involution_involutive` (`f² = id`), `contractOrbit_eq` (`gⁿx = rⁿx`),
   `translation_no_fixed`, `nilpotent_sq_zero` (`N² = 0`), `entropy_gain_pos`,
   plus `fold_invariant`, `fold_ge_two`, `fold_not_injective`,
-  `log_contraction`, and `exp_log_coordinate`.
+  `log_contraction`, `exp_log_coordinate`, `fold_exp`, `fold_product`,
+  `fold_sq`, and `fold_discriminant`.
 - `ANTITHESIS.md`: axis table, the Open Dissipative Exterior, the
   group-versus-semigroup contrast, the periodic/hyperbolic/parabolic
   trichotomy, the nilpotent limit, and information loss.

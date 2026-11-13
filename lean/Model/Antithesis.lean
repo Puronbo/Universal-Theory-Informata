@@ -114,4 +114,31 @@ theorem exp_log_coordinate {x : ℝ} (hx : 0 < x) :
     Real.exp (Real.log x) = x :=
   Real.exp_log hx
 
+/-- The fold of an exponential is twice the hyperbolic cosine. -/
+theorem fold_exp (t : ℝ) : fold (Real.exp t) = 2 * Real.cosh t := by
+  unfold fold
+  rw [Real.cosh_eq, Real.exp_neg]
+  ring
+
+/-- The fold satisfies the product identity `q x * q y = q (x*y) + q (x/y)`. -/
+theorem fold_product {x y : ℝ} (hx : x ≠ 0) (hy : y ≠ 0) :
+    fold x * fold y = fold (x * y) + fold (x / y) := by
+  unfold fold
+  field_simp [hx, hy]
+  ring
+
+/-- Squaring the fold: `q x ^ 2 = q (x^2) + 2`. -/
+theorem fold_sq {x : ℝ} (hx : x ≠ 0) :
+    fold x ^ 2 = fold (x ^ 2) + 2 := by
+  unfold fold
+  field_simp [hx]
+  ring
+
+/-- The discriminant identity: `q x ^ 2 - 4 = (x - x⁻¹)^2`. -/
+theorem fold_discriminant {x : ℝ} (hx : x ≠ 0) :
+    fold x ^ 2 - 4 = (x - x⁻¹) ^ 2 := by
+  unfold fold
+  field_simp [hx]
+  ring
+
 end Model

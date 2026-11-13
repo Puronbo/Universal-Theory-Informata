@@ -200,6 +200,35 @@ not by a Möbius map, so the periodic/hyperbolic/parabolic trichotomy of §4.1
 still stands. But on the multiplicative positive cone, scaling and translation
 are one dynamics in different coordinates.
 
+The fold has the same log-coordinate description. Since
+
+\[
+q(e^t)=e^t+e^{-t}=2\cosh t,
+\]
+
+`model.fold.fold_from_log(t)` returns `2*cosh(t)`, and along a contraction
+orbit the quotient is `2*cosh(log x + n log r)`. The fold sees a symmetric
+cosh profile with its minimum at the self-dual scale `x = r**(-n)`.
+
+The same coordinate gives the Chebyshev composition law. Because
+`q(x) = 2*cosh(t)`,
+
+\[
+q(x^n)=2T_n\!\left(\frac{q(x)}{2}\right),
+\]
+
+where \(T_n\) is the Chebyshev polynomial of the first kind.
+`model.fold.fold_power(x, n)` evaluates the right-hand side by fast doubling,
+which avoids forming \(x^n\). The product identity
+
+\[
+q(x)q(y)=q(xy)+q(x/y)
+\]
+
+is the corresponding \(\cosh\) addition formula. Lean proves `fold_exp`,
+`fold_product`, `fold_sq`, and `fold_discriminant` in
+`lean/Model/Antithesis.lean`.
+
 ### 4.6 The lattice of pole strings
 
 The eight dual pairs are independent binary coordinates. A **pole string**
@@ -220,8 +249,17 @@ the smaller of \(s\) and \(\neg s\) as the orbit representative.
 
 `model.lattice` implements `PoleString`, `from_bits`, `from_poles`, `join`,
 `meet`, `complement`, `leq`, `canonical`, `same_orbit`, `atoms`, `coatoms`,
-`all_strings`, and `orbit_count`. This is a taxonomy of the registered dual
-pairs, not a claim that nature is literally an eight-bit register.
+`all_strings`, `orbit_count`, `strings_of_rank`, `rank_counts`, and
+`orbit_rank_counts`. The rank counts are binomial,
+
+\[
+\#\{s:\operatorname{rank}(s)=k\}=\binom{8}{k},
+\]
+
+so the lattice has `(1, 8, 28, 56, 70, 56, 28, 8, 1)` strings by rank.
+Labelling each complement orbit by its smaller rank gives `(1, 8, 28, 56, 35)`,
+which sums to 128. This is a taxonomy of the registered dual pairs, not a claim
+that nature is literally an eight-bit register.
 
 ## 5. The antithesis of the antithesis
 
@@ -369,7 +407,8 @@ The tests enforce:
 - period and cyclicity detection,
 - fold invariance, two-to-one preimages, and fundamental representatives,
 - log-coordinate conjugacy between contraction and translation,
-- Boolean-lattice laws, order, atoms, coatoms, and 128 complement orbits,
+- Boolean-lattice laws, order, atoms, coatoms, binomial rank counts, folded
+  orbit rank counts, and 128 complement orbits,
 - Möbius classification of periodic, hyperbolic, parabolic, elliptic, and
   loxodromic maps,
 - input validation for rates, scales, shifts, and step counts.
@@ -379,9 +418,10 @@ algebraic facts without `sorry`: `involution_involutive` (`f² = id`),
 `contractOrbit_eq` (`gⁿx = rⁿx`), `translation_no_fixed`,
 `nilpotent_sq_zero` (`N² = 0`), `entropy_gain_pos`, `fold_invariant`,
 `fold_ge_two`, `fold_not_injective`, `log_contraction`, and
-`exp_log_coordinate`. `lean/Model/Lattice.lean` proves the Boolean-lattice
-laws (commutativity, associativity, idempotence, absorption, distributivity,
-complement, and order).
+`exp_log_coordinate`; the fold algebra adds `fold_exp`, `fold_product`,
+`fold_sq`, and `fold_discriminant`. `lean/Model/Lattice.lean` proves the
+Boolean-lattice laws (commutativity, associativity, idempotence, absorption,
+distributivity, complement, and order).
 
 ## 11. Open questions
 

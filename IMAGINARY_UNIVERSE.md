@@ -71,6 +71,161 @@ The zero-mode identity is the rigorous version of "the void observing itself":
 what survives the operator acting on its own algebra is the commutant, not a
 mystical residue.
 
+### 3.3 Additional derived claims
+
+These identities follow from the definitions already in the repository. Each is
+checked by a test, and none is a new physical claim.
+
+1. **Fold in the log coordinate.** With \(t=\log x\),
+
+   \[
+   q(e^t)=e^t+e^{-t}=2\cosh t .
+   \]
+
+   So the fold is even in the log coordinate, and
+   `fold_from_log(t)` returns `2*cosh(t)` with finite-input and overflow
+   validation.
+
+2. **Fold along a contraction orbit.** Because \(g^n(x)=r^n x\),
+
+   \[
+   q\bigl(g^n(x)\bigr)
+   =2\cosh\bigl(\log x+n\log r\bigr).
+   \]
+
+   The fold therefore has a single minimum along a contraction orbit, at the
+   self-dual scale \(x=r^{-n}\), and grows symmetrically on both sides. This is
+   the fold-side counterpart of the contraction/translation conjugacy.
+
+3. **Intensity is the quotient by global phase.** For every real \(\theta\),
+
+   \[
+   I(e^{i\theta}z)=|e^{i\theta}z|^2=|z|^2=I(z).
+   \]
+
+   Conversely, for nonzero amplitudes, equal intensity means \(z/w\) has unit
+   modulus. Intensity therefore forgets exactly the global \(U(1)\) phase; the
+   phase is active but invisible to a modulus measurement.
+
+4. **The Liouvillian is traceless and negation-symmetric.** On eigen-operators
+   \(|m\rangle\langle n|\) the eigenvalues are \(E_m-E_n\), so
+
+   \[
+   \sum_{m,n}(E_m-E_n)=0,
+   \qquad
+   E_m-E_n=-(E_n-E_m).
+   \]
+
+   The zero eigenvalues are the diagonal and degenerate off-diagonal entries,
+   and every nonzero eigenvalue occurs with its negative.
+
+5. **Commutant dimension.** If a diagonal Hamiltonian has distinct eigenvalues
+   with multiplicities \(m_1,\dots,m_k\), the commutant is block diagonal and
+
+   \[
+   \dim\operatorname{Comm}(H)=\sum_i m_i^2 .
+   \]
+
+   For example, `[1, 2, 3]` gives `3`, `[1, 2, 2]` gives `5`, and
+   `[1, 1, 2, 2]` gives `8`.
+
+6. **Rank counts are binomial.** The Boolean lattice of eight dual pairs has
+
+   \[
+   \#\{s:\operatorname{rank}(s)=k\}=\binom{8}{k},
+   \]
+
+   giving `(1, 8, 28, 56, 70, 56, 28, 8, 1)`, summing to `256`. Complement
+   maps rank \(k\) to rank \(8-k\), and the fold halves the lattice to `128`
+   orbits.
+
+7. **The fold is multiplicative up to a shift.** For positive \(x,y\),
+
+   \[
+   q(x)q(y)=q(xy)+q(x/y).
+   \]
+
+   Expanding both sides gives
+   \(xy+x/y+y/x+1/(xy)\); this is the \(\cosh\) addition formula in
+   disguise. The special case \(y=x\) is
+   \(q(x)^2=q(x^2)+2\).
+
+8. **Powers become Chebyshev composition.** Since \(q(x)=2\cosh t\) with
+   \(t=\log x\),
+
+   \[
+   q(x^n)=2T_n\!\left(\frac{q(x)}{2}\right),
+   \]
+
+   where \(T_n\) is the Chebyshev polynomial of the first kind. Thus
+   multiplication of scales is nonlinear once the reciprocal distinction is
+   forgotten. `model.fold.fold_power(x, n)` evaluates this by fast doubling
+   rather than forming \(x^n\) directly.
+
+9. **The Liouvillian is a derivation.** For matrices \(A,B\),
+
+   \[
+   L_H(AB)=L_H(A)B+A L_H(B).
+   \]
+
+   Consequently the kernel — the commutant of \(H\) — is closed under matrix
+   multiplication: if \(A\) and \(B\) are conserved, so is \(AB\).
+
+10. **Intensity is a quadratic form.** For \(z=a+bi\),
+
+    \[
+    I(z)=a^2+b^2,
+    \]
+
+    and intensities satisfy the parallelogram law
+
+    \[
+    I(z+w)+I(z-w)=2I(z)+2I(w).
+    \]
+
+    So the observable layer is not merely a modulus; it is a real quadratic
+    form on the complex amplitude space.
+
+11. **The folded lattice has its own rank profile.** Labelling each complement
+    orbit by \(\min(\operatorname{rank}(s),8-\operatorname{rank}(s))\) gives
+
+    \[
+    (1,8,28,56,35),
+    \]
+
+    which sums to `128`. The middle rank contributes
+    \(\binom{8}{4}/2=35\), because complement pairs two distinct rank-four
+    strings.
+
+`model.fold.fold_from_log`, `model.fold.fold_power`,
+`model.lattice.strings_of_rank`, `model.lattice.rank_counts`, and
+`model.lattice.orbit_rank_counts` expose the enumeration helpers. The Lean
+mirror now also proves `fold_exp`, `fold_product`, `fold_sq`, and
+`fold_discriminant`.
+
+### 3.4 A structural reading
+
+The mathematics suggests a disciplined picture, offered as interpretation
+rather than as a physical theory:
+
+- the **fold** is not a substance but a quotient. It forgets which of two
+  reciprocal scales is present; its algebra is the even part of the
+  multiplicative group, which is why \(\cosh\) appears everywhere;
+- **phase** is a circle fibre over intensity. A modulus measurement projects
+  the fibre away, so the phase can be active while remaining unobservable in
+  \(I(z)\);
+- the **Liouvillian** is an infinitesimal conjugation, and its kernel is the
+  algebra of observables that conjugation cannot move. "What survives" is not
+  a residue but a commutant;
+- the **lattice** is the free Boolean algebra on the eight registered dual
+  pairs. The fold of the reciprocal involution halves it into complement
+  orbits, and the binomial rank profile records how many distinctions remain
+  at each grade.
+
+None of these statements derives a physical law. They are the structural
+skeleton onto which the framework's metaphors can be hung without pretending
+that the hanging is a proof.
+
 ## 4. Mapping to existing modules
 
 | Source theme | Existing module |
@@ -84,6 +239,10 @@ mystical residue.
 | CP tilt and the broken mirror | `model.clock` |
 | Hidden phase and intensity | `model.phase` (new) |
 | Operator-for-operators | `model.superoperator` (new) |
+
+The follow-up passage on the "force of becoming one" is audited separately in
+`BECOMING_ONE.md`; it adds the double-well instability and the resolvent-pole
+reading while correcting the finite-dimensional CCR and Higgs-vev claims.
 
 ## 5. What is deliberately not integrated
 
@@ -104,7 +263,7 @@ mystical residue.
 ## 6. Verification
 
 ```bash
-python -m pytest tests/test_phase.py tests/test_superoperator.py -q
+python -m pytest tests/test_phase.py tests/test_superoperator.py tests/test_fold.py tests/test_lattice.py -q
 python -m pytest tests -q --cov-fail-under=90
 ruff check .
 black --check model cli.py validate_claims.py tests examples
@@ -115,7 +274,9 @@ cd lean && lake build
 
 The tests check unit-modulus phases, global-phase invariance of intensity,
 quarter-turn order four, Liouvillian self-adjointness under the
-Hilbert–Schmidt product, zero-mode/commutant dimensions, and input validation.
+Hilbert–Schmidt product, zero-mode/commutant dimensions, the traceless and
+negation-symmetric Liouvillian spectrum, the fold/log identity, the
+fold-contraction law, binomial rank counts, and input validation.
 
 ## 7. Open questions
 

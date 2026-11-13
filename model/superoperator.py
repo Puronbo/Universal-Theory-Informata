@@ -89,6 +89,39 @@ def diagonal(values: Sequence[complex]) -> Matrix:
     )
 
 
+def truncated_annihilation(dimension: int) -> Matrix:
+    """Return the truncated lowering operator on ``dimension`` levels.
+
+    The matrix satisfies ``a|0> = 0`` and ``a|k> = sqrt(k)|k-1>``. Its
+    commutator with the truncated creation operator is
+
+        [a, a^dagger] = I - dimension * |dimension-1><dimension-1|,
+
+    so the canonical residue is `1` in the bulk and `1 - dimension` at the top.
+    The trace is zero, as it must be for any finite commutator.
+
+    Raises:
+        ValueError: If ``dimension`` is less than 1.
+    """
+    if dimension < 1:
+        raise ValueError("dimension must be >= 1")
+    return tuple(
+        tuple(
+            math.sqrt(column) if row == column - 1 else complex(0.0) for column in range(dimension)
+        )
+        for row in range(dimension)
+    )
+
+
+def truncated_creation(dimension: int) -> Matrix:
+    """Return the truncated raising operator (the conjugate transpose of ``a``).
+
+    Raises:
+        ValueError: If ``dimension`` is less than 1.
+    """
+    return dagger(truncated_annihilation(dimension))
+
+
 def matmul(left: Matrix, right: Matrix) -> Matrix:
     """Return the matrix product ``left @ right``.
 
@@ -193,6 +226,55 @@ def hilbert_schmidt(left: Matrix, right: Matrix) -> complex:
     )
 
 
+def trace(matrix: Matrix) -> complex:
+    """Return the sum of the diagonal entries.
+
+    Raises:
+        ValueError: If ``matrix`` is not a finite square matrix.
+    """
+    size = _validate_matrix(matrix)
+    return sum((matrix[i][i] for i in range(size)), complex(0.0))
+
+
+def resolvent_diagonal(
+    eigenvalues: Sequence[complex],
+    z: complex,
+) -> tuple[complex, ...]:
+    """Return the diagonal entries of ``(z I - H)**-1`` for diagonal ``H``.
+
+    For a Hamiltonian already diagonalized with eigenvalues ``E_i``, the
+    resolvent is diagonal with entries ``1 / (z - E_i)``. Its poles are exactly
+    the eigenvalues.
+
+    Raises:
+        ValueError: If ``eigenvalues`` is empty or non-finite, ``z`` is
+            non-finite, or ``z`` equals an eigenvalue (a pole).
+    """
+    if not eigenvalues:
+        raise ValueError("eigenvalues must be non-empty")
+    values = tuple(complex(value) for value in eigenvalues)
+    if any(not _finite(value) for value in values):
+        raise ValueError("eigenvalues must be finite")
+    z = complex(z)
+    if not _finite(z):
+        raise ValueError("z must be finite")
+    if any(z == value for value in values):
+        raise ValueError("z is a pole of the resolvent")
+    return tuple(1.0 / (z - value) for value in values)
+
+
+def resolvent_norm(eigenvalues: Sequence[complex], z: complex) -> float:
+    """Return the operator norm of the diagonal resolvent.
+
+    This is the largest entry magnitude of ``(z I - H)**-1``. It diverges as
+    ``z`` approaches an eigenvalue.
+
+    Raises:
+        ValueError: If the inputs are invalid or ``z`` is a pole.
+    """
+    return max(abs(entry) for entry in resolvent_diagonal(eigenvalues, z))
+
+
 def is_self_adjoint(matrix: Matrix, tolerance: float = 1e-12) -> bool:
     """Return whether ``matrix`` equals its conjugate transpose.
 
@@ -243,6 +325,23 @@ def liouvillian_eigenvalues(eigenvalues: Sequence[complex]) -> tuple[complex, ..
     if any(not _finite(value) for value in values):
         raise ValueError("eigenvalues must be finite")
     return tuple(values[m] - values[n] for m in range(len(values)) for n in range(len(values)))
+
+
+def liouvillian_resolvent(
+    eigenvalues: Sequence[complex],
+    z: complex,
+) -> tuple[complex, ...]:
+    """Return the diagonal Liouvillian resolvent ``(z I - L_H)**-1``.
+
+    The poles are the transition frequencies ``E_m - E_n``. In particular, a
+    degenerate spectrum makes ``z = 0`` a pole, corresponding to the commutant
+    zero modes.
+
+    Raises:
+        ValueError: If the inputs are invalid or ``z`` is a transition
+            frequency.
+    """
+    return resolvent_diagonal(liouvillian_eigenvalues(eigenvalues), z)
 
 
 def zero_mode_pairs(
@@ -296,10 +395,16 @@ __all__ = [
     "is_zero_matrix",
     "liouvillian",
     "liouvillian_eigenvalues",
+    "liouvillian_resolvent",
     "matadd",
     "matmul",
     "matscale",
     "matsub",
+    "resolvent_diagonal",
+    "resolvent_norm",
+    "trace",
+    "truncated_annihilation",
+    "truncated_creation",
     "zero_matrix",
     "zero_mode_pairs",
 ]
