@@ -54,6 +54,14 @@ All notable changes to this project are documented here. The format follows
   in the canonical commutator.
 - `model/symmetry_breaking.py`: classical double-well potential, stable minima,
   curvature, and a toy vacuum expectation value.
+- `model/spacebar.py`: candidate parameters of the press — Compton period,
+  action/phase, tick count, unitary press, thermal companion, mass-shell
+  residual, and a catalog of every candidate with its status.
+- `model/pressing.py`: toy checks for the mutual-press essay — a Page–Wootters
+  history state and conditional slices, GPS gravitational/velocity drift and
+  factory detune, the de Sitter conformal strip and proper-time divergence, the
+  Connes two-point spectral distance, and the qubit modular flow plus Unruh
+  temperature.
 - `model/fold.py`: `fold_from_log(t) = 2*cosh(t)`, the fold/contraction law,
   and `fold_power(x, n) = fold(x**n)` via Chebyshev fast doubling.
 - `IMAGINARY_UNIVERSE.md`: claim-by-claim audit of the attached analysis, with
@@ -63,6 +71,14 @@ All notable changes to this project are documented here. The format follows
   the finite-dimensional CCR claim and the Higgs-vev overclaim while keeping
   the commutator residue, the double-well instability, the resolvent-pole
   picture, and the truncated-oscillator boundary defect.
+- `SPACEBAR.md`: enumeration of the press's candidate parameters, the
+  real-phase/unitarity link, the Compton tick count as the scale-free real
+  coordinate of the phase, the measured baryon asymmetry, and the rejection of a
+  free knob as the finger.
+- `PRESSING.md`: thesis-by-thesis audit of the mutual-press essay, keeping the
+  Page–Wootters illustration, GPS drift, de Sitter conformal strip, Connes
+  distance, and modular/Unruh core, correcting the "bounded commutator" and
+  "total phase" readings, and dropping the unverified Rovelli attribution.
 - `lean/Model/Antithesis.lean`: formal mirror of the contrast —
   `involution_involutive` (`f² = id`), `contractOrbit_eq` (`gⁿx = rⁿx`),
   `translation_no_fixed`, `nilpotent_sq_zero` (`N² = 0`), `entropy_gain_pos`,

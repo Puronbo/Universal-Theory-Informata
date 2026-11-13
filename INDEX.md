@@ -24,10 +24,12 @@
 - `README.md` — project overview
 - `IMAGINARY_UNIVERSE.md` — audit of the attached imaginary-universe analysis
 - `BECOMING_ONE.md` — audit of the "becoming one" passage: commutator residue, instability, and resolvent poles
+- `SPACEBAR.md` — candidate parameters of the press: proper time, phase, ticks, mass shell, and the rejected free knob
+- `PRESSING.md` — five-thesis mutual-press audit: Page–Wootters, GPS, de Sitter, Connes, and thermal time
 
 ## Code
-- `model/` — 36 Python modules (engine)
-- `tests/` — 40 test files (568 tests)
+- `model/` — 38 Python modules (engine)
+- `tests/` — 42 test files (661 tests)
 - `lean/` — Lean 4 math core (16 modules, mathlib)
 - `cli.py` — CLI entry point
 - `simulate.py` — end-to-end demo
@@ -38,7 +40,7 @@
 - `docs/` — API reference (pydoc)
 
 ## Verification
-- `python -m pytest tests/ -q` → 568/568 pass
+- `python -m pytest tests/ -q` → 661/661 pass
 - `cd lean && lake build` → clean (18,114 jobs)
 - `python validate_claims.py` → clean
 - `python run_all.py` → PASS

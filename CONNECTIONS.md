@@ -129,6 +129,39 @@ The detailed claim ledger and the list of rejected metaphors are in
 
 The claim ledger and the corrections are in `BECOMING_ONE.md`.
 
+## 12. Spacebar Parameter Audit
+
+| Model construct | Governing link in nature | Reference |
+|---|---|---|
+| Unitary press | Real phase gives `exp(-i theta)` with unit modulus | https://en.wikipedia.org/wiki/Unitary_operator |
+| Proper time as lift | Phase is circle-valued; proper time unwraps it | https://en.wikipedia.org/wiki/Proper_time |
+| Compton clock | `T_C = 2*pi*hbar/(m*c^2)`; one period is one full press | https://en.wikipedia.org/wiki/Compton_wavelength |
+| Action and phase | `theta = S/hbar`; free action `S = -m*c^2*tau` | https://en.wikipedia.org/wiki/Action_(physics) |
+| Mass shell | `p^2 = m^2*c^2` fixes the eigenvalue | https://en.wikipedia.org/wiki/On_shell_and_off_shell |
+| Imaginary time | Wick rotation gives `exp(-beta*H)`, not a phase | https://en.wikipedia.org/wiki/Wick_rotation |
+| Baryon asymmetry | Measured `eta ~ 6.1e-10`; the passage's one part in a billion | https://en.wikipedia.org/wiki/Baryon_asymmetry |
+| Free parameter | Rejected: a freely chosen knob is the finger | This memo |
+
+The candidate catalog and the rejection argument are in `SPACEBAR.md`.
+
+## 13. Mutual-Press Audit
+
+| Model construct | Governing link in nature | Reference |
+|---|---|---|
+| Page–Wootters state | A constrained global state; conditioning on a clock gives relative evolution | https://link.aps.org/doi/10.1103/PhysRevD.27.2885 |
+| Conditional slices | Normalized system state at one clock reading | https://arxiv.org/abs/1311.2833 |
+| GPS gravitational drift | `Delta f/f = Delta Phi/c^2`; about `+45.7 us/day` | https://link.springer.com/article/10.12942/lrr-2003-1 |
+| GPS velocity drift | `-v^2/(2c^2)`; about `-7.2 us/day` | https://link.springer.com/article/10.12942/lrr-2003-1 |
+| GPS factory detune | `10.22999999543 MHz` pre-compensates the net drift | https://www.gps.gov/systems/gps/space/ |
+| de Sitter conformal strip | Closed slicing has `-pi/2 < T < pi/2`; proper time diverges | https://en.wikipedia.org/wiki/De_Sitter_space |
+| Connes distance | `sup{|f(p)-f(q)| : ||[D,f]|| <= 1}` | https://en.wikipedia.org/wiki/Spectral_triple |
+| Modular flow | Tomita–Takesaki flow of a faithful normal state | https://en.wikipedia.org/wiki/Modular_automorphism_group |
+| Unruh temperature | `T_U = hbar*a/(2*pi*c*k_B)` | https://en.wikipedia.org/wiki/Unruh_effect |
+| Thermal time | Hypothesis identifying modular flow with physical time | https://arxiv.org/abs/gr-qc/9406019 |
+
+The thesis-by-thesis grades and the dropped Rovelli attribution are in
+`PRESSING.md`.
+
 ---
 
 *Generated from AXIOMS.md, GROUNDING.md, FOLDING_CALIBRATION.md, and engine.py.*

@@ -28,6 +28,8 @@ Modules:
 - phase: Complex phase, observable intensity, and wavelength/wavenumber.
 - superoperator: Liouvillian commutator and commutant zero modes.
 - symmetry_breaking: Double-well potential and a nonzero vacuum value (toy model).
+- spacebar: Candidate parameters for the first-deviation press (proper time, phase, ticks).
+- pressing: Toy checks for Page-Wootters time, GPS drift, de Sitter conformal time, Connes distance, and modular flow.
 - equator: Equator of Scale (A9.1-A9.4).
 - clock: Clock, broken mirror, entropy brake (A10).
 - phenomena: Phenomenon → canvas-operation map.
@@ -208,6 +210,29 @@ from model.plotting import (
     plot_cosmic_web,
     plot_delta,
 )
+from model.pressing import (
+    BOLTZMANN,
+    EARTH_GM,
+    EARTH_RADIUS,
+    GPS_CLOCK_FREQUENCY,
+    GPS_ORBIT_RADIUS,
+    SECONDS_PER_DAY,
+    commutator_norm_two_point,
+    conditional_state,
+    connes_distance_two_point,
+    desitter_closed_scale_factor,
+    desitter_conformal_time_range,
+    desitter_proper_time,
+    gps_factory_detune,
+    gps_gravitational_drift_us_per_day,
+    gps_net_drift_us_per_day,
+    gps_velocity_drift_us_per_day,
+    modular_flow_bloch,
+    modular_frequency,
+    modular_hamiltonian,
+    page_wootters_state,
+    unruh_temperature,
+)
 from model.prized_problems import (
     collatz_spine_check,
     collatz_spine_sum,
@@ -258,6 +283,25 @@ from model.self_looping import (
     cosmological_coupling,
     portal_journey,
     uv_ir_inversion,
+)
+from model.spacebar import (
+    BARYON_TO_PHOTON_RATIO,
+    REDUCED_PLANCK,
+    SPEED_OF_LIGHT,
+    ParameterCandidate,
+    action_from_proper_time,
+    candidate_parameters,
+    compton_frequency,
+    compton_period,
+    is_on_mass_shell,
+    mass_shell_residual,
+    phase_from_action,
+    phase_from_proper_time,
+    spacebar_from_proper_time,
+    spacebar_from_ticks,
+    thermal_weight,
+    ticks_from_proper_time,
+    wrap_ticks,
 )
 from model.stroboscopic import (
     strobe,
@@ -525,6 +569,46 @@ __all__ = [
     "double_well_potential",
     "is_symmetric_zero_unstable",
     "vev_magnitude",
+    # Spacebar parameter
+    "BARYON_TO_PHOTON_RATIO",
+    "REDUCED_PLANCK",
+    "SPEED_OF_LIGHT",
+    "ParameterCandidate",
+    "action_from_proper_time",
+    "candidate_parameters",
+    "compton_frequency",
+    "compton_period",
+    "is_on_mass_shell",
+    "mass_shell_residual",
+    "phase_from_action",
+    "phase_from_proper_time",
+    "spacebar_from_proper_time",
+    "spacebar_from_ticks",
+    "thermal_weight",
+    "ticks_from_proper_time",
+    "wrap_ticks",
+    # Pressing
+    "BOLTZMANN",
+    "EARTH_GM",
+    "EARTH_RADIUS",
+    "GPS_CLOCK_FREQUENCY",
+    "GPS_ORBIT_RADIUS",
+    "SECONDS_PER_DAY",
+    "commutator_norm_two_point",
+    "conditional_state",
+    "connes_distance_two_point",
+    "desitter_closed_scale_factor",
+    "desitter_conformal_time_range",
+    "desitter_proper_time",
+    "gps_factory_detune",
+    "gps_gravitational_drift_us_per_day",
+    "gps_net_drift_us_per_day",
+    "gps_velocity_drift_us_per_day",
+    "modular_flow_bloch",
+    "modular_frequency",
+    "modular_hamiltonian",
+    "page_wootters_state",
+    "unruh_temperature",
     # Duality
     "DUAL_PAIRS",
     "DualPair",

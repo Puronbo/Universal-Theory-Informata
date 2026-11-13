@@ -6,6 +6,8 @@
 | `../ANTITHESIS.md` | Dual pairs, the pole-string lattice, and the Open Dissipative Exterior counter-model |
 | `../IMAGINARY_UNIVERSE.md` | Audit of the attached analysis and the integrated phase/Liouvillian tooling |
 | `../BECOMING_ONE.md` | Audit of the "becoming one" passage: commutator residue, double-well instability, and resolvent poles |
+| `../SPACEBAR.md` | Candidate parameters of the press: proper time, phase, ticks, mass shell, and the rejected free knob |
+| `../PRESSING.md` | Five-thesis mutual-press audit: Page–Wootters, GPS, de Sitter, Connes, and thermal time |
 | `the_book_of_puno.md` | Long-form conceptual text |
 | `api/` | Generated API reference (not committed) |
 

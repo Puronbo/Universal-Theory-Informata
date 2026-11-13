@@ -65,6 +65,8 @@ Matplotlib in `plotting` (lazy, inside functions).
 | `phase.py` | Complex phase, observable intensity, wavelength/wavenumber | **grounded** (standard complex arithmetic) |
 | `superoperator.py` | Liouvillian, commutant zero modes, resolvent, truncated oscillator | **grounded** (standard linear algebra) |
 | `symmetry_breaking.py` | Double-well potential, minima, curvature, toy vev | **toy** (classical mechanism) |
+| `spacebar.py` | Candidate parameters of the press: proper time, phase, ticks, mass shell | **grounded** (standard kinematics) |
+| `pressing.py` | Page–Wootters toy, GPS drift, de Sitter strip, Connes distance, modular flow | **grounded** (standard definitions) |
 | `equator.py` | Equator of scale | **candidate** |
 | `clock.py` | Planck refresh, CP tilt, entropy brake | **phenomenological** |
 | `consciousness.py` | Attention / closure analogues | **phenomenological** |
@@ -170,6 +172,21 @@ point is unstable and the minima give a nonzero order parameter. It does not
 derive the Higgs value. The passage audit, including the trace obstruction
 against finite-dimensional canonical commutation, is in `BECOMING_ONE.md`.
 
+`model.spacebar` makes the argument of the "press" explicit. A real phase is
+unitary; the Compton period is one full press; the dimensionless tick count
+`tau/T_C` is the scale-free coordinate of the phase. A dimensionful proper
+time needs a mass to fix the phase, and the affine parameter is pure gauge.
+The candidate catalog and the rejection of a free knob are in `SPACEBAR.md`.
+
+`model.pressing` encodes the checkable residue of the five-thesis essay: a
+Page–Wootters history state and its conditional slices, the GPS gravitational
+and velocity clock drifts with the factory detune, the finite conformal strip
+of closed-slicing de Sitter, the Connes two-point spectral distance with the
+`‖[D,f]‖ <= 1` constraint, and the modular flow of a qubit Gibbs state with
+the Unruh temperature. It does not establish the essay's metaphysics. The
+thesis-by-thesis grades, including the finite-conformal-time analogy and the
+dropped Rovelli attribution, are in `PRESSING.md`.
+
 ## Dependencies
 
 - Runtime: Python ≥ 3.10 standard library only.
@@ -218,8 +235,15 @@ physical interpretation. `lake build` is part of CI.
   tooling; they do not turn the source document into a physical theory.
 - `symmetry_breaking.py` is a classical toy double well; it does not derive the
   Higgs vev.
-- `IMAGINARY_UNIVERSE.md` and `BECOMING_ONE.md` record which source claims are
-  rejected or left as metaphor; they are not axiom sets.
+- `spacebar.py` is formal bookkeeping for the operator's argument; the
+  baryon-asymmetry ratio is measured, not derived.
+- `pressing.py` checks arithmetic and definitions from the mutual-press essay;
+  Page–Wootters conditional evolution, GPS drift, the de Sitter conformal strip,
+  the Connes distance, and modular flow do not establish "no key," "all
+  pressing is mutual," or a bounded "total phase."
+- `IMAGINARY_UNIVERSE.md`, `BECOMING_ONE.md`, `SPACEBAR.md`, and `PRESSING.md`
+  record which source claims are rejected or left as metaphor; they are not
+  axiom sets.
 - The meta-audit catches listed phrases, not every possible overclaim; prose
   review is still required.
 
