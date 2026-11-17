@@ -79,6 +79,19 @@ All notable changes to this project are documented here. The format follows
   Page–Wootters illustration, GPS drift, de Sitter conformal strip, Connes
   distance, and modular/Unruh core, correcting the "bounded commutator" and
   "total phase" readings, and dropping the unverified Rovelli attribution.
+- `model/vacuum_info.py`: Bekenstein and holographic bit bounds, the de Sitter
+  horizon capacity, Landauer erasure energy, two-mode squeezed-vacuum
+  entanglement, and a bipartite no-signaling toy with local unitaries and
+  marginal probabilities.
+- `VACUUM_INFO.md`: audit of "nothing as a holder of information" — the five
+  senses of nothing, the six jobs (partition, bound, protect, correlate,
+  constrain, decode), the capacity-not-guarantee caveat, and the sandpile/Great
+  Attractor reading.
+- `ZERO_AND_HOLES.md`: audit of zero as reference, \(0/0\) as underdetermined
+  rather than false (limits, blow-up, conditioning, wheel algebra), numbers as
+  conditioned values, the inward/outward duality with the zero object as its
+  fixed point, the connected-but-not-simply-connected reading, and the
+  topology of holes (Alexander duality, Betti numbers, persistence, defects).
 - `lean/Model/Antithesis.lean`: formal mirror of the contrast —
   `involution_involutive` (`f² = id`), `contractOrbit_eq` (`gⁿx = rⁿx`),
   `translation_no_fixed`, `nilpotent_sq_zero` (`N² = 0`), `entropy_gain_pos`,

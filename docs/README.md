@@ -8,6 +8,8 @@
 | `../BECOMING_ONE.md` | Audit of the "becoming one" passage: commutator residue, double-well instability, and resolvent poles |
 | `../SPACEBAR.md` | Candidate parameters of the press: proper time, phase, ticks, mass shell, and the rejected free knob |
 | `../PRESSING.md` | Five-thesis mutual-press audit: Page–Wootters, GPS, de Sitter, Connes, and thermal time |
+| `../VACUUM_INFO.md` | What “nothing” can hold: information bounds, erasure cost, squeezed-vacuum entanglement, and no-signaling |
+| `../ZERO_AND_HOLES.md` | Zero as reference, \(0/0\) as underdetermination, conditioned values, the inward/outward duality, and the topology of holes |
 | `the_book_of_puno.md` | Long-form conceptual text |
 | `api/` | Generated API reference (not committed) |
 

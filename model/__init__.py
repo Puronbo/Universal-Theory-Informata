@@ -30,6 +30,7 @@ Modules:
 - symmetry_breaking: Double-well potential and a nonzero vacuum value (toy model).
 - spacebar: Candidate parameters for the first-deviation press (proper time, phase, ticks).
 - pressing: Toy checks for Page-Wootters time, GPS drift, de Sitter conformal time, Connes distance, and modular flow.
+- vacuum_info: Bekenstein/holographic/de Sitter bounds, Landauer erasure, two-mode squeezing, and no-signaling.
 - equator: Equator of Scale (A9.1-A9.4).
 - clock: Clock, broken mirror, entropy brake (A10).
 - phenomena: Phenomenon → canvas-operation map.
@@ -356,6 +357,19 @@ from model.timeline import (
     milestone_reached,
     years_since_anchor,
 )
+from model.vacuum_info import (
+    BITS_PER_NAT,
+    PLANCK_LENGTH,
+    apply_local_unitary,
+    bekenstein_bits,
+    desitter_bits,
+    desitter_horizon_radius,
+    holographic_bits,
+    landauer_energy,
+    marginal_probabilities,
+    two_mode_mutual_information,
+    two_mode_squeezing_photon_number,
+)
 
 __all__ = [
     # Constants
@@ -609,6 +623,18 @@ __all__ = [
     "modular_hamiltonian",
     "page_wootters_state",
     "unruh_temperature",
+    # Vacuum information
+    "BITS_PER_NAT",
+    "PLANCK_LENGTH",
+    "apply_local_unitary",
+    "bekenstein_bits",
+    "desitter_bits",
+    "desitter_horizon_radius",
+    "holographic_bits",
+    "landauer_energy",
+    "marginal_probabilities",
+    "two_mode_mutual_information",
+    "two_mode_squeezing_photon_number",
     # Duality
     "DUAL_PAIRS",
     "DualPair",

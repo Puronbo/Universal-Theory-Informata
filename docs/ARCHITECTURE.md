@@ -67,6 +67,7 @@ Matplotlib in `plotting` (lazy, inside functions).
 | `symmetry_breaking.py` | Double-well potential, minima, curvature, toy vev | **toy** (classical mechanism) |
 | `spacebar.py` | Candidate parameters of the press: proper time, phase, ticks, mass shell | **grounded** (standard kinematics) |
 | `pressing.py` | Page–Wootters toy, GPS drift, de Sitter strip, Connes distance, modular flow | **grounded** (standard definitions) |
+| `vacuum_info.py` | Bekenstein/holographic/de Sitter bounds, Landauer cost, squeezing, no-signaling | **grounded** (standard bounds; relational reading is interpretation) |
 | `equator.py` | Equator of scale | **candidate** |
 | `clock.py` | Planck refresh, CP tilt, entropy brake | **phenomenological** |
 | `consciousness.py` | Attention / closure analogues | **phenomenological** |
@@ -187,6 +188,26 @@ the Unruh temperature. It does not establish the essay's metaphysics. The
 thesis-by-thesis grades, including the finite-conformal-time analogy and the
 dropped Rovelli attribution, are in `PRESSING.md`.
 
+`model.vacuum_info` makes the information content of "nothing" explicit. A
+literal void has one state and zero bits; a vacuum, horizon, code, or constraint
+has correlations. The module implements the Bekenstein bit bound, the
+holographic area bound, the de Sitter radius and capacity, the Landauer erasure
+cost, the mean photon number and mutual information of a two-mode squeezed
+vacuum, and a bipartite no-signaling toy (`apply_local_unitary`,
+`marginal_probabilities`). The bounds describe capacity and protection, not the
+creation of information or an origin story. The six jobs and the caveats are in
+`VACUUM_INFO.md`.
+
+`ZERO_AND_HOLES.md` is a documentation-only audit with no engine module. It
+separates the standard mathematics (zero as identity and reference, \(0/0\) as
+an underdetermined ratio resolved by limits, blow-up, conditioning, or wheel
+algebra, numbers as conditioned values via currying, the duality of a category
+with its opposite, Alexander duality, Betti numbers, persistent homology, and
+the homotopy classification of defects) from the interpretative readings (zero
+as coordinate rather than ground, the inward road ending at the empty set as a
+base case rather than an author, redemption as making a cycle bound). It states
+no physical prediction and is not an axiom set.
+
 ## Dependencies
 
 - Runtime: Python ≥ 3.10 standard library only.
@@ -207,7 +228,7 @@ dropped Rovelli attribution, are in `PRESSING.md`.
 4. **Meta-audit tests** that run `validate_claims.py` in-process so docs cannot
    drift silently.
 
-Coverage is branch-aware and gated at 90% in CI (currently ~97%). Numerical
+Coverage is branch-aware and gated at 90% in CI (currently ~98%). Numerical
 claims in tests use explicit tolerances; see `tests/test_cusp.py` for the
 near-double-root case.
 
@@ -241,9 +262,12 @@ physical interpretation. `lake build` is part of CI.
   Page–Wootters conditional evolution, GPS drift, the de Sitter conformal strip,
   the Connes distance, and modular flow do not establish "no key," "all
   pressing is mutual," or a bounded "total phase."
-- `IMAGINARY_UNIVERSE.md`, `BECOMING_ONE.md`, `SPACEBAR.md`, and `PRESSING.md`
-  record which source claims are rejected or left as metaphor; they are not
-  axiom sets.
+- `vacuum_info.py` states standard capacity bounds; it does not show that the
+  vacuum stores a message, that horizon entropy is readable, or that the bounds
+  explain the origin.
+- `IMAGINARY_UNIVERSE.md`, `BECOMING_ONE.md`, `SPACEBAR.md`, `PRESSING.md`,
+  `VACUUM_INFO.md`, and `ZERO_AND_HOLES.md` record which source claims are
+  rejected or left as metaphor; they are not axiom sets.
 - The meta-audit catches listed phrases, not every possible overclaim; prose
   review is still required.
 

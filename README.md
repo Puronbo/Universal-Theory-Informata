@@ -36,6 +36,8 @@ phenomenological map.
 - **Becoming-one audit** — the commutator residue, the unstable symmetric zero (`model.symmetry_breaking`), the resolvent pole picture, and the truncated-oscillator boundary defect, with the trace obstruction against finite-dimensional canonical commutation and the Higgs-vev overclaim corrected (`BECOMING_ONE.md`).
 - **Spacebar parameter** — the press as a unitary phase, proper time as its lift, the Compton period as one full press, the dimensionless tick count as the scale-free coordinate of the phase, and the free knob rejected as the finger (`model.spacebar`, `SPACEBAR.md`).
 - **Mutual-press audit** — Page–Wootters conditional evolution, the GPS drift and factory detune, the finite de Sitter conformal strip, the Connes two-point distance, and the modular/Unruh core of thermal time, with the five theses graded and the unverified Rovelli attribution dropped (`model.pressing`, `PRESSING.md`).
+- **Vacuum-information audit** — the Bekenstein and holographic bounds, de Sitter horizon capacity, Landauer erasure, two-mode squeezing, and a no-signaling toy, with “nothing” treated as a partition, bound, protection, correlation, and constraint rather than a container (`model.vacuum_info`, `VACUUM_INFO.md`).
+- **Zero and holes audit** — zero as reference rather than substance, \(0/0\) as an underdetermined ratio resolved by a choice of direction, numbers as conditioned values, the inward/outward duality and the self-dual zero, and the homology of holes (Alexander duality, Betti numbers, persistence, topological defects) (`ZERO_AND_HOLES.md`).
 
 ### Millennium integration
 
@@ -48,8 +50,8 @@ Poincaré, solved by Perelman).
 
 | Path | Purpose |
 |---|---|
-| `model/` | Pure-Python engine (38 feature modules, typed, stdlib-only runtime) |
-| `tests/` | 662 tests, 97.58% branch-aware coverage |
+| `model/` | Pure-Python engine (39 feature modules, typed, stdlib-only runtime) |
+| `tests/` | 744 tests, 97.78% branch-aware coverage |
 | `lean/` | Lean 4 machine-checked math core (mathlib4, no `sorry`) |
 | `docs/` | [Architecture](docs/ARCHITECTURE.md), generated API reference, long-form text |
 | `examples/` | Demo scripts (smoke-tested in CI) |
@@ -60,7 +62,7 @@ Poincaré, solved by Perelman).
 ```bash
 python -m pip install -e ".[dev,docs]"
 
-python -m pytest tests -q --cov-fail-under=90   # 662 pass, 97.58% coverage
+python -m pytest tests -q --cov-fail-under=90   # 744 pass, 97.78% coverage
 ruff check .                                    # lint: clean
 black --check model cli.py tests examples       # format: clean
 mypy model cli.py                               # strict types: clean
@@ -86,7 +88,7 @@ end-to-end demo.
 
 ## Verification
 
-- **Python:** 662 tests pass; 97.58% branch-aware coverage (CI gate: 90%).
+- **Python:** 744 tests pass; 97.78% branch-aware coverage (CI gate: 90%).
 - **Static checks:** `ruff check`, `black --check`, and strict `mypy` are clean.
 - **Security:** `bandit` reports no medium/high findings (simulation-only
   `random` use is documented and skipped in `pyproject.toml`).
@@ -104,6 +106,8 @@ end-to-end demo.
 - [`BECOMING_ONE.md`](BECOMING_ONE.md) — the commutator residue, the unstable symmetric zero, the resolvent pole picture, and the corrected overclaims.
 - [`SPACEBAR.md`](SPACEBAR.md) — the press as a unitary phase, proper time as its lift, the Compton tick count, and why a free parameter is the finger.
 - [`PRESSING.md`](PRESSING.md) — the five-thesis mutual-press audit: what the Page–Wootters, GPS, de Sitter, Connes, and thermal-time claims do and do not establish.
+- [`VACUUM_INFO.md`](VACUUM_INFO.md) — what “nothing” can hold: Bekenstein/holographic/de Sitter bounds, Landauer erasure, squeezed-vacuum entanglement, and no-signaling.
+- [`ZERO_AND_HOLES.md`](ZERO_AND_HOLES.md) — zero as reference, \(0/0\) as underdetermination, numbers as conditioned values, the inward/outward duality, and the topology of holes.
 - [`docs/README.md`](docs/README.md) — how to build the API reference.
 - [`CONTRIBUTING.md`](CONTRIBUTING.md) — setup, required checks, and claim rules.
 - [`CHANGELOG.md`](CHANGELOG.md) — release history.

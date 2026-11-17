@@ -162,6 +162,38 @@ The candidate catalog and the rejection argument are in `SPACEBAR.md`.
 The thesis-by-thesis grades and the dropped Rovelli attribution are in
 `PRESSING.md`.
 
+## 14. Vacuum-Information Audit
+
+| Model construct | Governing link in nature | Reference |
+|---|---|---|
+| Bekenstein bound | `I <= 2*pi*R*E/(hbar*c*ln 2)` bits | https://en.wikipedia.org/wiki/Bekenstein_bound |
+| Holographic bound | `I <= A/(4*l_P^2*ln 2)` bits | https://en.wikipedia.org/wiki/Holographic_principle |
+| de Sitter horizon | `R_H = c/H`; `S = A/(4*l_P^2)` | https://en.wikipedia.org/wiki/De_Sitter_space |
+| Landauer erasure | `E = k_B*T*ln 2` per bit | https://en.wikipedia.org/wiki/Landauer%27s_principle |
+| Two-mode squeezing | `n = sinh^2(r)`; entropy `(n+1)ln(n+1) - n ln n` | https://en.wikipedia.org/wiki/Squeezed_coherent_state |
+| No-signaling | A local unitary leaves the other subsystem's marginal fixed | https://en.wikipedia.org/wiki/No-communication_theorem |
+
+The five senses of nothing, the six jobs, and the capacity-not-guarantee caveat
+are in `VACUUM_INFO.md`.
+
+## 15. Zero, Indeterminacy, and Holes
+
+| Model construct | Governing link in nature | Reference |
+|---|---|---|
+| Additive identity | `a + 0 = a`; `a * 0 = 0` | https://en.wikipedia.org/wiki/Zero_element |
+| Indeterminate quotient | `0/0` is satisfied by every `x`; resolved by a choice of direction | https://en.wikipedia.org/wiki/Indeterminate_form |
+| Blow-up | `(x,y) -> [x:y]`; the point becomes a projective exceptional divisor | https://en.wikipedia.org/wiki/Blowing_up |
+| Conditioning on a null event | Borel–Kolmogorov: the posterior depends on the limiting procedure | https://en.wikipedia.org/wiki/Borel%E2%80%93Kolmogorov_paradox |
+| Number as conditioned value | Currying: `C(AxB,C) = C(A,C^B)`; structuralist position | https://en.wikipedia.org/wiki/Currying |
+| Self-dual zero | `(C^op)^op = C`; the zero object is a fixed point | https://en.wikipedia.org/wiki/Opposite_category |
+| Holes | Alexander duality `H_i(K) = H^(n-i-1)(S^n-K)`; Betti numbers; `chi = 2 - 2g` | https://en.wikipedia.org/wiki/Alexander_duality |
+| Persistence | holes are born and die under thickening; barcode length is significance | https://en.wikipedia.org/wiki/Persistent_homology |
+| Defects | `pi_0` walls, `pi_1` lines, `pi_2` monopoles, `pi_3` textures | https://en.wikipedia.org/wiki/Topological_defect |
+
+The audited statements, the inward-reading caveat (the descent ends at the empty
+set, which is a base case and not a ground), and the list of things deliberately
+not claimed are in `ZERO_AND_HOLES.md`.
+
 ---
 
 *Generated from AXIOMS.md, GROUNDING.md, FOLDING_CALIBRATION.md, and engine.py.*

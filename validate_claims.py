@@ -32,6 +32,8 @@ OVERCLAIM_TARGETS = [
     "BECOMING_ONE.md",
     "SPACEBAR.md",
     "PRESSING.md",
+    "VACUUM_INFO.md",
+    "ZERO_AND_HOLES.md",
 ]
 
 
