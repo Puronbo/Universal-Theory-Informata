@@ -28,10 +28,11 @@
 - `PRESSING.md` — five-thesis mutual-press audit: Page–Wootters, GPS, de Sitter, Connes, and thermal time
 - `VACUUM_INFO.md` — what “nothing” can hold: information bounds, erasure cost, squeezed-vacuum entanglement, and no-signaling
 - `ZERO_AND_HOLES.md` — zero as reference, \(0/0\) as underdetermination, numbers as conditioned values, the inward/outward duality, and what a hole is
+- `TOPOLOGY_EXPERIMENTS.md` — two measured experiments: cache reuse-distance persistence versus LRU capacity, and latent-hole persistence as an OOD diagnostic
 
 ## Code
-- `model/` — 39 Python modules (engine)
-- `tests/` — 43 test files (744 tests)
+- `model/` — 41 Python modules (engine)
+- `tests/` — 45 test files (799 tests)
 - `lean/` — Lean 4 math core (16 modules, mathlib)
 - `cli.py` — CLI entry point
 - `simulate.py` — end-to-end demo
@@ -42,7 +43,7 @@
 - `docs/` — API reference (pydoc)
 
 ## Verification
-- `python -m pytest tests/ -q` → 744/744 pass
+- `python -m pytest tests/ -q` → 799/799 pass
 - `cd lean && lake build` → clean (18,114 jobs)
 - `python validate_claims.py` → clean
 - `python run_all.py` → PASS

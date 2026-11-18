@@ -34,6 +34,7 @@ OVERCLAIM_TARGETS = [
     "PRESSING.md",
     "VACUUM_INFO.md",
     "ZERO_AND_HOLES.md",
+    "TOPOLOGY_EXPERIMENTS.md",
 ]
 
 

@@ -35,6 +35,8 @@ Modules:
 - clock: Clock, broken mirror, entropy brake (A10).
 - phenomena: Phenomenon → canvas-operation map.
 - plotting: Optional matplotlib visualization.
+- cache_topology: Reuse-distance persistence, LRU simulation, and working-set estimates.
+- latent_topology: Exact Rips persistence in dimensions 0 and 1, Betti numbers, hole scale.
 
 Constants:
 - VOID, ACTIVE, BALANCE: Ternary state values
@@ -67,6 +69,18 @@ from model.antithesis import (
     orbit_period,
     translation,
     translation_orbit,
+)
+from model.cache_topology import (
+    CacheStats,
+    hit_rate_curve,
+    merge_gaps,
+    reuse_distances,
+    saturation_capacity,
+    simulate_lru,
+    working_set_candidates,
+    working_set_estimate,
+    working_set_keys,
+    working_set_splits,
 )
 from model.clock import (
     PLANCK_TIME,
@@ -143,6 +157,16 @@ from model.impedance import (
     resonance_w0,
     schwinger_mass_gap,
     thirring_gn_mass_gap,
+)
+from model.latent_topology import (
+    Point,
+    betti_at,
+    distance_matrix,
+    dominant_bar,
+    euclidean,
+    hole_scale,
+    persistence_diagram,
+    rips_persistence,
 )
 from model.lattice import (
     WIDTH,
@@ -635,6 +659,26 @@ __all__ = [
     "marginal_probabilities",
     "two_mode_mutual_information",
     "two_mode_squeezing_photon_number",
+    # Cache topology
+    "CacheStats",
+    "hit_rate_curve",
+    "merge_gaps",
+    "reuse_distances",
+    "saturation_capacity",
+    "simulate_lru",
+    "working_set_candidates",
+    "working_set_estimate",
+    "working_set_keys",
+    "working_set_splits",
+    # Latent topology
+    "Point",
+    "betti_at",
+    "distance_matrix",
+    "dominant_bar",
+    "euclidean",
+    "hole_scale",
+    "persistence_diagram",
+    "rips_persistence",
     # Duality
     "DUAL_PAIRS",
     "DualPair",

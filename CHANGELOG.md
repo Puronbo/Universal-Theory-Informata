@@ -92,6 +92,22 @@ All notable changes to this project are documented here. The format follows
   conditioned values, the inward/outward duality with the zero object as its
   fixed point, the connected-but-not-simply-connected reading, and the
   topology of holes (Alexander duality, Betti numbers, persistence, defects).
+- `model/cache_topology.py`: LRU stack distances, the 0-dimensional persistence
+  of the reuse-distance profile, two working-set estimates plus the tied-gap
+  splits, LRU simulation, and the saturation capacity where the hit rate
+  reaches a target fraction.
+- `model/latent_topology.py`: exact \(\mathbb{Z}_2\) Rips persistence in
+  dimensions 0 and 1 by boundary-matrix reduction, plus Betti numbers,
+  persistence diagrams, the dominant bar, and a hole scale.
+- `TOPOLOGY_EXPERIMENTS.md`: measured cache and latent experiments. The cache
+  persistence threshold misses the 90% capacity by up to about 3.5× and the
+  key-count variant stays at or below 0.71 of it, while 0-dimensional
+  persistence on the line adds nothing to the largest histogram gap; the latent
+  dominant \(H_1\) bar separates a ring from a disk, while a nearest-neighbour
+  OOD rule misses 32–50% of in-hole probes.
+- `examples/topology_experiments.py`: deterministic reproduction of both tables.
+- Tests for both modules, including the truncated-filtration caveat and every
+  validation error.
 - `lean/Model/Antithesis.lean`: formal mirror of the contrast —
   `involution_involutive` (`f² = id`), `contractOrbit_eq` (`gⁿx = rⁿx`),
   `translation_no_fixed`, `nilpotent_sq_zero` (`N² = 0`), `entropy_gain_pos`,

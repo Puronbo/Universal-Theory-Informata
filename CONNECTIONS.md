@@ -194,6 +194,20 @@ The audited statements, the inward-reading caveat (the descent ends at the empty
 set, which is a base case and not a ground), and the list of things deliberately
 not claimed are in `ZERO_AND_HOLES.md`.
 
+## 16. Topology Experiments
+
+| Model construct | Governing relation | Reference |
+|---|---|---|
+| Reuse distance | stack distance equals the LRU depth of a key | https://en.wikipedia.org/wiki/Cache_replacement_policies |
+| 0-D persistence on the line | components merge at consecutive gaps; no higher structure is present | https://en.wikipedia.org/wiki/Persistent_homology |
+| Rips complex | edges and triangles enter at their diameter | https://en.wikipedia.org/wiki/Vietoris%E2%80%93Rips_complex |
+| 1-D persistence | a long bar is a hole that survives thickening | https://en.wikipedia.org/wiki/Persistent_homology |
+| Latent OOD | a point can be near the data in distance and outside it in connectivity | https://en.wikipedia.org/wiki/Topological_data_analysis |
+| LRU simulation | eviction of the least recently used key | https://en.wikipedia.org/wiki/Cache_replacement_policies |
+
+The measured cache and latent tables, including the negative cache result and
+the truncated-filtration caveat, are in `TOPOLOGY_EXPERIMENTS.md`.
+
 ---
 
 *Generated from AXIOMS.md, GROUNDING.md, FOLDING_CALIBRATION.md, and engine.py.*

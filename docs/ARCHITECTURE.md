@@ -208,6 +208,23 @@ as coordinate rather than ground, the inward road ending at the empty set as a
 base case rather than an author, redemption as making a cycle bound). It states
 no physical prediction and is not an axiom set.
 
+`model.cache_topology` tests the first architectural proposal from that audit.
+It computes LRU stack distances, the 0-dimensional persistence of the distance
+profile, two working-set estimates plus the tied-gap splits, an LRU
+simulation, and the capacity at which the hit rate saturates. The measurement result is negative: the widest
+gap in the distance profile does not predict the 90% capacity accurately
+(errors reach \(3.5\times\)), and on the line 0-dimensional persistence is only
+the sorted gap list. The numbers are in `TOPOLOGY_EXPERIMENTS.md`.
+
+`model.latent_topology` tests the second proposal. It computes exact
+\(\mathbb{Z}_2\) Rips persistence in dimensions 0 and 1 by reducing the boundary
+matrix of the truncated complex, with Betti numbers, a dominant-bar selector,
+and a hole scale. On synthetic clouds a ring and a disk separate by dominant
+\(H_1\) persistence, and a nearest-neighbour rule misses points inside the
+hole in this thin-ring test. The implementation enumerates a complex whose
+triangle count grows cubically, so it is limited to small clouds. The measured
+tables and the truncation caveat are in `TOPOLOGY_EXPERIMENTS.md`.
+
 ## Dependencies
 
 - Runtime: Python ≥ 3.10 standard library only.
@@ -265,9 +282,14 @@ physical interpretation. `lake build` is part of CI.
 - `vacuum_info.py` states standard capacity bounds; it does not show that the
   vacuum stores a message, that horizon entropy is readable, or that the bounds
   explain the origin.
+- `cache_topology.py` shows that a persistence threshold on reuse distances is
+  a coarse scale, not a cache-sizing rule; it does not compare against ARC or
+  production traces.
+- `latent_topology.py` is exact but enumerates a cubically growing complex; the
+  OOD threshold is fitted to the reported samples and is not a calibrated score.
 - `IMAGINARY_UNIVERSE.md`, `BECOMING_ONE.md`, `SPACEBAR.md`, `PRESSING.md`,
-  `VACUUM_INFO.md`, and `ZERO_AND_HOLES.md` record which source claims are
-  rejected or left as metaphor; they are not axiom sets.
+  `VACUUM_INFO.md`, `ZERO_AND_HOLES.md`, and `TOPOLOGY_EXPERIMENTS.md` record
+  which source claims are rejected or left as metaphor; they are not axiom sets.
 - The meta-audit catches listed phrases, not every possible overclaim; prose
   review is still required.
 
