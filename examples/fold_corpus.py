@@ -11,6 +11,7 @@ computations; the rhymes are not printed as results.
 
 from __future__ import annotations
 
+import math
 import os
 import sys
 
@@ -57,8 +58,10 @@ def main() -> None:
     print("\nmap identities")
     print(f"  midpoint scale at k = 1: {midpoint_scale(1.0):.4f}")
     print(f"  division collapse at t = 2: {division_collapse_scale(2.0):.4f}")
-    angle = two_fold_rotation_angle((1.0, 0.0), (0.5, 0.8660254037844386))
-    print(f"  two creases 30 degrees apart -> rotation {angle:.6f} rad")
+    angle = two_fold_rotation_angle((1.0, 0.0), (math.cos(math.pi / 6.0), math.sin(math.pi / 6.0)))
+    print(
+        f"  two creases 30 degrees apart -> rotation {angle:.6f} rad ({math.degrees(angle):.1f} degrees)"
+    )
 
 
 if __name__ == "__main__":
