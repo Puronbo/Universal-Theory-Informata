@@ -108,15 +108,16 @@ All notable changes to this project are documented here. The format follows
 - `examples/topology_experiments.py`: deterministic reproduction of both tables.
 - `model/fold_corpus.py`: the executable core of the Fold corpus — homothety
   and determinant, reflection and two-fold rotation, midpoint and division
-  collapse, the cap/puncture ledger, wheel closure, doubling, the exterior
-  solid angle, and the Schwarzschild ratio.
+  collapse, the observer split (crease + sky = 1), the cap/puncture ledger,
+  wheel closure, doubling, the exterior solid angle, and the Schwarzschild
+  ratio.
 - `FOLD_CORPUS.md`: the exact/reformulation/rhyme boundary for the corpus, the
   independently recomputed solid-angle and horizon values, the theta/Mellin and
   explicit-formula audit, and the calendar arithmetic. The theta note supplies
   the critical line as a crease; it does not prove the Riemann hypothesis.
 - `examples/fold_corpus.py`: deterministic reproduction of the audited numbers.
 - Tests for the topology modules, including the truncated-filtration caveat and
-  every validation error, and 64 tests for the fold-corpus module.
+  every validation error, and 71 tests for the fold-corpus module.
 - `lean/Model/Antithesis.lean`: formal mirror of the contrast —
   `involution_involutive` (`f² = id`), `contractOrbit_eq` (`gⁿx = rⁿx`),
   `translation_no_fixed`, `nilpotent_sq_zero` (`N² = 0`), `entropy_gain_pos`,

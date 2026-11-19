@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import cmath
 import math
 
 import pytest
@@ -17,6 +18,7 @@ from model.fold_corpus import (
     horizon_ratio,
     midpoint_map,
     midpoint_scale,
+    observer_split,
     projection_onto_crease,
     reflect_point,
     reflection_matrix,
@@ -239,6 +241,49 @@ def test_projection_onto_crease_respects_the_offset() -> None:
 def test_projection_onto_crease_rejects_dimension_mismatch() -> None:
     with pytest.raises(ValueError, match="same dimension"):
         projection_onto_crease((1.0, 2.0), (1.0, 0.0, 0.0))
+
+
+# Observer split ------------------------------------------------------------
+
+
+def test_observer_split_endpoints() -> None:
+    assert observer_split(1.0 + 0.0j) == pytest.approx((1.0, 0.0))
+    assert observer_split(1.0j) == pytest.approx((0.5, 0.5))
+    assert observer_split(-1.0 + 0.0j) == pytest.approx((0.0, 1.0))
+
+
+def test_observer_split_sums_to_one() -> None:
+    for degrees in range(0, 91, 5):
+        k = cmath.exp(1j * math.radians(degrees))
+        crease, sky = observer_split(k)
+        assert crease + sky == pytest.approx(1.0)
+
+
+def test_observer_split_matches_the_solid_angle() -> None:
+    for degrees in range(0, 91, 5):
+        theta = math.radians(degrees)
+        _, sky = observer_split(cmath.exp(1j * theta))
+        assert sky == pytest.approx(solid_angle_fraction(math.sin(theta), 1.0), abs=1e-15)
+
+
+def test_observer_split_is_fold_invariant() -> None:
+    k = cmath.exp(0.7j)
+    assert observer_split(k) == pytest.approx(observer_split(1.0 / k))
+
+
+def test_observer_split_rejects_off_circle() -> None:
+    with pytest.raises(ValueError, match="unit circle"):
+        observer_split(2.0 + 0.0j)
+
+
+def test_observer_split_rejects_zero() -> None:
+    with pytest.raises(ValueError, match="finite and nonzero"):
+        observer_split(0.0j)
+
+
+def test_observer_split_rejects_non_finite() -> None:
+    with pytest.raises(ValueError, match="finite and nonzero"):
+        observer_split(complex(math.inf, 0.0))
 
 
 # Cap and puncture ----------------------------------------------------------

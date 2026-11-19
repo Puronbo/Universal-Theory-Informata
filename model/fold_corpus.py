@@ -11,6 +11,10 @@ checkable content is small and this module isolates it:
 - a hyperplane reflection (a fold) and the composition of two folds, which is
   a rotation by twice the angle between the creases;
 - the midpoint and division maps, whose collapse scale is ``(t-1)/t``;
+- the observer split: for a unit complex scale ``k = exp(i*theta)``, the
+  midpoint modulus is ``cos(theta/2)`` and the division-collapse modulus is
+  ``2*sin(theta/2)``, so their squares sum to one and the second is the
+  solid-angle fraction;
 - the orthogonal projection onto the crease, ``(I + reflection)/2``;
 - the cap/puncture ledger: equal Euler characteristic, different surfaces;
 - the wheel's closure after ``m`` turns and doubling's bijectivity iff odd;
@@ -45,6 +49,7 @@ __all__ = [
     "horizon_ratio",
     "midpoint_map",
     "midpoint_scale",
+    "observer_split",
     "projection_onto_crease",
     "reflect_point",
     "reflection_matrix",
@@ -313,6 +318,40 @@ def division_collapse_scale(t: float) -> float:
     if t == 0.0:
         raise ValueError("t must be nonzero")
     return (t - 1.0) / t
+
+
+def observer_split(k: complex) -> tuple[float, float]:
+    """Return the crease and sky fractions of a unit complex scale ``k``.
+
+    Write ``k = exp(i*theta)``. The midpoint and division maps then have the
+    moduli
+
+        |(1 + k)/2|   = cos(theta/2),
+        |(k - 1)/k|   = 2*sin(theta/2).
+
+    Squaring gives ``crease = cos(theta/2)**2`` and
+    ``sky = |(k - 1)/k|**2 / 4 = sin(theta/2)**2``, so ``crease + sky = 1``.
+    The sky fraction is the solid-angle fraction of a sphere of angular radius
+    ``theta``: ``(1 - cos theta)/2 = sin(theta/2)**2``.
+
+    At ``k = i`` the split is ``(1/2, 1/2)``, the observer on the surface; at
+    ``k = -1`` it is ``(0, 1)``, the observer inside.
+
+    This is an identity between the corpus's two elementary maps and the
+    solid-angle formula, not a derivation of observation.
+
+    Raises:
+        ValueError: If ``k`` is not finite, is zero, or does not lie on the
+            unit circle.
+    """
+    k = complex(k)
+    if not (math.isfinite(k.real) and math.isfinite(k.imag)) or k == 0:
+        raise ValueError("k must be finite and nonzero")
+    if abs(abs(k) - 1.0) > 1e-12:
+        raise ValueError("k must lie on the unit circle")
+    crease = abs(0.5 * (1.0 + k)) ** 2
+    sky = abs((k - 1.0) / k) ** 2 / 4.0
+    return crease, sky
 
 
 def projection_onto_crease(

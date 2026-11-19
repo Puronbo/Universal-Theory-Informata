@@ -29,13 +29,14 @@ A rhyme written as a proof is the one error that matters.
 | Midpoint scale `(1 + k)/2` | `midpoint_scale`, `midpoint_map` | **exact** (algebra) |
 | Division point and collapse `k = (t - 1)/t` | `division_point`, `division_collapse_scale` | **exact** (algebra) |
 | Projection onto the crease | `projection_onto_crease` | **exact** (standard geometry) |
+| Observer split `crease + sky = 1` | `observer_split` | **exact** (trigonometric identity) |
 | Cap/puncture ledger `(chi, boundary, punctures)` | `SurfaceLedger` | **exact** (bookkeeping) |
 | Wheel closure and doubling | `wheel_turn`, `wheel_turns`, `doubling_is_bijective`, `doubling_agrees_with_negation` | **exact** (finite arithmetic) |
 | Exterior solid angle | `solid_angle_fraction` | **exact** (standard geometry) |
 | Schwarzschild radius and `k*` | `schwarzschild_radius`, `horizon_ratio` | **exact** (standard relativity) |
 
 The public names are re-exported from `model/__init__.py`; `tests/test_fold_corpus.py`
-has 64 tests and reaches 100% branch coverage of the module. The physics
+has 71 tests and reaches 100% branch coverage of the module. The physics
 *readings* are not in the code. The module stops at standard geometry and
 arithmetic; `FOLD_CORPUS.md` carries the interpretive status.
 
@@ -110,6 +111,49 @@ The paper's `1.4%` and `12.3%` are correct.
 - Midpoint: `(P + g_k P)/2 = g_((1+k)/2) P`.
 - Division: the `t`-point is `g_(1-t+t*k) P`, which collapses at `k = (t-1)/t`.
 - Pairing: `t` with `1 - t` pairs `k` with `1/k`.
+
+## The observer split
+
+The corpus's two elementary maps are the two halves of one angle. Write
+`k = exp(i*theta)`. Then
+
+```
+|(1 + k)/2| = cos(theta/2),
+|(k - 1)/k| = 2 sin(theta/2).
+```
+
+Squaring and normalizing the second row gives the identity
+
+```
+crease(k) = |(1 + k)/2|^2          = cos^2(theta/2),
+sky(k)    = |(k - 1)/k|^2 / 4      = sin^2(theta/2),
+crease(k) + sky(k)                  = 1.
+```
+
+The sky term is exactly `solid_angle_fraction` for a sphere of angular radius
+`theta`, because `(1 - cos theta)/2 = sin^2(theta/2)`. So the observer's sky
+fraction is the squared modulus of the Fold's division collapse at one complex
+turn, and the midpoint scale is its complement:
+
+| `theta` | `k` | crease | sky | solid angle |
+|---|---|---|---|---|
+| `0` | `1` | `1` | `0` | `0` |
+| `30 deg` | `e^(i*pi/6)` | `0.933013` | `0.066987` | `0.066987` |
+| `45 deg` | `e^(i*pi/4)` | `0.853553` | `0.146447` | `0.146447` |
+| `60 deg` | `e^(i*pi/3)` | `0.75` | `0.25` | `0.25` |
+| `90 deg` | `i` | `0.5` | `0.5` | `0.5` |
+
+At `k = i` the split is `(1/2, 1/2)`: the observer on the surface sees half the
+sky. At `k = -1` it is `(0, 1)`: the observer is inside. The two endpoints are
+the two ways the fold can act.
+
+In the Joukowski picture, with `z = exp(i*theta/2)`, the crease part is
+`z + 1/z = 2 cos(theta/2)` and the folded part is `z - 1/z = 2i sin(theta/2)`.
+The solid angle is the normalized square of the folded part. The quotient is
+the invariant (crease) half; the difference is the anti-invariant (folded)
+half. This is an identity, not a derivation of observation: it shows that the
+Fold's two elementary maps already contain the cosine and sine of the angular
+radius.
 
 ## The zeta and theta notes
 

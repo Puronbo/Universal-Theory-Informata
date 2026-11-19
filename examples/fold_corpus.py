@@ -11,6 +11,7 @@ computations; the rhymes are not printed as results.
 
 from __future__ import annotations
 
+import cmath
 import math
 import os
 import sys
@@ -23,6 +24,7 @@ from model.fold_corpus import (
     doubling_is_bijective,
     horizon_ratio,
     midpoint_scale,
+    observer_split,
     solid_angle_fraction,
     two_fold_rotation_angle,
     wheel_turns,
@@ -62,6 +64,14 @@ def main() -> None:
     print(
         f"  two creases 30 degrees apart -> rotation {angle:.6f} rad ({math.degrees(angle):.1f} degrees)"
     )
+
+    print("\nobserver split, k = exp(i*theta)")
+    print("  theta   crease     sky   solid")
+    for degrees in (0, 15, 30, 45, 60, 90):
+        theta = math.radians(degrees)
+        crease, sky = observer_split(cmath.exp(1j * theta))
+        solid = solid_angle_fraction(math.sin(theta), 1.0)
+        print(f"  {degrees:>5}   {crease:.6f}  {sky:.6f}  {solid:.6f}")
 
 
 if __name__ == "__main__":
