@@ -8,6 +8,7 @@ Run from the repository root after `python -m pip install -e ".[dev]"`.
 | Multi-agent closure | `python examples/multi_agent_demo.py` | per-step closure and states |
 | Dark-energy plot | `python examples/plot_delta.py` | writes `delta_plot.png` (git-ignored) |
 | Topology experiments | `python examples/topology_experiments.py` | cache and latent measured tables |
+| Fold-corpus audit | `python examples/fold_corpus.py` | solid angle, horizon ratio, closure, and identity tables |
 | Notebook | `jupyter lab demo.ipynb` | end-to-end walkthrough |
 
 For headless runs (CI), set `MPLBACKEND=Agg`.

@@ -35,6 +35,7 @@ OVERCLAIM_TARGETS = [
     "VACUUM_INFO.md",
     "ZERO_AND_HOLES.md",
     "TOPOLOGY_EXPERIMENTS.md",
+    "FOLD_CORPUS.md",
 ]
 
 

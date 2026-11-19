@@ -11,6 +11,7 @@
 | `../VACUUM_INFO.md` | What “nothing” can hold: information bounds, erasure cost, squeezed-vacuum entanglement, and no-signaling |
 | `../ZERO_AND_HOLES.md` | Zero as reference, \(0/0\) as underdetermination, conditioned values, the inward/outward duality, and the topology of holes |
 | `../TOPOLOGY_EXPERIMENTS.md` | Two measured experiments: cache reuse-distance persistence versus LRU capacity, and latent-hole persistence as an OOD diagnostic |
+| `../FOLD_CORPUS.md` | The exact core of the Fold corpus, the independent numerical audit, and the exact/reformulation/rhyme boundary |
 | `the_book_of_puno.md` | Long-form conceptual text |
 | `api/` | Generated API reference (not committed) |
 

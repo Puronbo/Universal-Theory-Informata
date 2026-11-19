@@ -61,6 +61,7 @@ Matplotlib in `plotting` (lazy, inside functions).
 | `duality.py` | Binary poles and the involution that swaps them | **taxonomy** (no physical claim) |
 | `lattice.py` | Boolean lattice of pole strings over the dual pairs | **taxonomy** (no physical claim) |
 | `fold.py` | Inversion quotient `x + 1/x`, preimages, representative | **toy** (conceptual quotient) |
+| `fold_corpus.py` | Homothety, fold/crease, cap–puncture ledger, closure, solid angle | **grounded** (standard geometry and arithmetic; readings quarantined) |
 | `antithesis.py` | Contraction, translation, nilpotent, entropy, log conjugacy | **toy** (conceptual counter-model) |
 | `phase.py` | Complex phase, observable intensity, wavelength/wavenumber | **grounded** (standard complex arithmetic) |
 | `superoperator.py` | Liouvillian, commutant zero modes, resolvent, truncated oscillator | **grounded** (standard linear algebra) |

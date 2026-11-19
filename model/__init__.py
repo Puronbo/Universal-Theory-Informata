@@ -24,6 +24,7 @@ Modules:
 - mobius: Möbius transformations, composition, fixed points.
 - duality: Binary poles and the involution that swaps them.
 - fold: Quotient fold x+1/x and fundamental-domain representative.
+- fold_corpus: Executable core of the Fold corpus: homothety, fold, cap/puncture ledger, closure, solid angle.
 - lattice: Boolean lattice of pole strings over the dual pairs.
 - phase: Complex phase, observable intensity, and wavelength/wavenumber.
 - superoperator: Liouvillian commutator and commutant zero modes.
@@ -141,6 +142,29 @@ from model.fold import (
     fold_power,
     fold_preimages,
     representative,
+)
+from model.fold_corpus import (
+    SurfaceLedger,
+    compose_reflections,
+    division_collapse_scale,
+    division_point,
+    doubling_agrees_with_negation,
+    doubling_is_bijective,
+    fold_orbit,
+    horizon_ratio,
+    midpoint_map,
+    midpoint_scale,
+    projection_onto_crease,
+    reflect_point,
+    reflection_matrix,
+    rotation_matrix,
+    scale_determinant,
+    scale_point,
+    schwarzschild_radius,
+    solid_angle_fraction,
+    two_fold_rotation_angle,
+    wheel_turn,
+    wheel_turns,
 )
 from model.geometry import (
     apparent_separation,
@@ -545,6 +569,28 @@ __all__ = [
     "fold_power",
     "fold_preimages",
     "representative",
+    # Fold corpus
+    "SurfaceLedger",
+    "compose_reflections",
+    "division_collapse_scale",
+    "division_point",
+    "doubling_agrees_with_negation",
+    "doubling_is_bijective",
+    "fold_orbit",
+    "horizon_ratio",
+    "midpoint_map",
+    "midpoint_scale",
+    "projection_onto_crease",
+    "reflect_point",
+    "reflection_matrix",
+    "rotation_matrix",
+    "scale_determinant",
+    "scale_point",
+    "schwarzschild_radius",
+    "solid_angle_fraction",
+    "two_fold_rotation_angle",
+    "wheel_turn",
+    "wheel_turns",
     # Lattice
     "WIDTH",
     "PoleString",

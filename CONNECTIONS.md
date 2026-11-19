@@ -208,6 +208,24 @@ not claimed are in `ZERO_AND_HOLES.md`.
 The measured cache and latent tables, including the negative cache result and
 the truncated-filtration caveat, are in `TOPOLOGY_EXPERIMENTS.md`.
 
+## 17. Fold-Corpus Audit
+
+| Model construct | Governing relation | Reference |
+|---|---|---|
+| Homothety | `g_k(P) = P0 + k(P - P0)` has determinant `k^n` | https://en.wikipedia.org/wiki/Homothety |
+| Reflection composition | two reflections whose creases meet at `a` compose to a rotation by `2a` | https://en.wikipedia.org/wiki/Reflection_(mathematics) |
+| Midpoint and division | the `t`-point is a homothety with factor `1 - t + t*k`, collapsing at `k = (t-1)/t` | https://en.wikipedia.org/wiki/Affine_transformation |
+| Cap and puncture | each changes `chi` by one; the triple `(chi, boundary, punctures)` separates surfaces that `chi` alone cannot | https://en.wikipedia.org/wiki/Euler_characteristic |
+| Doubling on `Z/n` | a permutation iff `n` is odd; equals negation iff `n` divides `3` | https://en.wikipedia.org/wiki/Modular_arithmetic |
+| Solid angle | `Omega/(4*pi) = (1 - sqrt(1 - (r/d)^2))/2` for an exterior observer | https://en.wikipedia.org/wiki/Solid_angle |
+| Horizon ratio | `k* = 2*G*M/(c^2*R)` | https://en.wikipedia.org/wiki/Schwarzschild_radius |
+| Theta modular identity | `vartheta(1/t) = sqrt(t) vartheta(t)` fixes the exponent `1/2` of the critical line | https://en.wikipedia.org/wiki/Theta_function |
+
+The recomputed values and the exact/reformulation/rhyme boundary are in
+`FOLD_CORPUS.md`. The theta derivation is a reformulation: it places the crease
+at `1/2` and does not prove the Riemann hypothesis. The calendar arithmetic is
+exact; its reading as a code is a rhyme and is not claimed.
+
 ---
 
 *Generated from AXIOMS.md, GROUNDING.md, FOLDING_CALIBRATION.md, and engine.py.*
