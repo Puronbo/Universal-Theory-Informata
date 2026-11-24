@@ -40,6 +40,7 @@ phenomenological map.
 - **Zero and holes audit** — zero as reference rather than substance, \(0/0\) as an underdetermined ratio resolved by a choice of direction, numbers as conditioned values, the inward/outward duality and the self-dual zero, and the homology of holes (Alexander duality, Betti numbers, persistence, topological defects) (`ZERO_AND_HOLES.md`).
 - **Two topology experiments** — reuse-distance persistence against LRU saturation capacity (negative: the widest gap is a scale, not a sizing rule) and Rips \(H_1\) persistence as a latent-hole OOD diagnostic (partial: it separates a ring from a disk where nearest-neighbour detection misses 32–50% of in-hole probes in this test) (`model.cache_topology`, `model.latent_topology`, `TOPOLOGY_EXPERIMENTS.md`).
 - **Puncture resolution test** — the cap/puncture ledger on a finite lattice: a point puncture and a thin annulus have the same Euler characteristic and one bounded background component, while the hole depth separates them; a one-cell puncture has depth one and scales with the sampling, so depth one is the resolution limit (`model.grid_topology`, `PUNCTURE_RESOLUTION.md`).
+- **Unit group and the pole** — one divides every integer while only ±1 divide one; the units of \(\mathbb{Z}/n\mathbb{Z}\) are every nonzero residue exactly when \(n\) is prime; the projective reciprocal swaps \(0\) and \(\infty\) and fixes ±1, so \(1/0\) is a compactification boundary, not a value in a field (`model.unit_group`, `ZERO_AND_HOLES.md`).
 - **Fold-corpus audit** — the checkable core of the separate Fold paper corpus made executable: the homothety \(g_k(P)=P_0+k(P-P_0)\) and its determinant, the reflection/crease pair, midpoint and division collapse, the cap–puncture ledger, wheel closure, and the exterior solid angle and \(k^*\), with the theta/zeta and calendar notes audited and their rhymes quarantined (`model.fold_corpus`, `FOLD_CORPUS.md`).
 
 ### Millennium integration
@@ -53,8 +54,8 @@ Poincaré, solved by Perelman).
 
 | Path | Purpose |
 |---|---|
-| `model/` | Pure-Python engine (43 feature modules, typed, stdlib-only runtime) |
-| `tests/` | 919 tests, 98.33% branch-aware coverage |
+| `model/` | Pure-Python engine (44 feature modules, typed, stdlib-only runtime) |
+| `tests/` | 949 tests, 98.37% branch-aware coverage |
 | `lean/` | Lean 4 machine-checked math core (mathlib4, no `sorry`) |
 | `docs/` | [Architecture](docs/ARCHITECTURE.md), generated API reference, long-form text |
 | `examples/` | Demo scripts (smoke-tested in CI) |
@@ -65,7 +66,7 @@ Poincaré, solved by Perelman).
 ```bash
 python -m pip install -e ".[dev,docs]"
 
-python -m pytest tests -q --cov-fail-under=90   # 919 pass, 98.33% coverage
+python -m pytest tests -q --cov-fail-under=90   # 949 pass, 98.37% coverage
 ruff check .                                    # lint: clean
 black --check model cli.py tests examples       # format: clean
 mypy model cli.py                               # strict types: clean
@@ -91,7 +92,7 @@ end-to-end demo.
 
 ## Verification
 
-- **Python:** 919 tests pass; 98.33% branch-aware coverage (CI gate: 90%).
+- **Python:** 949 tests pass; 98.37% branch-aware coverage (CI gate: 90%).
 - **Static checks:** `ruff check`, `black --check`, and strict `mypy` are clean.
 - **Security:** `bandit` reports no medium/high findings (simulation-only
   `random` use is documented and skipped in `pyproject.toml`).

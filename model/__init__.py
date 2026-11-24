@@ -26,6 +26,7 @@ Modules:
 - fold: Quotient fold x+1/x and fundamental-domain representative.
 - fold_corpus: Executable core of the Fold corpus: homothety, fold, cap/puncture ledger, closure, solid angle.
 - grid_topology: Puncture versus hole on a finite lattice: Euler characteristic, bounded components, hole depth.
+- unit_group: The multiplicative group, unit residues, and the projective reciprocal.
 - lattice: Boolean lattice of pole strings over the dual pairs.
 - phase: Complex phase, observable intensity, and wavelength/wavenumber.
 - superoperator: Liouvillian commutator and commutant zero modes.
@@ -417,6 +418,15 @@ from model.timeline import (
     milestone_reached,
     years_since_anchor,
 )
+from model.unit_group import (
+    divides,
+    is_field_mod,
+    projective_reciprocal,
+    reciprocal,
+    reciprocal_fixed_points,
+    unit_inverse,
+    units_mod,
+)
 from model.vacuum_info import (
     BITS_PER_NAT,
     PLANCK_LENGTH,
@@ -747,6 +757,14 @@ __all__ = [
     "hole_is_resolved",
     "lattice_euler_characteristic",
     "lattice_step",
+    # Unit group
+    "divides",
+    "is_field_mod",
+    "projective_reciprocal",
+    "reciprocal",
+    "reciprocal_fixed_points",
+    "unit_inverse",
+    "units_mod",
     # Duality
     "DUAL_PAIRS",
     "DualPair",

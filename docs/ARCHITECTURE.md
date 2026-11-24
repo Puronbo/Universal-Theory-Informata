@@ -236,6 +236,14 @@ be the same cell set, so the puncture is the refinement limit of a small hole,
 not a lattice object. The tables and the exact/rhyme boundary are in
 `PUNCTURE_RESOLUTION.md`.
 
+`model.unit_group` builds the exact algebra behind the "one is everything"
+reading. In the integers one divides every integer while only ±1 divide one; in
+a field every nonzero element is a unit. The unit group of
+\(\mathbb{Z}/n\mathbb{Z}\) is every nonzero residue exactly when \(n\) is prime.
+The projective reciprocal extends \(x\mapsto1/x\) by \(0\leftrightarrow\infty\)
+and has fixed points ±1, so \(1/0\) is a choice of compactification rather than
+a value in a field. See `ZERO_AND_HOLES.md` for the exact/rhyme boundary.
+
 ## Dependencies
 
 - Runtime: Python ≥ 3.10 standard library only.

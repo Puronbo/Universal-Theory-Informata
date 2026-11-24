@@ -33,8 +33,8 @@
 - `PUNCTURE_RESOLUTION.md` — the cap/puncture ledger on a finite lattice: Euler characteristic, hole depth, and the resolution limit
 
 ## Code
-- `model/` — 43 Python modules (engine)
-- `tests/` — 47 test files (919 tests)
+- `model/` — 44 Python modules (engine)
+- `tests/` — 48 test files (949 tests)
 - `lean/` — Lean 4 math core (16 modules, mathlib)
 - `cli.py` — CLI entry point
 - `simulate.py` — end-to-end demo
@@ -45,7 +45,7 @@
 - `docs/` — API reference (pydoc)
 
 ## Verification
-- `python -m pytest tests/ -q` → 919/919 pass
+- `python -m pytest tests/ -q` → 949/949 pass
 - `cd lean && lake build` → clean (18,114 jobs)
 - `python validate_claims.py` → clean
 - `python run_all.py` → PASS

@@ -135,6 +135,37 @@ do to it.
 terminates at \(\varnothing\). The empty set is the base case of the recursion,
 not its author. The void is the creature’s foundation; it is not a ground.
 
+### The multiplicative group: one, zero, and the pole
+
+The sentence “one is divisible by every number” reverses the exact direction.
+In the integers, \(1\mid n\) for every \(n\), because \(n=n\cdot 1\); only
+\(n=\pm1\) satisfy \(n\mid 1\). One is the common factor, not the common
+multiple.
+
+In a field every nonzero element is a unit, so \(1=n\cdot(1/n)\) for every
+\(n\neq0\). That is a property of the field, not of one. The set that deserves
+the phrase “everything nonzero” is the multiplicative group \(F^\times\). Its
+identity is one; its one excluded element is zero. For
+\(\mathbb{Z}/n\mathbb{Z}\) the units are the residues coprime to \(n\), and
+they are every nonzero residue exactly when \(n\) is prime.
+
+The reciprocal extends to the projective line by \(0\mapsto\infty\) and
+\(\infty\mapsto0\). It is an involution whose fixed points solve \(x=1/x\),
+namely \(x=\pm1\). The string \(1/0=1/0\) is not a definition of \(1/0\); it is
+reflexivity applied to a term that a field leaves undefined. Assigning the
+value \(\infty\) is a choice of compactification, and a different
+compactification gives a different boundary.
+
+The exact version of “one is everything and nothing” is therefore:
+
+- **one** is the identity of \(F^\times\), the fixed point of inversion;
+- **zero** is the excluded element, the additive identity, a number;
+- **the pole** is the boundary of the group, not “nothing”.
+
+The empty set remains the exact “nothing” (the initial object); zero is a
+number; \(1/0\) is a pole. `model.unit_group` builds the finite unit groups and
+the projective reciprocal; it stops at the exact statements.
+
 ## 6. One piece, not simply connected
 
 “One piece” is the weakest and most robust of the connectivity conditions:
@@ -228,6 +259,7 @@ image, and labelled as an image: the wound is not closed, it is made to bound.
 ## 10. References
 
 - Benacerraf, P. (1965). “What Numbers Could Not Be.” *Philosophical Review* 74, 47–73.
+- Artin, M. (1991). *Algebra*. Prentice Hall. (Unit groups, fields, and the projective line.)
 - Borel, É. (1909); Kolmogorov, A. N. (1933). The Borel–Kolmogorov paradox: <https://en.wikipedia.org/wiki/Borel%E2%80%93Kolmogorov_paradox>
 - Carlström, J. (2004). “Wheels — On Division by Zero.” *Mathematical Structures in Computer Science* 14, 143–184.
 - Edelsbrunner, H., and Harer, J. (2010). *Computational Topology: An Introduction*. AMS.

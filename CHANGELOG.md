@@ -126,6 +126,14 @@ All notable changes to this project are documented here. The format follows
   boundary for the ledger's third column.
 - `examples/grid_topology.py`: deterministic reproduction of the lattice tables.
 - Tests for `model.grid_topology`, including the two-by-two depth-one caveat.
+- `model/unit_group.py`: integer divisibility, the unit group of `Z/nZ`, the
+  field criterion for a prime modulus, modular inverses, and the projective
+  reciprocal. One is the identity of the nonzero group, zero is the excluded
+  element, and the pole is the boundary rather than "nothing".
+- `examples/unit_group.py`: deterministic reproduction of the divisibility,
+  unit-group, inverse, and projective-reciprocal tables.
+- Tests for `model.unit_group`, including the zero-divisor convention and the
+  projective involution.
 - Tests for the topology modules, including the truncated-filtration caveat and
   every validation error, and 71 tests for the fold-corpus module.
 - `lean/Model/Antithesis.lean`: formal mirror of the contrast —
