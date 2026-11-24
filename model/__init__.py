@@ -25,6 +25,7 @@ Modules:
 - duality: Binary poles and the involution that swaps them.
 - fold: Quotient fold x+1/x and fundamental-domain representative.
 - fold_corpus: Executable core of the Fold corpus: homothety, fold, cap/puncture ledger, closure, solid angle.
+- grid_topology: Puncture versus hole on a finite lattice: Euler characteristic, bounded components, hole depth.
 - lattice: Boolean lattice of pole strings over the dual pairs.
 - phase: Complex phase, observable intensity, and wavelength/wavenumber.
 - superoperator: Liouvillian commutator and commutant zero modes.
@@ -170,6 +171,16 @@ from model.fold_corpus import (
 from model.geometry import (
     apparent_separation,
     stretched_distance,
+)
+from model.grid_topology import (
+    Cell,
+    bounded_background_components,
+    disk_cells,
+    grid_hole_depth,
+    grid_hole_scale,
+    hole_is_resolved,
+    lattice_euler_characteristic,
+    lattice_step,
 )
 from model.hyperbolic import (
     c0_center,
@@ -727,6 +738,15 @@ __all__ = [
     "hole_scale",
     "persistence_diagram",
     "rips_persistence",
+    # Grid topology
+    "Cell",
+    "bounded_background_components",
+    "disk_cells",
+    "grid_hole_depth",
+    "grid_hole_scale",
+    "hole_is_resolved",
+    "lattice_euler_characteristic",
+    "lattice_step",
     # Duality
     "DUAL_PAIRS",
     "DualPair",

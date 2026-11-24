@@ -38,7 +38,10 @@ A rhyme written as a proof is the one error that matters.
 The public names are re-exported from `model/__init__.py`; `tests/test_fold_corpus.py`
 has 71 tests and reaches 100% branch coverage of the module. The physics
 *readings* are not in the code. The module stops at standard geometry and
-arithmetic; `FOLD_CORPUS.md` carries the interpretive status.
+arithmetic; `FOLD_CORPUS.md` carries the interpretive status. The ledger's
+discretization is tested separately: `PUNCTURE_RESOLUTION.md` shows that a
+finite lattice cannot hold a point puncture, and that the puncture survives
+only as a hole of depth one.
 
 ## Numbers recomputed
 
@@ -209,8 +212,8 @@ The arithmetic is **exact**. The reading of the date as a code is a separate
 
 ## Upstream fixes
 
-The inspection found two real defects in The-Fold; both are fixed in the local
-clone but not committed there (commit/push is the author's call):
+The inspection found three real defects and one missing cross-link in The-Fold;
+all four are fixed in the local clone and committed there (`6a0c673`):
 
 1. **`check.py` needed an undeclared `pypdf`.** The PDF stores its page
    dictionaries in compressed object streams, so the old byte-scan fallback

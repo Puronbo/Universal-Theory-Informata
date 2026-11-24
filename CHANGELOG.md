@@ -116,6 +116,16 @@ All notable changes to this project are documented here. The format follows
   explicit-formula audit, and the calendar arithmetic. The theta note supplies
   the critical line as a crease; it does not prove the Riemann hypothesis.
 - `examples/fold_corpus.py`: deterministic reproduction of the audited numbers.
+- `model/grid_topology.py`: the cap/puncture ledger on a square lattice —
+  Euler characteristic, bounded background components, hole depth and scale,
+  and the resolution criterion. A one-cell puncture has depth one and its scale
+  equals the lattice step, so it vanishes under refinement; a fixed annulus
+  keeps its scale.
+- `PUNCTURE_RESOLUTION.md`: the measured lattice tables, the exact collapse of
+  a sub-resolution annulus to the puncture cell set, and the exact/rhyme
+  boundary for the ledger's third column.
+- `examples/grid_topology.py`: deterministic reproduction of the lattice tables.
+- Tests for `model.grid_topology`, including the two-by-two depth-one caveat.
 - Tests for the topology modules, including the truncated-filtration caveat and
   every validation error, and 71 tests for the fold-corpus module.
 - `lean/Model/Antithesis.lean`: formal mirror of the contrast —

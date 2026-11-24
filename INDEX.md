@@ -30,10 +30,11 @@
 - `ZERO_AND_HOLES.md` — zero as reference, \(0/0\) as underdetermination, numbers as conditioned values, the inward/outward duality, and what a hole is
 - `TOPOLOGY_EXPERIMENTS.md` — two measured experiments: cache reuse-distance persistence versus LRU capacity, and latent-hole persistence as an OOD diagnostic
 - `FOLD_CORPUS.md` — the exact core of the Fold corpus, the independent numerical audit, and the exact/reformulation/rhyme boundary
+- `PUNCTURE_RESOLUTION.md` — the cap/puncture ledger on a finite lattice: Euler characteristic, hole depth, and the resolution limit
 
 ## Code
-- `model/` — 42 Python modules (engine)
-- `tests/` — 46 test files (870 tests)
+- `model/` — 43 Python modules (engine)
+- `tests/` — 47 test files (919 tests)
 - `lean/` — Lean 4 math core (16 modules, mathlib)
 - `cli.py` — CLI entry point
 - `simulate.py` — end-to-end demo
@@ -44,7 +45,7 @@
 - `docs/` — API reference (pydoc)
 
 ## Verification
-- `python -m pytest tests/ -q` → 870/870 pass
+- `python -m pytest tests/ -q` → 919/919 pass
 - `cd lean && lake build` → clean (18,114 jobs)
 - `python validate_claims.py` → clean
 - `python run_all.py` → PASS

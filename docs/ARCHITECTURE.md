@@ -226,6 +226,16 @@ hole in this thin-ring test. The implementation enumerates a complex whose
 triangle count grows cubically, so it is limited to small clouds. The measured
 tables and the truncation caveat are in `TOPOLOGY_EXPERIMENTS.md`.
 
+`model.grid_topology` tests whether the Fold corpus's cap/puncture ledger
+survives discretization. On a square lattice, a one-cell puncture and a thin
+annulus have the same Euler characteristic (zero) and one bounded background
+component each. The difference is metric: a punctured disk has a hole of depth
+one, so its physical scale is the lattice step and vanishes under refinement,
+while a fixed annulus keeps its scale. At coarse resolution the two masks can
+be the same cell set, so the puncture is the refinement limit of a small hole,
+not a lattice object. The tables and the exact/rhyme boundary are in
+`PUNCTURE_RESOLUTION.md`.
+
 ## Dependencies
 
 - Runtime: Python ≥ 3.10 standard library only.
@@ -288,6 +298,9 @@ physical interpretation. `lake build` is part of CI.
   production traces.
 - `latent_topology.py` is exact but enumerates a cubically growing complex; the
   OOD threshold is fitted to the reported samples and is not a calibrated score.
+- `grid_topology.py` treats a depth-one hole as unresolved; a two-by-two hole is
+  real but has depth one, so the criterion is a small-hole detector, not an
+  exact classifier.
 - `IMAGINARY_UNIVERSE.md`, `BECOMING_ONE.md`, `SPACEBAR.md`, `PRESSING.md`,
   `VACUUM_INFO.md`, `ZERO_AND_HOLES.md`, and `TOPOLOGY_EXPERIMENTS.md` record
   which source claims are rejected or left as metaphor; they are not axiom sets.

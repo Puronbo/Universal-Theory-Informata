@@ -202,6 +202,10 @@ suite.
 | Hole scale | `model.latent_topology.hole_scale` |
 | Demo | `examples/topology_experiments.py` |
 
+A third, related measurement asks whether the Fold corpus's cap/puncture ledger
+survives a finite lattice. It is in `PUNCTURE_RESOLUTION.md` and
+`model.grid_topology.py`.
+
 ## 8. References
 
 - Belady, L. A. (1966). “A study of replacement algorithms for a virtual-storage computer.” *IBM Systems Journal* 5(2), 78–101.
