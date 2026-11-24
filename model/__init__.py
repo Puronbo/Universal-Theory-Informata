@@ -27,6 +27,7 @@ Modules:
 - fold_corpus: Executable core of the Fold corpus: homothety, fold, cap/puncture ledger, closure, solid angle.
 - grid_topology: Puncture versus hole on a finite lattice: Euler characteristic, bounded components, hole depth.
 - unit_group: The multiplicative group, unit residues, and the projective reciprocal.
+- step_expansion: One-step division by n/n^n, hyperfactorial product, and additive enclosure.
 - lattice: Boolean lattice of pole strings over the dual pairs.
 - phase: Complex phase, observable intensity, and wavelength/wavenumber.
 - superoperator: Liouvillian commutator and commutant zero modes.
@@ -364,6 +365,18 @@ from model.spacebar import (
     thermal_weight,
     ticks_from_proper_time,
     wrap_ticks,
+)
+from model.step_expansion import (
+    additive_expansion,
+    additive_interval,
+    divide_by_step,
+    expansion_term,
+    hyperfactorial,
+    log_expansion,
+    multiplicative_collapse,
+    multiplicative_expansion,
+    step,
+    tail_bound,
 )
 from model.stroboscopic import (
     strobe,
@@ -765,6 +778,17 @@ __all__ = [
     "reciprocal_fixed_points",
     "unit_inverse",
     "units_mod",
+    # Step expansion
+    "additive_expansion",
+    "additive_interval",
+    "divide_by_step",
+    "expansion_term",
+    "hyperfactorial",
+    "log_expansion",
+    "multiplicative_collapse",
+    "multiplicative_expansion",
+    "step",
+    "tail_bound",
     # Duality
     "DUAL_PAIRS",
     "DualPair",

@@ -166,6 +166,11 @@ The empty set remains the exact “nothing” (the initial object); zero is a
 number; \(1/0\) is a pole. `model.unit_group` builds the finite unit groups and
 the projective reciprocal; it stops at the exact statements.
 
+The reciprocal step \(s_n=n/n^n\) is a separate exact expansion: one division
+multiplies by \(n^{n-1}\), and the additive sum is bounded by a rational tail.
+`model.step_expansion` and `STEP_EXPANSION.md` keep that calculation apart from
+the pole; the zero-th step is excluded because its reciprocal is a pole.
+
 ## 6. One piece, not simply connected
 
 “One piece” is the weakest and most robust of the connectivity conditions:

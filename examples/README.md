@@ -10,6 +10,7 @@ Run from the repository root after `python -m pip install -e ".[dev]"`.
 | Topology experiments | `python examples/topology_experiments.py` | cache and latent measured tables |
 | Puncture resolution | `python examples/grid_topology.py` | lattice Euler characteristic, hole depth, and refinement slopes |
 | Unit group and pole | `python examples/unit_group.py` | divisibility, unit groups, inverses, and projective reciprocals |
+| One-step expansion | `python examples/step_expansion.py` | step/products, collapse, additive enclosure, and log increments |
 | Fold-corpus audit | `python examples/fold_corpus.py` | solid angle, horizon ratio, closure, and identity tables |
 | Notebook | `jupyter lab demo.ipynb` | end-to-end walkthrough |
 

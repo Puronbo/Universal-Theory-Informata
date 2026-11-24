@@ -9,6 +9,9 @@ All notable changes to this project are documented here. The format follows
 ### Added
 
 - `model/__main__.py`: `python -m model` now works.
+- `model/step_expansion.py`: one-step division by `n/n^n`, the hyperfactorial
+  product `H(n)/n!`, the collapsing reciprocal, a proved rational tail bound
+  for the additive limit, and an exact integral reformulation.
 - `model/phenomena.py`: phenomenon → canvas-operation map, exported publicly.
 - `model/roots.py`: integer roots, including the `-1`-th root / `-1`-th power
   duality (`x^(1/e^(iπ)) = 1/x`).

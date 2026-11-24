@@ -62,6 +62,7 @@ Matplotlib in `plotting` (lazy, inside functions).
 | `lattice.py` | Boolean lattice of pole strings over the dual pairs | **taxonomy** (no physical claim) |
 | `fold.py` | Inversion quotient `x + 1/x`, preimages, representative | **toy** (conceptual quotient) |
 | `fold_corpus.py` | Homothety, fold/crease, cap–puncture ledger, closure, solid angle | **grounded** (standard geometry and arithmetic; readings quarantined) |
+| `step_expansion.py` | One-step division by `n/n^n`, hyperfactorial product, additive enclosure | **grounded** (exact arithmetic) |
 | `antithesis.py` | Contraction, translation, nilpotent, entropy, log conjugacy | **toy** (conceptual counter-model) |
 | `phase.py` | Complex phase, observable intensity, wavelength/wavenumber | **grounded** (standard complex arithmetic) |
 | `superoperator.py` | Liouvillian, commutant zero modes, resolvent, truncated oscillator | **grounded** (standard linear algebra) |
@@ -244,6 +245,14 @@ The projective reciprocal extends \(x\mapsto1/x\) by \(0\leftrightarrow\infty\)
 and has fixed points ±1, so \(1/0\) is a choice of compactification rather than
 a value in a field. See `ZERO_AND_HOLES.md` for the exact/rhyme boundary.
 
+`model.step_expansion` reads "divide by the step \(n/n^n\)" literally. One
+division multiplies by \(n^{n-1}\), so \(A_n=\prod_{k\le n}k^{k-1}=H(n)/n!\)
+and the reciprocal product collapses to zero. The additive sum
+\(\sum_k1/k^{k-1}\) converges; the module returns an exact rational interval
+from the proved tail bound \(1/(n(n+1)^{n-1})\). The integral representation in
+`STEP_EXPANSION.md` is exact but is a reformulation, not an evaluation, and the
+additive limit is not identified with a named constant.
+
 ## Dependencies
 
 - Runtime: Python ≥ 3.10 standard library only.
@@ -309,6 +318,9 @@ physical interpretation. `lake build` is part of CI.
 - `grid_topology.py` treats a depth-one hole as unresolved; a two-by-two hole is
   real but has depth one, so the criterion is a small-hole detector, not an
   exact classifier.
+- `step_expansion.py` proves the recurrence and the tail bound, but it does not
+  evaluate the additive limit or identify it with a known constant; the
+  integral representation is an exact reformulation, not a closed form.
 - `IMAGINARY_UNIVERSE.md`, `BECOMING_ONE.md`, `SPACEBAR.md`, `PRESSING.md`,
   `VACUUM_INFO.md`, `ZERO_AND_HOLES.md`, and `TOPOLOGY_EXPERIMENTS.md` record
   which source claims are rejected or left as metaphor; they are not axiom sets.
