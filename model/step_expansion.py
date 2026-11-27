@@ -27,8 +27,9 @@ The first step is exactly one, ``s_1 = 1``. The zero-th step ``0 / 0**0`` is the
 excluded pole, so the expansion starts at the identity rather than at zero.
 
 This is exact bookkeeping, not a new closed form: the additive limit is
-enclosed, not identified. The interpretive reading is in ``STEP_EXPANSION.md``;
-the pole itself is in ``ZERO_AND_HOLES.md``.
+enclosed and splits into standard series, not evaluated in elementary terms.
+The fuller reading is in ``STEP_EXPANSION.md``; the pole itself is in
+``ZERO_AND_HOLES.md``.
 """
 
 from __future__ import annotations

@@ -12,6 +12,9 @@ All notable changes to this project are documented here. The format follows
 - `model/step_expansion.py`: one-step division by `n/n^n`, the hyperfactorial
   product `H(n)/n!`, the collapsing reciprocal, a proved rational tail bound
   for the additive limit, and an exact integral reformulation.
+- `STEP_EXPANSION.md`: the 120-digit additive limit, its exact split into OEIS
+  A073009 and A358191, tail-bound sharpness, the Glaisher–Kinkelin asymptotic,
+  and the rooted-tree reading of `n^(n-1)`.
 - `model/phenomena.py`: phenomenon → canvas-operation map, exported publicly.
 - `model/roots.py`: integer roots, including the `-1`-th root / `-1`-th power
   duality (`x^(1/e^(iπ)) = 1/x`).

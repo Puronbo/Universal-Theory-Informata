@@ -35,7 +35,7 @@
 
 ## Code
 - `model/` — 45 Python modules (engine)
-- `tests/` — 49 test files (991 tests)
+- `tests/` — 49 test files (992 tests)
 - `lean/` — Lean 4 math core (16 modules, mathlib)
 - `cli.py` — CLI entry point
 - `simulate.py` — end-to-end demo
@@ -46,7 +46,7 @@
 - `docs/` — API reference (pydoc)
 
 ## Verification
-- `python -m pytest tests/ -q` → 991/991 pass
+- `python -m pytest tests/ -q` → 992/992 pass
 - `cd lean && lake build` → clean (18,114 jobs)
 - `python validate_claims.py` → clean
 - `python run_all.py` → PASS

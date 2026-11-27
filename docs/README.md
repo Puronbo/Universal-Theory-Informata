@@ -12,7 +12,7 @@
 | `../ZERO_AND_HOLES.md` | Zero as reference, \(0/0\) as underdetermination, conditioned values, the inward/outward duality, and the topology of holes |
 | `../TOPOLOGY_EXPERIMENTS.md` | Two measured experiments: cache reuse-distance persistence versus LRU capacity, and latent-hole persistence as an OOD diagnostic |
 | `../PUNCTURE_RESOLUTION.md` | The cap/puncture ledger on a finite lattice: Euler characteristic, hole depth, and the resolution limit |
-| `../STEP_EXPANSION.md` | One-step division by \(n/n^n\), the hyperfactorial product, a rigorous additive enclosure, and the exact/reformulation boundary |
+| `../STEP_EXPANSION.md` | One-step division by \(n/n^n\), the hyperfactorial product, a rigorous additive enclosure, the OEIS decomposition, and the exact/reformulation boundary |
 | `../FOLD_CORPUS.md` | The exact core of the Fold corpus, the independent numerical audit, and the exact/reformulation/rhyme boundary |
 | `the_book_of_puno.md` | Long-form conceptual text |
 | `api/` | Generated API reference (not committed) |

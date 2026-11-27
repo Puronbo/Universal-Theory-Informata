@@ -56,7 +56,7 @@ Poincaré, solved by Perelman).
 | Path | Purpose |
 |---|---|
 | `model/` | Pure-Python engine (45 feature modules, typed, stdlib-only runtime) |
-| `tests/` | 991 tests, 98.41% branch-aware coverage |
+| `tests/` | 992 tests, 98.41% branch-aware coverage |
 | `lean/` | Lean 4 machine-checked math core (mathlib4, no `sorry`) |
 | `docs/` | [Architecture](docs/ARCHITECTURE.md), generated API reference, long-form text |
 | `examples/` | Demo scripts (smoke-tested in CI) |
@@ -67,7 +67,7 @@ Poincaré, solved by Perelman).
 ```bash
 python -m pip install -e ".[dev,docs]"
 
-python -m pytest tests -q --cov-fail-under=90   # 991 pass, 98.41% coverage
+python -m pytest tests -q --cov-fail-under=90   # 992 pass, 98.41% coverage
 ruff check .                                    # lint: clean
 black --check model cli.py tests examples       # format: clean
 mypy model cli.py                               # strict types: clean
@@ -93,7 +93,7 @@ end-to-end demo.
 
 ## Verification
 
-- **Python:** 991 tests pass; 98.41% branch-aware coverage (CI gate: 90%).
+- **Python:** 992 tests pass; 98.41% branch-aware coverage (CI gate: 90%).
 - **Static checks:** `ruff check`, `black --check`, and strict `mypy` are clean.
 - **Security:** `bandit` reports no medium/high findings (simulation-only
   `random` use is documented and skipped in `pyproject.toml`).
@@ -116,7 +116,7 @@ end-to-end demo.
 - [`TOPOLOGY_EXPERIMENTS.md`](TOPOLOGY_EXPERIMENTS.md) — two measured experiments: cache reuse-distance persistence versus LRU capacity, and latent-hole persistence as an OOD diagnostic, with the negative and partial results.
 - [`FOLD_CORPUS.md`](FOLD_CORPUS.md) — the exact core of the Fold corpus, the recomputed solid-angle, horizon, theta, and calendar values, and the boundary between exact, reformulation, and rhyme.
 - [`PUNCTURE_RESOLUTION.md`](PUNCTURE_RESOLUTION.md) — the cap/puncture ledger on a finite lattice: a point puncture and a thin annulus share their combinatorics, and the hole depth supplies the resolution limit.
-- [`STEP_EXPANSION.md`](STEP_EXPANSION.md) — one-step division by \(n/n^n\), the hyperfactorial product, a rigorous additive enclosure, and the exact/reformulation boundary.
+- [`STEP_EXPANSION.md`](STEP_EXPANSION.md) — one-step division by \(n/n^n\), the hyperfactorial product, a rigorous additive enclosure, the OEIS decomposition, and the exact/reformulation boundary.
 - [`docs/README.md`](docs/README.md) — how to build the API reference.
 - [`CONTRIBUTING.md`](CONTRIBUTING.md) — setup, required checks, and claim rules.
 - [`CHANGELOG.md`](CHANGELOG.md) — release history.

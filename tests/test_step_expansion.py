@@ -100,6 +100,11 @@ def test_tail_bound_values() -> None:
     assert tail_bound(3) == Fraction(1, 48)
 
 
+def test_tail_bound_is_the_first_omitted_term_times_one_plus_one_over_n() -> None:
+    for n in range(1, 21):
+        assert tail_bound(n) == step(n + 1) * Fraction(n + 1, n)
+
+
 def test_tail_bound_dominates_every_finite_tail() -> None:
     for n in (1, 2, 5, 10):
         finite = sum((step(k) for k in range(n + 1, 31)), Fraction(0))

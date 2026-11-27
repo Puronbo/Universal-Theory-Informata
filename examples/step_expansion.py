@@ -12,6 +12,7 @@ enclosure of the additive limit at ``n = 20``.
 
 from __future__ import annotations
 
+import math
 import os
 import sys
 from decimal import Decimal, getcontext
@@ -31,12 +32,27 @@ from model.step_expansion import (
     tail_bound,
 )
 
+GLAISHER_KINKELIN = 1.2824271291006226
+
 
 def decimal(value: Fraction, places: int = 18) -> str:
     """Format a Fraction as a fixed-point decimal string."""
     getcontext().prec = places + 10
     scaled = Decimal(value.numerator) / Decimal(value.denominator)
     return f"{scaled:.{places}f}"
+
+
+def asymptotic_log(n: int) -> float:
+    """Return the hyperfactorial asymptotic for ``log(A_n)`` to order ``1/n``."""
+    log_n = math.log(n)
+    return (
+        (0.5 * n * n - 0.5 * n - 5 / 12) * log_n
+        - 0.25 * n * n
+        + n
+        + math.log(GLAISHER_KINKELIN)
+        - 0.5 * math.log(2 * math.pi)
+        - 1 / (12 * n)
+    )
 
 
 def main() -> None:
@@ -68,10 +84,22 @@ def main() -> None:
     print(f"width  {decimal(upper - lower, 30)}")
     print()
 
+    print("== tail bound sharpness: bound(n) / s_(n+1) = (n+1)/n ==")
+    for n in (5, 10, 20):
+        ratio = tail_bound(n) / step(n + 1)
+        print(f"n={n:>2}  bound={str(tail_bound(n)):>24}  ratio={ratio}")
+    print()
+
     print("== one-step logarithm: log(A_n) - log(A_(n-1)) = (n-1) log(n) ==")
     for n in (2, 3, 5, 10, 20):
         delta = log_expansion(n) - log_expansion(n - 1)
         print(f"n={n:>2}  log(A_n)={log_expansion(n):>12.6f}  step log={delta:>10.6f}")
+    print()
+
+    print("== asymptotic log error: exact minus the 1/n expansion ==")
+    for n in (10, 20, 100, 1000):
+        error = log_expansion(n) - asymptotic_log(n)
+        print(f"n={n:>4}  exact={log_expansion(n):>15.6f}  error={error:+.3e}")
     print()
     print("The product is exact integer arithmetic. The sum is enclosed,")
     print("not identified; the integral representation is a reformulation.")
