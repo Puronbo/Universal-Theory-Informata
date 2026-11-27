@@ -30,6 +30,7 @@ Modules:
 - step_expansion: One-step division by n/n^n, hyperfactorial product, and additive enclosure.
 - lattice: Boolean lattice of pole strings over the dual pairs.
 - phase: Complex phase, observable intensity, and wavelength/wavenumber.
+- pi_intersection: Pi as the nested intersection of Archimedean rational intervals.
 - superoperator: Liouvillian commutator and commutant zero modes.
 - symmetry_breaking: Double-well potential and a nonzero vacuum value (toy model).
 - spacebar: Candidate parameters for the first-deviation press (proper time, phase, ticks).
@@ -265,6 +266,13 @@ from model.phenomena import (
     PHENOMENA,
     phenomena_list,
     phenomenon_type,
+)
+from model.pi_intersection import (
+    PiIntersection,
+    PiInterval,
+    archimedes_intersection,
+    archimedes_interval,
+    archimedes_intervals,
 )
 from model.playhead import (
     Playhead,
@@ -659,6 +667,12 @@ __all__ = [
     "wave_sample",
     "wavelength_from_wavenumber",
     "wavenumber_from_wavelength",
+    # Pi intersection
+    "PiInterval",
+    "PiIntersection",
+    "archimedes_interval",
+    "archimedes_intervals",
+    "archimedes_intersection",
     # Superoperator
     "commutant_dimension",
     "commutes",

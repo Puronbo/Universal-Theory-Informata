@@ -38,6 +38,7 @@ OVERCLAIM_TARGETS = [
     "FOLD_CORPUS.md",
     "PUNCTURE_RESOLUTION.md",
     "STEP_EXPANSION.md",
+    "PI_INTERSECTION.md",
 ]
 
 

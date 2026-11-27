@@ -65,6 +65,7 @@ Matplotlib in `plotting` (lazy, inside functions).
 | `step_expansion.py` | One-step division by `n/n^n`, hyperfactorial product, additive enclosure | **grounded** (exact arithmetic) |
 | `antithesis.py` | Contraction, translation, nilpotent, entropy, log conjugacy | **toy** (conceptual counter-model) |
 | `phase.py` | Complex phase, observable intensity, wavelength/wavenumber | **grounded** (standard complex arithmetic) |
+| `pi_intersection.py` | Archimedes' nested rational intervals whose intersection is `{pi}` | **grounded** (exact rational enclosures) |
 | `superoperator.py` | Liouvillian, commutant zero modes, resolvent, truncated oscillator | **grounded** (standard linear algebra) |
 | `symmetry_breaking.py` | Double-well potential, minima, curvature, toy vev | **toy** (classical mechanism) |
 | `spacebar.py` | Candidate parameters of the press: proper time, phase, ticks, mass shell | **grounded** (standard kinematics) |
@@ -250,8 +251,17 @@ division multiplies by \(n^{n-1}\), so \(A_n=\prod_{k\le n}k^{k-1}=H(n)/n!\)
 and the reciprocal product collapses to zero. The additive sum
 \(\sum_k1/k^{k-1}\) converges; the module returns an exact rational interval
 from the proved tail bound \(1/(n(n+1)^{n-1})\). The integral representation in
-`STEP_EXPANSION.md` is exact but is a reformulation, not an evaluation, and the
-additive limit is not identified with a named constant.
+`STEP_EXPANSION.md` is exact but is a reformulation, not an evaluation; the limit
+splits into OEIS A073009 and A358191 but has no elementary closed form claimed
+here.
+
+`model.pi_intersection` changes \(\pi\) into an intersection. Archimedes'
+inscribed and circumscribed polygons give \(n a_n<\pi<n b_n\); the module
+doubles the polygon and encloses every square root with rational `isqrt` bounds.
+The returned intervals are nested by construction, their widths shrink like
+\(n^{-2}\), and the infinite intersection is exactly \(\{\pi\}\). Each finite
+intersection is a rational interval, not a rational value. The details are in
+`PI_INTERSECTION.md`.
 
 ## Dependencies
 
@@ -319,8 +329,11 @@ physical interpretation. `lake build` is part of CI.
   real but has depth one, so the criterion is a small-hole detector, not an
   exact classifier.
 - `step_expansion.py` proves the recurrence and the tail bound, but it does not
-  evaluate the additive limit or identify it with a known constant; the
-  integral representation is an exact reformulation, not a closed form.
+  evaluate the additive limit in elementary terms; the integral representation
+  and the OEIS split are reformulations, not a closed form.
+- `pi_intersection.py` returns rational enclosures whose infinite intersection
+  is \(\{\pi\}\); it does not claim that \(\pi\) is rational, and the finite
+  table is not a full decimal expansion.
 - `IMAGINARY_UNIVERSE.md`, `BECOMING_ONE.md`, `SPACEBAR.md`, `PRESSING.md`,
   `VACUUM_INFO.md`, `ZERO_AND_HOLES.md`, and `TOPOLOGY_EXPERIMENTS.md` record
   which source claims are rejected or left as metaphor; they are not axiom sets.

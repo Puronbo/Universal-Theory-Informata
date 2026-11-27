@@ -42,6 +42,7 @@ phenomenological map.
 - **Puncture resolution test** — the cap/puncture ledger on a finite lattice: a point puncture and a thin annulus have the same Euler characteristic and one bounded background component, while the hole depth separates them; a one-cell puncture has depth one and scales with the sampling, so depth one is the resolution limit (`model.grid_topology`, `PUNCTURE_RESOLUTION.md`).
 - **Unit group and the pole** — one divides every integer while only ±1 divide one; the units of \(\mathbb{Z}/n\mathbb{Z}\) are every nonzero residue exactly when \(n\) is prime; the projective reciprocal swaps \(0\) and \(\infty\) and fixes ±1, so \(1/0\) is a compactification boundary, not a value in a field (`model.unit_group`, `ZERO_AND_HOLES.md`).
 - **One-step expansion** — repeatedly dividing by the step \(s_n=n/n^n\) gives the hyperfactorial quotient \(H(n)/n!\), whose reciprocal collapses to zero; the additive sum \(\sum_k 1/k^{k-1}\) is enclosed by a proved tail bound and has an exact integral reformulation (`model.step_expansion`, `STEP_EXPANSION.md`).
+- **Pi as an intersection** — Archimedes' inscribed and circumscribed polygons give nested rational intervals whose widths shrink like \(n^{-2}\); the infinite intersection is exactly \(\{\pi\}\), with outward-rounded integer square roots (`model.pi_intersection`, `PI_INTERSECTION.md`).
 - **Fold-corpus audit** — the checkable core of the separate Fold paper corpus made executable: the homothety \(g_k(P)=P_0+k(P-P_0)\) and its determinant, the reflection/crease pair, midpoint and division collapse, the cap–puncture ledger, wheel closure, and the exterior solid angle and \(k^*\), with the theta/zeta and calendar notes audited and their rhymes quarantined (`model.fold_corpus`, `FOLD_CORPUS.md`).
 
 ### Millennium integration
@@ -55,8 +56,8 @@ Poincaré, solved by Perelman).
 
 | Path | Purpose |
 |---|---|
-| `model/` | Pure-Python engine (45 feature modules, typed, stdlib-only runtime) |
-| `tests/` | 992 tests, 98.41% branch-aware coverage |
+| `model/` | Pure-Python engine (46 feature modules, typed, stdlib-only runtime) |
+| `tests/` | 1012 tests, 98.47% branch-aware coverage |
 | `lean/` | Lean 4 machine-checked math core (mathlib4, no `sorry`) |
 | `docs/` | [Architecture](docs/ARCHITECTURE.md), generated API reference, long-form text |
 | `examples/` | Demo scripts (smoke-tested in CI) |
@@ -67,7 +68,7 @@ Poincaré, solved by Perelman).
 ```bash
 python -m pip install -e ".[dev,docs]"
 
-python -m pytest tests -q --cov-fail-under=90   # 992 pass, 98.41% coverage
+python -m pytest tests -q --cov-fail-under=90   # 1012 pass, 98.47% coverage
 ruff check .                                    # lint: clean
 black --check model cli.py tests examples       # format: clean
 mypy model cli.py                               # strict types: clean
@@ -93,7 +94,7 @@ end-to-end demo.
 
 ## Verification
 
-- **Python:** 992 tests pass; 98.41% branch-aware coverage (CI gate: 90%).
+- **Python:** 1012 tests pass; 98.47% branch-aware coverage (CI gate: 90%).
 - **Static checks:** `ruff check`, `black --check`, and strict `mypy` are clean.
 - **Security:** `bandit` reports no medium/high findings (simulation-only
   `random` use is documented and skipped in `pyproject.toml`).
@@ -117,6 +118,7 @@ end-to-end demo.
 - [`FOLD_CORPUS.md`](FOLD_CORPUS.md) — the exact core of the Fold corpus, the recomputed solid-angle, horizon, theta, and calendar values, and the boundary between exact, reformulation, and rhyme.
 - [`PUNCTURE_RESOLUTION.md`](PUNCTURE_RESOLUTION.md) — the cap/puncture ledger on a finite lattice: a point puncture and a thin annulus share their combinatorics, and the hole depth supplies the resolution limit.
 - [`STEP_EXPANSION.md`](STEP_EXPANSION.md) — one-step division by \(n/n^n\), the hyperfactorial product, a rigorous additive enclosure, the OEIS decomposition, and the exact/reformulation boundary.
+- [`PI_INTERSECTION.md`](PI_INTERSECTION.md) — Archimedes' nested rational intervals, their rigorous square-root bounds, and \(\pi\) as the intersection \(\{\pi\}\).
 - [`docs/README.md`](docs/README.md) — how to build the API reference.
 - [`CONTRIBUTING.md`](CONTRIBUTING.md) — setup, required checks, and claim rules.
 - [`CHANGELOG.md`](CHANGELOG.md) — release history.
